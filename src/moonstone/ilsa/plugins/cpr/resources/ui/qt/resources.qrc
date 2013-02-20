@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/">
+    <file>static/default/icon/22x22/cpr.png</file>
+    <file>static/default/icon/48x48/panoramic.png</file>
+    <file>static/default/icon/48x48/panoramic-grey.png</file>
+  </qresource>
+</RCC>

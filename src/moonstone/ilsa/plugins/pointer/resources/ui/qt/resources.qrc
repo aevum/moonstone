@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>static/default/icon/22x22/edit-select.png</file>
+    <file>static/default/icon/48x48/snap-orthogonal.png</file>
+  </qresource>
+</RCC>

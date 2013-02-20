@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>static/default/icon/22x22/step_object_Rope.png</file>
+    <file>static/default/icon/22x22/step_object_Stick.png</file>
+    <file>static/default/icon/22x22/step_object_Tracer.png</file>
+    <file>static/default/icon/22x22/transform-crop.png</file>
+    <file>static/default/icon/48x48/cutter.png</file>
+    <file>static/default/icon/48x48/edit-cut.png</file>
+    <file>static/default/icon/48x48/skull-divided.png</file>
+    <file>static/default/icon/48x48/half-skull.png</file>
+  </qresource>
+</RCC>

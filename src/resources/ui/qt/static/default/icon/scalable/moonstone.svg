@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="730.13"
+   height="807.84003"
+   id="svg5196"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="New document 5">
+  <defs
+     id="defs5198">
+    <linearGradient
+       id="linearGradient4979">
+      <stop
+         style="stop-color:#f4f4f4;stop-opacity:1;"
+         offset="0"
+         id="stop4981" />
+      <stop
+         id="stop4983"
+         offset="0.7299698"
+         style="stop-color:#a6a6a6;stop-opacity:1;" />
+      <stop
+         id="stop4985"
+         offset="1"
+         style="stop-color:#ececec;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4970">
+      <stop
+         id="stop4972"
+         offset="0"
+         style="stop-color:#a9eeff;stop-opacity:1;" />
+      <stop
+         style="stop-color:#3d6eb8;stop-opacity:1;"
+         offset="0.20001248"
+         id="stop4986" />
+      <stop
+         style="stop-color:#145498;stop-opacity:1;"
+         offset="1"
+         id="stop4982" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4970-4">
+      <stop
+         id="stop4972-5"
+         offset="0"
+         style="stop-color:#a9eeff;stop-opacity:1;" />
+      <stop
+         style="stop-color:#133eae;stop-opacity:1;"
+         offset="0.20001248"
+         id="stop4986-2" />
+      <stop
+         style="stop-color:#144698;stop-opacity:1;"
+         offset="1"
+         id="stop4982-9" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4970-4-6">
+      <stop
+         id="stop4972-5-2"
+         offset="0"
+         style="stop-color:#a9eeff;stop-opacity:1;" />
+      <stop
+         style="stop-color:#3d6eb8;stop-opacity:0"
+         offset="0.9673956"
+         id="stop4986-2-3" />
+      <stop
+         style="stop-color:#145498;stop-opacity:0"
+         offset="1"
+         id="stop4982-9-8" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5421">
+      <stop
+         id="stop5423"
+         offset="0"
+         style="stop-color:#ffffff;stop-opacity:0;" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.11764706;"
+         offset="0.70892125"
+         id="stop5429" />
+      <stop
+         id="stop5425"
+         offset="1"
+         style="stop-color:#ffffff;stop-opacity:0.23966943;" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3162"
+       id="radialGradient5059"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-2.2697829,2.356237e-7,1.2569736e-7,1.2422531,1935.3698,-194.59596)"
+       cx="592.99774"
+       cy="719.74329"
+       fx="592.99774"
+       fy="719.74329"
+       r="76.117714" />
+    <linearGradient
+       id="linearGradient3162">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0"
+         id="stop3164" />
+      <stop
+         id="stop3166"
+         offset="0.44741607"
+         style="stop-color:#ffffff;stop-opacity:0;" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3168" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4068"
+       inkscape:collect="always">
+      <feGaussianBlur
+         id="feGaussianBlur4070"
+         stdDeviation="0.45546007"
+         inkscape:collect="always" />
+    </filter>
+    <linearGradient
+       id="linearGradient4979-6">
+      <stop
+         style="stop-color:#f4f4f4;stop-opacity:1;"
+         offset="0"
+         id="stop4981-4" />
+      <stop
+         id="stop4983-3"
+         offset="0.7299698"
+         style="stop-color:#a6a6a6;stop-opacity:1;" />
+      <stop
+         id="stop4985-5"
+         offset="1"
+         style="stop-color:#ececec;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4970-8">
+      <stop
+         id="stop4972-7"
+         offset="0"
+         style="stop-color:#a9eeff;stop-opacity:1;" />
+      <stop
+         style="stop-color:#3d6eb8;stop-opacity:1;"
+         offset="0.20001248"
+         id="stop4986-3" />
+      <stop
+         style="stop-color:#145498;stop-opacity:1;"
+         offset="1"
+         id="stop4982-3" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4970-4-0">
+      <stop
+         id="stop4972-5-1"
+         offset="0"
+         style="stop-color:#a9eeff;stop-opacity:1;" />
+      <stop
+         style="stop-color:#133eae;stop-opacity:1;"
+         offset="0.20001248"
+         id="stop4986-2-4" />
+      <stop
+         style="stop-color:#144698;stop-opacity:1;"
+         offset="1"
+         id="stop4982-9-5" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4970-4-6-0">
+      <stop
+         id="stop4972-5-2-7"
+         offset="0"
+         style="stop-color:#a9eeff;stop-opacity:1;" />
+      <stop
+         style="stop-color:#3d6eb8;stop-opacity:0"
+         offset="0.9673956"
+         id="stop4986-2-3-8" />
+      <stop
+         style="stop-color:#145498;stop-opacity:0"
+         offset="1"
+         id="stop4982-9-8-9" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5421-3">
+      <stop
+         id="stop5423-9"
+         offset="0"
+         style="stop-color:#ffffff;stop-opacity:0;" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.11764706;"
+         offset="0.70892125"
+         id="stop5429-4" />
+      <stop
+         id="stop5425-6"
+         offset="1"
+         style="stop-color:#ffffff;stop-opacity:0.23966943;" />
+    </linearGradient>
+    <radialGradient
+       r="76.117714"
+       fy="719.74329"
+       fx="592.99774"
+       cy="719.74329"
+       cx="592.99774"
+       gradientTransform="matrix(-2.2697829,2.356237e-7,1.2569736e-7,1.2422531,1935.3698,-194.59596)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient5194-4"
+       xlink:href="#linearGradient3162-5"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3162-5">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0"
+         id="stop3164-5" />
+      <stop
+         id="stop3166-5"
+         offset="0.44741607"
+         style="stop-color:#ffffff;stop-opacity:0;" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3168-6" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4979"
+       id="linearGradient5445"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.52667452,0,0,0.52667452,48.885654,184.25616)"
+       x1="366.5463"
+       y1="45.591236"
+       x2="366.5463"
+       y2="230.0972" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4970"
+       id="linearGradient5447"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.31095134,0,0,0.31095134,65.849935,45.31425)"
+       x1="590.81702"
+       y1="534.11127"
+       x2="590.81702"
+       y2="767.33978" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4970-4"
+       id="linearGradient5449"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.31095134,0,0,0.31095134,65.849935,45.15386)"
+       x1="590.81702"
+       y1="534.11127"
+       x2="590.81702"
+       y2="767.33978" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4970-4-6"
+       id="radialGradient5451"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.43036119,0,0,0.41135084,-59.648395,-38.30849)"
+       cx="718.49805"
+       cy="787.78918"
+       fx="718.49805"
+       fy="787.78918"
+       r="88.151901" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5421"
+       id="radialGradient5453"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.53008494,1.0310009e-7,-6.4152648e-8,0.33391413,-63.848392,23.94556)"
+       cx="591.25189"
+       cy="679.21198"
+       fx="591.25189"
+       fy="679.21198"
+       r="76.117714" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3162"
+       id="radialGradient5455"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-2.2697829,2.356237e-7,1.2569736e-7,1.2422531,1935.3698,-194.59596)"
+       cx="592.99774"
+       cy="719.74329"
+       fx="592.99774"
+       fy="719.74329"
+       r="76.117714" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="248.94174"
+     inkscape:cy="518.43788"
+     inkscape:document-units="px"
+     inkscape:current-layer="g5133"
+     showgrid="false"
+     inkscape:window-width="1358"
+     inkscape:window-height="686"
+     inkscape:window-x="3"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5201">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-244.51934)">
+    <g
+       transform="matrix(10.288484,0,0,10.288484,-2117.4922,-1990.8808)"
+       style="opacity:0.95999995;filter:url(#filter5385)"
+       id="g5133"
+       inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/doc/moonstone-logo/final-18-09-2010/icons/icons/512x512.png"
+       inkscape:export-xdpi="586.76959"
+       inkscape:export-ydpi="586.76959">
+      <g
+         id="g5435"
+         transform="translate(-0.9945323,9.1628584)">
+        <path
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cszszszsz"
+           id="path3642"
+           d="m 241.97886,208.43181 c 12.32976,0 20.45017,5.05203 26.51659,12.55307 3.37755,4.17632 8.57071,14.55011 8.57071,26.26552 0,11.71547 -2.89376,18.14196 -8.60261,26.53477 -4.26199,6.26569 -14.01358,12.4674 -26.11036,12.51987 -12.09676,0.0528 -21.34641,-4.92245 -27.09483,-12.64769 -3.01879,-4.05697 -8.45204,-14.68902 -8.45204,-26.42734 0,-11.73831 3.58413,-18.70841 8.7363,-26.28788 4.22084,-6.20938 14.10645,-12.51032 26.43624,-12.51032 z"
+           style="fill:url(#linearGradient5445);fill-opacity:1;stroke:none"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3644"
+           d="m 242.38427,208.25902 c -12.38561,0 -22.31984,6.31306 -26.57859,12.57822 -5.15856,7.58887 -8.75418,14.61732 -8.75418,26.38896 0,11.78892 5.42532,22.45556 8.46975,26.547 5.77857,7.76576 15.10021,12.75762 27.24227,12.70463 12.15242,-0.0527 21.93185,-6.28958 26.23096,-12.60982 5.71625,-8.40369 8.62777,-14.86774 8.62777,-26.61019 0,-11.76386 -5.18681,-22.14174 -8.59617,-26.35737 -6.08876,-7.52868 -14.26725,-12.64143 -26.64181,-12.64143 z m 0,0.34764 c 12.285,0 20.3449,5.00999 26.38899,12.4834 3.34575,4.137 8.53295,14.50076 8.53295,26.16776 0,11.68846 -2.86309,18.07024 -8.56455,26.45218 -4.2249,6.21114 -13.93701,12.36797 -25.97814,12.4202 -12.05146,0.0526 -21.27117,-4.89351 -26.98944,-12.57823 -2.99315,-4.02251 -8.40655,-14.63801 -8.40655,-26.32577 0,-11.70492 3.57682,-18.62929 8.72258,-26.19934 4.18294,-6.15363 14.02023,-12.4202 26.29416,-12.4202 z"
+           style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#484848;fill-opacity:1;fill-rule:nonzero;stroke:#1d1d1d;stroke-width:0.30000001;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cszszszsz"
+           id="path3646"
+           d="m 249.59853,211.39688 c 9.62059,0 15.95673,4.70489 20.69019,11.69051 2.63543,3.88936 6.68752,13.55033 6.68752,24.46077 0,10.91045 -2.25793,16.89533 -6.71239,24.71146 -3.32554,5.83515 -10.93445,11.61073 -20.37323,11.65959 -9.4388,0.0492 -16.65605,-4.5842 -21.14139,-11.77862 -2.35549,-3.77822 -6.5949,-13.67968 -6.5949,-24.61145 0,-10.93172 2.7966,-17.4229 6.81669,-24.48156 3.29343,-5.78271 11.0069,-11.6507 20.62751,-11.6507 z"
+           style="fill:url(#linearGradient5447);fill-opacity:1;stroke:none"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:url(#linearGradient5449);fill-opacity:1;stroke:none"
+           d="m 249.59853,211.23649 c 9.62059,0 15.95673,4.70488 20.69019,11.69051 2.63543,3.88936 6.68752,13.55033 6.68752,24.46076 0,10.91045 -2.25793,16.89534 -6.71239,24.71146 -3.32554,5.83515 -10.93445,11.61074 -20.37323,11.6596 -9.4388,0.0492 -16.65605,-4.5842 -21.14139,-11.77862 -2.35549,-3.77822 -6.5949,-13.67968 -6.5949,-24.61146 0,-10.93172 2.7966,-17.4229 6.81669,-24.48155 3.29343,-5.78271 11.0069,-11.6507 20.62751,-11.6507 z"
+           id="path3648"
+           sodipodi:nodetypes="cszszszsz"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3650"
+           d="m 249.61269,211.07455 c -9.68764,0 -17.43906,5.88769 -20.76355,11.72492 -4.02532,7.06784 -6.85797,13.59613 -6.85797,24.55597 0,10.97438 4.25983,20.9014 6.63675,24.71398 4.51054,7.23483 11.77602,11.90077 21.2692,11.85133 9.50558,-0.0493 17.1548,-5.86804 20.51071,-11.75652 4.46054,-7.82675 6.73156,-13.84398 6.73156,-24.77719 0,-10.95125 -4.03742,-20.62662 -6.69996,-24.55597 -4.7525,-7.01373 -11.1524,-11.75652 -20.82674,-11.75652 z m 0,0.31603 c 9.56683,0 15.82791,4.67259 20.54232,11.63011 2.60833,3.84938 6.66835,13.49674 6.66835,24.36635 0,10.88772 -2.25154,16.81368 -6.69996,24.61917 -3.29513,5.78183 -10.85429,11.55 -20.22628,11.59851 -9.3844,0.0488 -16.52462,-4.5709 -20.98476,-11.72492 -2.33407,-3.74383 -6.57355,-13.63521 -6.57355,-24.52436 0,-10.90361 2.77991,-17.34849 6.79477,-24.39796 3.26238,-5.7282 10.92553,-11.5669 20.47911,-11.5669 z"
+           style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#202954;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.32602015;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cszszszsz"
+           id="path3652"
+           d="m 249.59765,210.15599 c 9.36649,0 15.53526,4.70489 20.1437,11.69051 2.56581,3.88936 6.51086,13.55033 6.51086,24.46075 0,10.91047 -2.19827,16.89535 -6.5351,24.71148 -3.23768,5.83515 -10.64561,11.61073 -19.83508,11.65959 -9.18949,0.0492 -16.21611,-4.5842 -20.58296,-11.77863 -2.29328,-3.77819 -6.42072,-13.67968 -6.42072,-24.61144 0,-10.93172 2.72274,-17.4229 6.63664,-24.48156 3.20642,-5.78272 10.71618,-11.6507 20.08266,-11.6507 z"
+           style="fill:url(#radialGradient5451);fill-opacity:1;stroke:none"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccz"
+           id="path3654"
+           d="m 249.46581,212.25294 c 9.38515,0 15.56625,4.61803 20.18386,11.47467 18.9703,36.82513 -58.80363,35.22246 -40.30657,-0.039 3.21281,-5.67594 10.73753,-11.4356 20.12271,-11.4356 z"
+           style="fill:url(#radialGradient5453);fill-opacity:1;stroke:none"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486" />
+        <path
+           inkscape:connector-curvature="0"
+           transform="matrix(0.31095134,0,0,0.31095134,66.292506,44.70385)"
+           sodipodi:nodetypes="cccz"
+           id="path3656"
+           d="m 590.53198,763.01338 c 27.93991,0 46.34118,-13.66383 60.08799,-33.95129 13.21478,-29.02077 -147.78735,-23.33834 -119.9939,0.11558 9.56467,16.79402 31.96597,33.83571 59.90591,33.83571 z"
+           style="fill:url(#radialGradient5455);fill-opacity:1;stroke:none;filter:url(#filter4068)"
+           inkscape:export-xdpi="288.45486"
+           inkscape:export-ydpi="288.45486"
+           inkscape:export-filename="/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/ui/qt/static/default/splashscreen/splashscreen.png" />
+      </g>
+    </g>
+  </g>
+</svg>

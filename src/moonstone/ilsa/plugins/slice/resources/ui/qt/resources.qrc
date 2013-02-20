@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>static/default/icon/22x22/office-chart-polar.png</file>
+    <file>static/default/icon/22x22/step_object_Gas.png</file>
+    <file>static/default/icon/22x22/view-media-artist.png</file>
+    <file>static/default/icon/22x22/insert-table.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,19 @@
+syntax: glob
+*.pyo
+*.pyc
+*~
+*.swp
+*.out
+*.backup
+*.log
+*.orig
+*.directory
+src/.project
+src/.pydevproject
+src/.settings/*
+src/resources/logging.conf
+src/resources/packaging/windows/missing-libs/*
+src/resources/log/*
+src/moonstone/ilsa/resources/plugin.conf
+*.DS_Store
+.DS_Store

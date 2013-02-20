@@ -1,0 +1,56 @@
+- color_points:
+  - - {b: 0.0, g: 0.0, r: 0.0, x: 0.0}
+    - {b: 1.0, g: 1.0, r: 1.0, x: 1.0}
+  mapper_properties: {blend_mode_to_maximum_intensity: true}
+  name: MIP
+  opacity_points:
+  - {x: 0.0, y: 0.0}
+  - {x: 1.0, y: 1.0}
+  permanent: true
+  volume_properties: {shade: false}
+- color_points:
+  - - {b: 0.0, g: 0.0, r: 0.0, x: 0.0}
+    - {b: 1.0, g: 1.0, r: 1.0, x: 1.0}
+  mapper_properties: {blend_mode_to_composite: true}
+  name: CompositeRamp
+  opacity_points:
+  - {x: 0.0, y: 0.0}
+  - {x: 1.0, y: 1.0}
+  permanent: true
+  volume_properties: {shade: false}
+- color_points:
+  - - {b: 0.0, g: 0.0, r: 0.0, x: 0.0}
+    - {b: 1.0, g: 1.0, r: 1.0, x: 1.0}
+  mapper_properties: {blend_mode_to_composite: true}
+  name: CompositeShadeRamp
+  opacity_points:
+  - {x: 0.0, y: 0.0}
+  - {x: 1.0, y: 1.0}
+  permanent: true
+  volume_properties: {shade: true}
+- color_points:
+  - - {b: 0.18, g: 0.36, midpoint: 0.5, r: 0.62, sharpness: 0.0, x: 0.0}
+    - {b: 0.29, g: 0.6, midpoint: 0.33, r: 0.88, sharpness: 0.45, x: 1.0}
+  default_level: -750
+  default_window: 500
+  mapper_properties: {blend_mode_to_composite: true}
+  name: CT_Skin
+  opacity_points:
+  - {midpoint: 0.5, sharpness: 0.0, x: 0.0, y: 0.0}
+  - {midpoint: 0.33, sharpness: 0.45, x: 1.0, y: 1.0}
+  permanent: true
+  volume_properties: {ambient: 0.1, difuse: 0.9, scalar_opacity_unit_distance: 0.8919,
+    shade: true, specular: 0.2, specular_power: 10.0}
+- color_points:
+  - - {b: 0.3, g: 0.25, midpoint: 0.49, r: 0.73, sharpness: 0.61, x: 0.0}
+    - {b: 0.56, g: 0.82, midpoint: 0.5, r: 0.9, sharpness: 0.0, x: 1.0}
+  default_level: 328
+  default_window: 657
+  mapper_properties: {blend_mode_to_composite: true}
+  name: CT_Bone
+  opacity_points:
+  - {midpoint: 0.49, sharpness: 0.61, x: 0.0, y: 0.0}
+  - {midpoint: 0.5, sharpness: 0.0, x: 1.0, y: 0.72}
+  permanent: true
+  volume_properties: {ambient: 0.1, difuse: 0.9, scalar_opacity_unit_distance: 0.8919,
+    shade: true, specular: 0.2, specular_power: 10.0}

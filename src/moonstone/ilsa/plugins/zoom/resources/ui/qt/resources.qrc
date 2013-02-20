@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>static/default/icon/22x22/page-region.png</file>
+    <file>static/default/icon/22x22/page-zoom.png</file>
+    <file>static/default/icon/22x22/zoom-in.png</file>
+    <file>static/default/icon/22x22/zoom-original.png</file>
+    <file>static/default/icon/22x22/zoom-out.png</file>
+    <file>static/default/icon/48x48/zoom-in.png</file>
+  </qresource>
+</RCC>

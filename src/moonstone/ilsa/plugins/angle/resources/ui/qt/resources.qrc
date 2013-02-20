@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>static/default/icon/22x22/angle.png</file>
+    <file>static/default/icon/22x22/edit-delete.png</file>
+    <file>static/default/icon/22x22/document-new.png</file>
+    <file>static/default/icon/48x48/draw-halfcircle2.png</file>
+    <file>static/default/icon/48x48/transferidor.png</file>
+  </qresource>
+</RCC>

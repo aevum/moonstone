@@ -1,0 +1,7 @@
+qmake -project -o preview3d.pro
+
+pyuic4 -x -o file_ui.py ui_file.ui
+
+pyrcc4 -name resource_rc  -o resource_rc.py resource.qrc
+
+pylupdate4 $(find . -name "*.py") -ts i18n.ts

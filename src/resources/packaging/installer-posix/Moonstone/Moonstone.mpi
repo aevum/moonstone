@@ -1,0 +1,2514 @@
+array set info {
+AllowLanguageSelection
+{Yes}
+
+AppName
+{Moonstone}
+
+ApplicationID
+{31EA64FB-62E1-133B-A6F4-472E895E72F6}
+
+ApplicationURL
+{www.moonstonemedical.org}
+
+AutoRefreshFiles
+{Yes}
+
+BuildFailureAction
+{Fail (recommended)}
+
+CancelledInstallAction
+{Rollback and Stop}
+
+CleanupCancelledInstall
+{Yes}
+
+CommandLineFailureAction
+{Fail (recommended)}
+
+Company
+{Neppo Tecnologia da Informação LTDA}
+
+CompressionLevel
+{6}
+
+CompressionMethod
+{lzma (solid)}
+
+Copyright
+{Copyright (C) 2009-2010 by Neppo Tecnologia da Informação LTDA}
+
+CreateDesktopShortcut
+{Yes}
+
+CreateQuickLaunchShortcut
+{Yes}
+
+DefaultDirectoryLocation
+{}
+
+DefaultLanguage
+{English}
+
+DefaultToSystemLanguage
+{Yes}
+
+EnableResponseFiles
+{Yes}
+
+Ext
+{}
+
+ExtractSolidArchivesOnStartup
+{No}
+
+Icon
+{/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/static/icons/install-icon.png}
+
+IgnoreDirectories
+{}
+
+IgnoreFiles
+{}
+
+Image
+{/home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/static/wizard/install-image.png}
+
+IncludeDebugging
+{Yes}
+
+InstallPassword
+{}
+
+InstallVersion
+{1.0.0.0}
+
+Language,ca
+{Yes}
+
+Language,cs
+{Yes}
+
+Language,de
+{Yes}
+
+Language,en
+{Yes}
+
+Language,es
+{Yes}
+
+Language,fr
+{Yes}
+
+Language,hu
+{Yes}
+
+Language,it
+{Yes}
+
+Language,lt
+{Yes}
+
+Language,nl
+{Yes}
+
+Language,pl
+{Yes}
+
+Language,pt_br
+{Yes}
+
+Language,ru
+{Yes}
+
+LastIgnoreDirectories
+{}
+
+LastIgnoreFiles
+{}
+
+LaunchApplication
+{Yes}
+
+PackageDescription
+{Moonstone is platform for processing of medical images (DICOM)}
+
+PackageLicense
+{GPL/LGPL}
+
+PackageMaintainer
+{Nycholas de Oliveira e Oliveira <nycholas@gmail.com>}
+
+PackageName
+{<%ShortAppName%>}
+
+PackagePackager
+{Nycholas de Oliveira e Oliveira <nycholas@gmail.com>}
+
+PackageRelease
+{<%PatchVersion%>}
+
+PackageSummary
+{Moonstone is platform for processing of medical images (DICOM)}
+
+PackageVersion
+{<%MajorVersion%>.<%MinorVersion%>}
+
+PreserveFileAttributes
+{Yes}
+
+PreserveFilePermissions
+{Yes}
+
+ProjectID
+{7A317AE9-9289-4545-F1D5-B54E8495B67D}
+
+ProjectVersion
+{1.2.15.1}
+
+SaveOnlyToplevelDirs
+{No}
+
+ScriptExt
+{.sh}
+
+ShortAppName
+{moonstone}
+
+SkipUnusedFileGroups
+{Yes}
+
+Theme
+{Modern_Wizard}
+
+ThemeDir
+{Modern_Wizard}
+
+ThemeVersion
+{1}
+
+UpgradeApplicationID
+{}
+
+Version
+{0.1}
+
+ViewReadme
+{Yes}
+
+WizardHeight
+{365}
+
+WizardWidth
+{500}
+
+}
+
+array set ::InstallJammer::InstallCommandLineOptions {
+debug
+{Debugging Switch Yes No {} {run installer in debug mode}}
+
+debugconsole
+{ShowConsole Switch Yes No {} {run installer with a debug console open}}
+
+mode
+{InstallMode Choice No No {Console Default Silent Standard} {set the mode to run the installer in}}
+
+prefix
+{InstallDir String No No {} {set the installation directory}}
+
+test
+{Testing Switch Yes No {} {run installer without installing any files}}
+
+}
+array set ::InstallJammer::UninstallCommandLineOptions {
+debug
+{Debugging Switch Yes No {} {run uninstaller in debug mode}}
+
+debugconsole
+{ShowConsole Switch Yes No {} {run uninstaller with a debug console open}}
+
+mode
+{UninstallMode Choice No No {Console Silent Standard} {set the mode to run the uninstaller in}}
+
+test
+{Testing Switch Yes No {} {run uninstaller without uninstalling any files}}
+
+}
+FileGroup ::F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-5-x86 FreeBSD-6-x86 FreeBSD-7-x86 HPUX-hppa Linux-x86 Linux-x86_64 Solaris-sparc Solaris-x86 Windows TarArchive ZipArchive} -name {Program Files} -parent FileGroups
+File ::F58A2C84-46B0-58BB-822F-C1A166CECCE8 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/AUTHORS -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::2392F964-B188-AC76-E098-AF0A397D15B1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/CONTRIBUTORS -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::7D6FA9E4-B2CE-7B7D-B1E3-FA48CEE3F861 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/COPYING -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::6164C3BB-CF77-CD91-0A51-C2368CEFCC02 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/ChangeLog -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::BE997EFA-8876-5B41-167F-788BDA657E34 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/FAQ -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::FAA9ABDB-E516-2013-90A9-121772C84B9C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/INSTALL -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::0C60ACA5-302E-B74F-1980-D2A093A2E2EC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/PyQt4.QtCore.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::8632575F-C475-587E-841D-E5B3BBA1A573 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/PyQt4.QtGui.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::48FE1C73-D57B-877E-AB59-A4C7CEDE7D36 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/PyQt4.QtOpenGL.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::71F7C125-29E4-71D9-60BD-2BDB5187FEAC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/README -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::152A4DB4-11E3-5D66-B1DE-19D897600FEC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/THANKS -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::576D9D34-8076-75F3-CDA8-0C0F26863858 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/TODO -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::B6FFC883-7677-E33C-2947-7AFAB05326AE -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_codecs_cn.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::F85B7305-E3CA-6FEF-439F-74C5ED3F97F8 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_codecs_hk.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::620E7A84-6D8C-73ED-A53F-4C437A1AA9DC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_codecs_iso2022.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::4389CC66-5A19-FEF6-B64D-01EC1C829A51 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_codecs_jp.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::63961C55-BE4A-302F-F53E-DFE845988CE1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_codecs_kr.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::813E3342-8367-3925-4FFA-55A25E49DCFB -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_codecs_tw.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::31927C96-935C-1118-FF80-BF20093CF101 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_gdcmswig.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::6D032638-6401-9B56-5135-50F3F8D4A55C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_heapq.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::94FA8D2B-631F-6CCC-1644-CFFEFDA9AED4 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/_multibytecodec.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::4224EEA6-5855-9BAF-434F-66795137912E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/bz2.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::34051BDD-7D71-8EB9-9BED-0936551DF40D -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/datetime.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::8920F0A6-A833-A2F0-9066-48231393450C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/dl.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::E47AB19F-96BD-DA47-E9DA-EB6BB6C8FC3F -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtCore.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::D08A68E9-40B0-DB4D-6C34-8D6E0F3FA05E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtCore.so.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::71CA7E13-7CAD-E0FA-3619-8C447118CF27 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtCore.so.4.6.2 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::92386151-FB6D-90F0-DE2A-E34E865F2562 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtGui.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::ECAEC46E-B454-F8D1-6230-7F0E54C7031C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtGui.so.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::9DF27B5D-733B-F0A5-AD48-D6EF245321B5 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtGui.so.4.6.2 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::E9029598-9A51-852F-2A97-650C813E8710 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtOpenGL.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::C8EA6F46-D7B8-D1B1-C9AA-24E087C0DB4B -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtOpenGL.so.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::ED5C1404-09C6-7F2C-3C2E-9BE333DDECEB -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libQtOpenGL.so.4.6.2 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::95E6D35C-1CAB-477F-3E1F-1910D998957D -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libaudio.so.2 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::8B13067F-E122-8040-51AD-3344F5813B5E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libaudio.so.2.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::B7B96130-EE2C-A469-572C-86F596CA26DD -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libcrypto.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::06C79A98-D24F-7B89-61B1-C98FE9BFB103 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libcrypto.so.0.9.8 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::8634170D-58DE-A395-C031-E61D70ED8B37 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmCommon.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::E1EED7FC-F64E-D4A9-C569-FA0958D9134C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmDICT.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::CB2CF146-79F7-8308-6738-37B313D074A7 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmDSED.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::DB4E1D70-9D1A-D497-A6B2-A77AF8DB6E8E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmIOD.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::83FBEB48-37F3-A12F-82E7-66D3B014C748 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmMSFF.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::3164D339-AC36-CB87-E67E-416B56345A82 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmcharls.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::9D830AB2-3BB2-33FC-2685-1A0CE7275C7C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmexpat.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::A1F3D3D9-54CA-8B84-BCEA-E450B1526E38 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmjpeg12.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::57C2C885-249B-0C4A-1C22-DFFCC1193597 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmjpeg16.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::2142309C-2444-7C2C-63D1-BACFE9816BFD -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmjpeg8.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::0AD23239-33DC-B04E-DA8D-6A23D00CFD76 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmopenjpeg.so.1.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::56159AFD-605B-C392-2D18-F94D998326C5 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmuuid.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::26FE291E-A37C-9669-88FB-54C738A592E9 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libgdcmzlib.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::9BB55A68-F5E5-E7C3-D792-5BFB66A821A5 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libpng12.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::796B2CAF-5B12-6B19-9B8A-94036A566E43 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libpng12.so.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::1D27B6DA-0A11-E60E-3153-2BFA82095FC4 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libpng12.so.0.42.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::5CAF0321-5C77-1F1A-948C-EFA8F6F1A2DA -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libpython2.6.so.1.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::76880A62-8198-3D19-4C44-4E7152FF01DA -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/library.zip -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::C556C931-AE60-B50E-7C36-DE50F76D8E96 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libssl.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::66F426C5-C24F-C93F-8B4D-D01E07EE7909 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libssl.so.0.9.8 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::1B33FE3F-6252-B8D6-7818-B08E64176B2A -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkCommon.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::B312D723-9FFE-FC10-B0F7-EBB090FD62A8 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkCommonPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::8C8736C8-DEE5-AA2A-BD89-4A1EF8B8E77D -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkDICOMParser.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::18D62658-9A54-9CC6-B783-21BD665A390A -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkFiltering.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::7FFF25E2-651A-369F-77A4-1017241BD857 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkFilteringPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::E315893F-4400-3DA4-0488-4A09D3738357 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkGenericFiltering.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::AABB3632-11F9-9432-AC97-C01CA83FE9F0 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkGenericFilteringPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::21E7E753-5F77-5FA9-34F6-7962B849F3F2 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkGeovis.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::1D51F293-5B67-D898-DCD6-E1F544BFEC18 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkGeovisPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::CB1B8C2B-BE4F-5595-48E1-080F430CEC72 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkGraphics.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::92C37749-A493-0703-7B83-068DA70AF70D -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkGraphicsPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::4FD03A8F-38FB-CF2D-9140-E233FE3CDDAC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkHybrid.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::6C0157CF-07CC-6A01-2666-98333F4998A1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkHybridPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::61BCB9EC-3E06-F6F4-242A-4577ADA3FFD3 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkIO.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::4A23A670-9D2E-AC9D-A37A-9D8095754994 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkIOPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::43868B19-CD65-F9FA-1A32-D3DD541A82BA -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkImaging.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::931D0099-C3B8-4BFC-A31E-66ED2B023629 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkImagingPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::79CB4EA0-528C-CC50-2482-472667EFFD7F -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkInfovis.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::F280B54C-E8F2-D5A0-DDB9-E81E9183D9A1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkInfovisPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::7A398451-224D-CA2E-85E7-31B903796BA9 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkNetCDF.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::691FEAD1-1D38-4E2B-AF37-6A3B3E0BF4CC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkRendering.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::CB7F2E3B-5267-DA3A-ACBD-194B01350A48 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkRenderingPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::14C1A8AA-F0AD-5323-B3A4-DB18FED79DD7 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkViews.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::DC64C818-CE12-B7B4-12EB-FE77D4A3341A -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkViewsPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::F483FAF1-4339-AC64-0981-1BB28A8A2E47 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkVolumeRendering.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::E6B72C8F-831A-10FB-502C-49D1251DC285 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkVolumeRenderingPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::D1AE7B6C-F381-D86D-D11D-9722E850C136 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkWidgets.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::B804F8FD-1E69-C048-434F-43DC1E9789CB -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkWidgetsPythonD.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::14FA04D3-80D8-ACF2-20EC-63A4A087C727 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkalglib.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::B2432986-099B-4754-7012-E6E908308068 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkexoIIc.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::DB541DC2-3133-CBFA-4238-79D55379D1C9 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkexpat.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::3439D99B-7167-6DEC-D9D5-6F34113DA755 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkfreetype.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::7F13F224-4749-D57C-D656-0BD6D193EEF6 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkftgl.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::203D0FC6-813B-9EBA-BA37-8245F2548DAE -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkgdcm.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::3F9E4DEB-B2A7-AB88-926A-CF17D7CF4E45 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkgdcmPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::3B638C09-C2E1-A0E4-A60F-DD2A73CE0744 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkgdcmPythonD.so.2.0 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::ACAE2F93-8F28-6B43-64BB-ECE5A5EF5628 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkjpeg.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::534086DD-0E0C-8CA3-8749-27F3DFD3FCC5 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtklibxml2.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::96FED57E-2E6D-5B1D-BE8B-B63C0BDE8D7C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkmetaio.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::900FEACD-2868-9D35-24F5-F9E39AF9FBCF -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkpng.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::EA73AFE4-5641-F155-E51E-61E8D03DAFED -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkproj4.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::A5D9C27B-85FB-4D24-FA62-D29957CFECD1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtksqlite.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::AF9C9341-FC1F-30F3-6549-B6448920D55B -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtksys.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::CF91E117-F6B9-EDD7-1E8D-C3460F7A0615 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtktiff.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::F2B9FC4B-E874-B0CD-3155-62B53AE02215 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkverdict.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::431F6A9D-39FE-F2B9-7F97-A8C14B98B58E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/libvtkzlib.so.5.4 -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::62656830-75D7-79F4-A6D3-25191C144B2E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/moonstone -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::42238402-D6A7-D479-7680-AD2D439BE5D1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/moonstone.ico -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::C0B1C2EB-7D74-6744-9841-6B51A8C68F8E -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/readline.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::37F2ABA3-DA73-CA7F-8939-EBF04594AC26 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/sip.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::A6C093BC-97DD-3713-D5D2-AC62B7BD0AAC -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/termios.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::8DED5F53-1C02-0DB0-F93C-AF231D4737A5 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkCommonPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::9BAD0FB8-A33B-519C-B37B-55DC3D3E8A2D -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkFilteringPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::2C591D62-76A7-E5C8-EED4-93518EEAB3CE -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkGenericFilteringPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::CBA846CC-534C-A10D-E03D-DDB89B3B16A1 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkGeovisPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::6CA63366-FDF1-0971-4499-FFE39E237168 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkGraphicsPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::20F0EDC3-7380-39D6-EE0A-44527832AE1C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkHybridPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::7EB3BD63-DB71-FA0F-3A5E-E1FE7630DC76 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkIOPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::302CEC1F-D391-AD37-2AE1-6B06AF6C07CF -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkImagingPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::CF298364-EA7A-44E2-773D-49B513617581 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkInfovisPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::06C34E9D-8981-082A-0EDC-D7492604586C -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkRenderingPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::5A18D4B3-C1F9-2F2E-014F-2B9C7AA84B2D -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkViewsPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::ABA25855-2B70-8B12-4F0C-4A3338060AD3 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkVolumeRenderingPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::2AE0D1A6-6670-C1E0-BF25-AD47C89A19B9 -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/vtk.libvtkWidgetsPython.so -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::5CFB6E23-3187-75F0-BAD4-2D9C648101A7 -type dir -name /home/nycholas/project/src/neppo/src/moonstone/src/moonstonemedical/src/resources/packaging/installer-posix/dist/resources -parent F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B
+File ::909C1E4F-6588-CF5D-3EF6-06311B7F66B8 -name logging.conf -parent 5CFB6E23-3187-75F0-BAD4-2D9C648101A7
+File ::234893E6-DC27-8991-00D8-1BAF26DF4791 -type dir -name ilsa -parent 5CFB6E23-3187-75F0-BAD4-2D9C648101A7
+File ::7676BEE9-A474-D15E-2C8D-8C1DB9C32B1C -name plugin.conf -parent 234893E6-DC27-8991-00D8-1BAF26DF4791
+File ::610E8796-E87B-20EC-3F95-F4F13CAF9ECC -type dir -name locale -parent 5CFB6E23-3187-75F0-BAD4-2D9C648101A7
+File ::019AC7D3-490D-F6BB-A114-C3078EECE01F -type dir -name pt_BR -parent 610E8796-E87B-20EC-3F95-F4F13CAF9ECC
+File ::CE2E283A-3BE5-B491-0E81-F5805D6DE14A -type dir -name LC_MESSAGES -parent 019AC7D3-490D-F6BB-A114-C3078EECE01F
+File ::4BFCE317-5097-EEBC-F630-604218BCE183 -name moonstone.qm -parent CE2E283A-3BE5-B491-0E81-F5805D6DE14A
+Component ::8B32A0A4-2D52-A2B4-CE8B-79143CB9F719 -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-5-x86 FreeBSD-6-x86 FreeBSD-7-x86 HPUX-hppa Linux-x86 Linux-x86_64 Solaris-sparc Solaris-x86 Windows} -name {Default Component} -parent Components
+SetupType ::AAB8A486-7CFF-5D7B-48F5-AAD5476CFD7F -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-5-x86 FreeBSD-6-x86 FreeBSD-7-x86 HPUX-hppa Linux-x86 Linux-x86_64 Solaris-sparc Solaris-x86 Windows} -name Typical -parent SetupTypes
+SetupType ::BEEA8303-AC4C-F924-0E2E-D090DE0C3563 -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-5-x86 FreeBSD-6-x86 FreeBSD-7-x86 HPUX-hppa Linux-x86 Linux-x86_64 Solaris-sparc Solaris-x86 Windows} -name Custom -parent SetupTypes
+
+InstallComponent 4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F -setup Install -type pane -title {Welcome Screen} -component Welcome -active Yes -parent StandardInstall
+InstallComponent 828B8587-C487-72C7-8B7A-467DD195E693 -setup Install -type pane -conditions {43E976E4-2350-4E83-D68C-89062AB00416 981C2B2A-6B39-CE06-466A-EF8717B61C71} -title {Select Destination} -component SelectDestination -active Yes -parent StandardInstall
+Condition 43E976E4-2350-4E83-D68C-89062AB00416 -active Yes -parent 828B8587-C487-72C7-8B7A-467DD195E693 -title {Script Condition} -component ScriptCondition -TreeObject::id 43E976E4-2350-4E83-D68C-89062AB00416
+Condition 981C2B2A-6B39-CE06-466A-EF8717B61C71 -active Yes -parent 828B8587-C487-72C7-8B7A-467DD195E693 -title {File Permission Condition} -component FilePermissionCondition -TreeObject::id 981C2B2A-6B39-CE06-466A-EF8717B61C71
+InstallComponent 43212DDB-BE13-FB87-B3C8-61A2D45D3F88 -setup Install -type pane -conditions {DBC8802D-D1F7-3419-1F8C-98657815F291 23EA99D4-731C-DB0A-BDEA-5ACA4AAD9FC7} -title {Setup Type} -component SetupType -active Yes -parent StandardInstall
+Condition DBC8802D-D1F7-3419-1F8C-98657815F291 -active Yes -parent 43212DDB-BE13-FB87-B3C8-61A2D45D3F88 -title {Script Condition} -component ScriptCondition -TreeObject::id DBC8802D-D1F7-3419-1F8C-98657815F291
+Condition 23EA99D4-731C-DB0A-BDEA-5ACA4AAD9FC7 -active Yes -parent 43212DDB-BE13-FB87-B3C8-61A2D45D3F88 -title {String Is Condition} -component StringIsCondition -TreeObject::id 23EA99D4-731C-DB0A-BDEA-5ACA4AAD9FC7
+InstallComponent 66B4ADE5-5DD1-A448-8EAF-C94F8EF98CB2 -setup Install -type action -title {Populate Setup Types} -component PopulateSetupTypes -active Yes -parent 43212DDB-BE13-FB87-B3C8-61A2D45D3F88
+InstallComponent BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B -setup Install -type pane -conditions A2D2DD70-F39E-A1B0-6F90-62FB275ACC88 -title {Choose Components} -component ChooseComponents -active Yes -parent StandardInstall
+Condition A2D2DD70-F39E-A1B0-6F90-62FB275ACC88 -active Yes -parent BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B -title {String Equal Condition} -component StringEqualCondition -TreeObject::id A2D2DD70-F39E-A1B0-6F90-62FB275ACC88
+InstallComponent DCF7083D-DF34-35A4-2FBB-982D38B6CFCA -setup Install -type action -title {Populate Components} -component PopulateComponents -active Yes -parent BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B
+InstallComponent DB8BC2CE-A0BD-B7B5-4568-32A654875942 -setup Install -type pane -title {Start Copying Files} -component StartCopyingFiles -active Yes -parent StandardInstall
+InstallComponent 6197D3F4-7325-B7EB-BAE7-C17A9A6905A3 -setup Install -type pane -title {Copying Files} -component CopyFiles -active Yes -parent StandardInstall
+InstallComponent E0375A09-E759-4538-6B11-777A895FF0EA -setup Install -type action -title {Disable Buttons} -component ModifyWidget -active Yes -parent 6197D3F4-7325-B7EB-BAE7-C17A9A6905A3
+InstallComponent 98AEC121-EB77-2EE9-10E1-AC5C4B371B87 -setup Install -type action -title {Install Everything} -component ExecuteAction -active Yes -parent 6197D3F4-7325-B7EB-BAE7-C17A9A6905A3
+InstallComponent F7A763E6-E138-90B5-A0B7-71D5B40FA17E -setup Install -type action -title {Move Forward} -component MoveForward -active Yes -parent 6197D3F4-7325-B7EB-BAE7-C17A9A6905A3
+InstallComponent 5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF -setup Install -type pane -title {Setup Complete} -component SetupComplete -active Yes -parent StandardInstall
+InstallComponent 2FDB18B1-650E-05B3-5B6F-1F0773E04634 -setup Install -type action -conditions {80262852-F178-A5FA-743B-B0A2535D06FA 14F48C08-49A7-21D0-2A89-88D905CA5328} -title {View Readme Checkbutton} -component AddWidget -active Yes -parent 5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF
+Condition 80262852-F178-A5FA-743B-B0A2535D06FA -active Yes -parent 2FDB18B1-650E-05B3-5B6F-1F0773E04634 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 80262852-F178-A5FA-743B-B0A2535D06FA
+Condition 14F48C08-49A7-21D0-2A89-88D905CA5328 -active Yes -parent 2FDB18B1-650E-05B3-5B6F-1F0773E04634 -title {String Is Condition} -component StringIsCondition -TreeObject::id 14F48C08-49A7-21D0-2A89-88D905CA5328
+InstallComponent 11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA -setup Install -type action -conditions {6CC2835A-184F-4BC8-7B4E-F47F49A9BBE8 602EC09B-346C-8BA6-D9EE-8A2CF2887510} -title {Launch Application Checkbutton} -component AddWidget -active Yes -parent 5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF
+Condition 6CC2835A-184F-4BC8-7B4E-F47F49A9BBE8 -active Yes -parent 11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 6CC2835A-184F-4BC8-7B4E-F47F49A9BBE8
+Condition 602EC09B-346C-8BA6-D9EE-8A2CF2887510 -active Yes -parent 11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA -title {String Is Condition} -component StringIsCondition -TreeObject::id 602EC09B-346C-8BA6-D9EE-8A2CF2887510
+InstallComponent 01DB2508-225E-87A7-C44E-F4333D8ADB45 -setup Install -type action -conditions {39A09A34-6221-B9CB-7E2C-53BA7CC9A448 FA0A54AD-39AA-E641-0BE3-8370E4E1BB64} -title {Desktop Shortcut Checkbutton} -component AddWidget -active Yes -parent 5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF
+Condition 39A09A34-6221-B9CB-7E2C-53BA7CC9A448 -active Yes -parent 01DB2508-225E-87A7-C44E-F4333D8ADB45 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 39A09A34-6221-B9CB-7E2C-53BA7CC9A448
+Condition FA0A54AD-39AA-E641-0BE3-8370E4E1BB64 -active Yes -parent 01DB2508-225E-87A7-C44E-F4333D8ADB45 -title {String Is Condition} -component StringIsCondition -TreeObject::id FA0A54AD-39AA-E641-0BE3-8370E4E1BB64
+InstallComponent 2E377112-5021-60E2-9792-9F9222D025A2 -setup Install -type action -conditions {04127D24-F6B3-4FB7-1163-153953CAED8C 0881277D-E809-C942-CA72-F8892AA05549 CB1E2225-FEB2-6D26-2B49-416E510BE116} -title {Quick Launch Shortcut Checkbutton} -component AddWidget -active Yes -parent 5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF
+Condition 04127D24-F6B3-4FB7-1163-153953CAED8C -active Yes -parent 2E377112-5021-60E2-9792-9F9222D025A2 -title {Platform Condition} -component PlatformCondition -TreeObject::id 04127D24-F6B3-4FB7-1163-153953CAED8C
+Condition 0881277D-E809-C942-CA72-F8892AA05549 -active Yes -parent 2E377112-5021-60E2-9792-9F9222D025A2 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 0881277D-E809-C942-CA72-F8892AA05549
+Condition CB1E2225-FEB2-6D26-2B49-416E510BE116 -active Yes -parent 2E377112-5021-60E2-9792-9F9222D025A2 -title {String Is Condition} -component StringIsCondition -TreeObject::id CB1E2225-FEB2-6D26-2B49-416E510BE116
+InstallComponent 0612806F-4AEA-F84A-197D-5F9993785F2C -setup Install -type pane -title {Copying Files} -component CopyFiles -active Yes -parent DefaultInstall
+InstallComponent 2437064A-AFF8-8E72-B224-A78B35335991 -setup Install -type action -title {Disable Buttons} -component ModifyWidget -active Yes -parent 0612806F-4AEA-F84A-197D-5F9993785F2C
+InstallComponent 738EA98F-D564-1C65-B87B-107EB646BF51 -setup Install -type action -title {Install Everything} -component ExecuteAction -active Yes -parent 0612806F-4AEA-F84A-197D-5F9993785F2C
+InstallComponent F9852DB7-8383-A398-FE5E-0A97D3094F19 -setup Install -type action -title {Move Forward} -component MoveForward -active Yes -parent 0612806F-4AEA-F84A-197D-5F9993785F2C
+InstallComponent F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6 -setup Install -type pane -title {Setup Complete} -component SetupComplete -active Yes -parent DefaultInstall
+InstallComponent 4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0 -setup Install -type action -conditions {8734138E-CE80-8DE1-FA95-4CB71868BCFF 9A5D9826-0D5B-B19A-3CAF-EEE98A45F656} -title {View Readme Checkbutton} -component AddWidget -active Yes -parent F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6
+Condition 8734138E-CE80-8DE1-FA95-4CB71868BCFF -active Yes -parent 4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 8734138E-CE80-8DE1-FA95-4CB71868BCFF
+Condition 9A5D9826-0D5B-B19A-3CAF-EEE98A45F656 -active Yes -parent 4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0 -title {String Is Condition} -component StringIsCondition -TreeObject::id 9A5D9826-0D5B-B19A-3CAF-EEE98A45F656
+InstallComponent 50E06297-67AC-742C-5E65-9059B7983E0E -setup Install -type action -conditions {0B534990-93C1-F0BD-A9B0-6B2EB5A6376B 7283F345-E841-0EAA-6C56-5BE7AA4FFFF7} -title {Launch Application Checkbutton} -component AddWidget -active Yes -parent F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6
+Condition 0B534990-93C1-F0BD-A9B0-6B2EB5A6376B -active Yes -parent 50E06297-67AC-742C-5E65-9059B7983E0E -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 0B534990-93C1-F0BD-A9B0-6B2EB5A6376B
+Condition 7283F345-E841-0EAA-6C56-5BE7AA4FFFF7 -active Yes -parent 50E06297-67AC-742C-5E65-9059B7983E0E -title {String Is Condition} -component StringIsCondition -TreeObject::id 7283F345-E841-0EAA-6C56-5BE7AA4FFFF7
+InstallComponent D255A5DC-FC01-4522-B9F5-92F032CF851F -setup Install -type action -conditions {0CF532BA-65F7-F53E-D46A-BD1382F84A0C 48362C36-9CF1-6A65-D462-EE7C7E023A11} -title {Desktop Shortcut Checkbutton} -component AddWidget -active Yes -parent F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6
+Condition 0CF532BA-65F7-F53E-D46A-BD1382F84A0C -active Yes -parent D255A5DC-FC01-4522-B9F5-92F032CF851F -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 0CF532BA-65F7-F53E-D46A-BD1382F84A0C
+Condition 48362C36-9CF1-6A65-D462-EE7C7E023A11 -active Yes -parent D255A5DC-FC01-4522-B9F5-92F032CF851F -title {String Is Condition} -component StringIsCondition -TreeObject::id 48362C36-9CF1-6A65-D462-EE7C7E023A11
+InstallComponent 8953D352-78DB-B241-9960-CA0D5A7A011B -setup Install -type action -conditions {604AD461-CA4C-169A-D7B3-B42B13D34E0C CDCDBA04-1913-0893-1A14-8E12278BAD95 66C43FE4-0383-7F0A-5DC8-4184A02DFC57} -title {Quick Launch Shortcut Checkbutton} -component AddWidget -active Yes -parent F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6
+Condition 604AD461-CA4C-169A-D7B3-B42B13D34E0C -active Yes -parent 8953D352-78DB-B241-9960-CA0D5A7A011B -title {Platform Condition} -component PlatformCondition -TreeObject::id 604AD461-CA4C-169A-D7B3-B42B13D34E0C
+Condition CDCDBA04-1913-0893-1A14-8E12278BAD95 -active Yes -parent 8953D352-78DB-B241-9960-CA0D5A7A011B -title {File Exists Condition} -component FileExistsCondition -TreeObject::id CDCDBA04-1913-0893-1A14-8E12278BAD95
+Condition 66C43FE4-0383-7F0A-5DC8-4184A02DFC57 -active Yes -parent 8953D352-78DB-B241-9960-CA0D5A7A011B -title {String Is Condition} -component StringIsCondition -TreeObject::id 66C43FE4-0383-7F0A-5DC8-4184A02DFC57
+InstallComponent D2E959F1-8E22-BC2B-732A-759479234176 -setup Install -type action -title {Prompt to continue installation} -component ConsoleAskYesOrNo -active Yes -parent ConsoleInstall
+InstallComponent 3F779803-C89B-736F-6AD5-503ED0328234 -setup Install -type action -conditions 8312D217-85B9-8582-339E-F034FF9A6BED -title {Exit if they said no} -component Exit -active Yes -parent ConsoleInstall
+Condition 8312D217-85B9-8582-339E-F034FF9A6BED -active Yes -parent 3F779803-C89B-736F-6AD5-503ED0328234 -title {String Is Condition} -component StringIsCondition -TreeObject::id 8312D217-85B9-8582-339E-F034FF9A6BED
+InstallComponent E5BAFE4E-3A6C-9C55-B9EE-CEBDB02930E1 -setup Install -type action -conditions 651FF88D-2B7E-AC41-A1F5-2797715E6031 -title {Prompt for install destination} -component ConsoleGetUserInput -active Yes -parent ConsoleInstall
+Condition 651FF88D-2B7E-AC41-A1F5-2797715E6031 -active Yes -parent E5BAFE4E-3A6C-9C55-B9EE-CEBDB02930E1 -title {File Permission Condition} -component FilePermissionCondition -TreeObject::id 651FF88D-2B7E-AC41-A1F5-2797715E6031
+InstallComponent 5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320 -setup Install -type action -title {Output Installing Message} -component ConsoleMessage -active Yes -parent ConsoleInstall
+InstallComponent E4110264-D066-1A46-6974-66C0B25F5C35 -setup Install -type action -title {Install Everything} -component ExecuteAction -active Yes -parent ConsoleInstall
+InstallComponent 7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7 -setup Install -type action -title {Output Install Complete Message} -component ConsoleMessage -active Yes -parent ConsoleInstall
+InstallComponent 79F4889D-C7EE-931E-B93F-7FC980A96D15 -setup Install -type action -title Exit -component Exit -active Yes -parent ConsoleInstall
+InstallComponent 872442A9-8B39-CC50-EF16-15A204173699 -setup Install -type action -title {Install Everything} -component ExecuteAction -active Yes -parent SilentInstall
+InstallComponent EC4C1E4A-5C44-0F01-344F-4E822EA57635 -setup Install -type action -title Exit -component Exit -active Yes -parent SilentInstall
+InstallComponent BA5E8097-7E5F-8784-A3C3-F75FC9A62A1F -setup Install -type actiongroup -title {Setup Actions} -alias {Setup Actions} -active Yes -parent ActionGroupsInstall
+InstallComponent 76C3DA51-1026-C34F-425A-CEB7B1756E8C -setup Install -type actiongroup -title {Startup Actions} -alias {Startup Actions} -active Yes -parent ActionGroupsInstall
+InstallComponent 9FCB7C31-FD70-0560-D29F-C825B2291C60 -setup Install -type action -conditions {D4CC85A0-EAA9-D845-3652-F04E59F65B2C 0429035D-CFA1-3125-EB31-081D81E2F347} -title Exit -component Exit -active Yes -parent 76C3DA51-1026-C34F-425A-CEB7B1756E8C
+Condition D4CC85A0-EAA9-D845-3652-F04E59F65B2C -active Yes -parent 9FCB7C31-FD70-0560-D29F-C825B2291C60 -title {String Is Condition} -component StringIsCondition -TreeObject::id D4CC85A0-EAA9-D845-3652-F04E59F65B2C
+Condition 0429035D-CFA1-3125-EB31-081D81E2F347 -active Yes -parent 9FCB7C31-FD70-0560-D29F-C825B2291C60 -title {Ask Yes or No} -component AskYesOrNo -TreeObject::id 0429035D-CFA1-3125-EB31-081D81E2F347
+InstallComponent AB5DF434-6D49-8A4D-B943-2A0775E78C6E -setup Install -type action -title {Create Install Panes} -component CreateInstallPanes -active Yes -parent 76C3DA51-1026-C34F-425A-CEB7B1756E8C
+InstallComponent C46DDF06-5702-2633-BDD5-22D02B861769 -setup Install -type actiongroup -title {Install Actions} -alias {Install Actions} -active Yes -parent ActionGroupsInstall
+InstallComponent 3C62AE76-3CCF-5BEF-5283-0CC9CB0FD384 -setup Install -type action -title {Install Selected Files} -component InstallSelectedFiles -active Yes -parent C46DDF06-5702-2633-BDD5-22D02B861769
+InstallComponent 9ECACF24-CA63-B48F-3FB8-F4B2913AC109 -setup Install -type action -conditions F0E8E006-BC47-2584-9A91-B34CC15C59F3 -title {Install Uninstaller} -component InstallUninstaller -active Yes -parent C46DDF06-5702-2633-BDD5-22D02B861769
+Condition F0E8E006-BC47-2584-9A91-B34CC15C59F3 -active Yes -parent 9ECACF24-CA63-B48F-3FB8-F4B2913AC109 -title {String Is Condition} -component StringIsCondition -TreeObject::id F0E8E006-BC47-2584-9A91-B34CC15C59F3
+InstallComponent 4E0C9D0D-C244-BF15-1D0A-64D8A6931266 -setup Install -type action -conditions 43EA5F1D-184F-51C0-7222-6199C132BE28 -title {Windows Uninstall Registry} -component AddWindowsUninstallEntry -active Yes -parent C46DDF06-5702-2633-BDD5-22D02B861769
+Condition 43EA5F1D-184F-51C0-7222-6199C132BE28 -active Yes -parent 4E0C9D0D-C244-BF15-1D0A-64D8A6931266 -title {String Is Condition} -component StringIsCondition -TreeObject::id 43EA5F1D-184F-51C0-7222-6199C132BE28
+InstallComponent 7319E13C-CE9F-A465-AFB5-66E01C011304 -setup Install -type action -conditions B2A3B6FE-EC8F-1FAA-C4BD-B36A1223485E -title {Program Shortcut} -component InstallProgramFolderShortcut -active Yes -parent C46DDF06-5702-2633-BDD5-22D02B861769
+Condition B2A3B6FE-EC8F-1FAA-C4BD-B36A1223485E -active Yes -parent 7319E13C-CE9F-A465-AFB5-66E01C011304 -title {String Is Condition} -component StringIsCondition -TreeObject::id B2A3B6FE-EC8F-1FAA-C4BD-B36A1223485E
+InstallComponent 5B2D5FBE-2A4B-BDB1-61EC-B69D76A968BC -setup Install -type action -conditions D79232FD-1E4A-F810-0BBB-1DC294955F1A -title {Uninstall Shortcut} -component InstallProgramFolderShortcut -active Yes -parent C46DDF06-5702-2633-BDD5-22D02B861769
+Condition D79232FD-1E4A-F810-0BBB-1DC294955F1A -active Yes -parent 5B2D5FBE-2A4B-BDB1-61EC-B69D76A968BC -title {String Is Condition} -component StringIsCondition -TreeObject::id D79232FD-1E4A-F810-0BBB-1DC294955F1A
+InstallComponent C7B9100A-87BB-21F5-E331-A054EEB204C0 -setup Install -type actiongroup -title {Finish Actions} -alias {Finish Actions} -active Yes -parent ActionGroupsInstall
+InstallComponent DE9D9481-20FD-193F-65C3-AE1AE8D4BC66 -setup Install -type action -conditions {F4DBCDEB-6E1F-C024-4EA5-479266D1410E 819EAFB2-55B3-6932-B096-D1435D76D3C6} -title {Install Desktop Shortcut} -component InstallDesktopShortcut -active Yes -parent C7B9100A-87BB-21F5-E331-A054EEB204C0
+Condition F4DBCDEB-6E1F-C024-4EA5-479266D1410E -active Yes -parent DE9D9481-20FD-193F-65C3-AE1AE8D4BC66 -title {String Is Condition} -component StringIsCondition -TreeObject::id F4DBCDEB-6E1F-C024-4EA5-479266D1410E
+Condition 819EAFB2-55B3-6932-B096-D1435D76D3C6 -active Yes -parent DE9D9481-20FD-193F-65C3-AE1AE8D4BC66 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 819EAFB2-55B3-6932-B096-D1435D76D3C6
+InstallComponent EEE2646D-07B8-BB60-33C3-E958AFC6C495 -setup Install -type action -conditions {A6AD1E03-6B6B-3E20-5454-400EDECF9C77 3C204F9F-A4BC-1075-A2B1-44BE93899837} -title {Install Quick Launch Shortcut} -component InstallWindowsShortcut -active Yes -parent C7B9100A-87BB-21F5-E331-A054EEB204C0
+Condition A6AD1E03-6B6B-3E20-5454-400EDECF9C77 -active Yes -parent EEE2646D-07B8-BB60-33C3-E958AFC6C495 -title {String Is Condition} -component StringIsCondition -TreeObject::id A6AD1E03-6B6B-3E20-5454-400EDECF9C77
+Condition 3C204F9F-A4BC-1075-A2B1-44BE93899837 -active Yes -parent EEE2646D-07B8-BB60-33C3-E958AFC6C495 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 3C204F9F-A4BC-1075-A2B1-44BE93899837
+InstallComponent C1996D7A-DAE8-2BD3-3D27-34B154CF8452 -setup Install -type action -conditions {8CE7D523-E3E2-C5B8-5CA8-960A43A32F91 69B528A6-8492-42AC-5735-098776E46144 763F59D1-AE51-3E29-150C-D45A2C7D3596} -title {View Readme Window} -component TextWindow -active Yes -parent C7B9100A-87BB-21F5-E331-A054EEB204C0
+Condition 8CE7D523-E3E2-C5B8-5CA8-960A43A32F91 -active Yes -parent C1996D7A-DAE8-2BD3-3D27-34B154CF8452 -title {String Is Condition} -component StringIsCondition -TreeObject::id 8CE7D523-E3E2-C5B8-5CA8-960A43A32F91
+Condition 69B528A6-8492-42AC-5735-098776E46144 -active Yes -parent C1996D7A-DAE8-2BD3-3D27-34B154CF8452 -title {String Is Condition} -component StringIsCondition -TreeObject::id 69B528A6-8492-42AC-5735-098776E46144
+Condition 763F59D1-AE51-3E29-150C-D45A2C7D3596 -active Yes -parent C1996D7A-DAE8-2BD3-3D27-34B154CF8452 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 763F59D1-AE51-3E29-150C-D45A2C7D3596
+InstallComponent 674DF202-E64F-E816-AF58-7452C9EF4D0E -setup Install -type action -conditions {8819E68A-DCFD-A3B3-6FCA-E853C3F15063 E453C832-BF91-AE20-25B1-8D9DD84DCA66 C2646E6B-7346-F832-5CF4-CFB141034BFE} -title {Launch Application} -component ExecuteExternalProgram -active Yes -parent C7B9100A-87BB-21F5-E331-A054EEB204C0
+Condition 8819E68A-DCFD-A3B3-6FCA-E853C3F15063 -active Yes -parent 674DF202-E64F-E816-AF58-7452C9EF4D0E -title {String Is Condition} -component StringIsCondition -TreeObject::id 8819E68A-DCFD-A3B3-6FCA-E853C3F15063
+Condition E453C832-BF91-AE20-25B1-8D9DD84DCA66 -active Yes -parent 674DF202-E64F-E816-AF58-7452C9EF4D0E -title {String Is Condition} -component StringIsCondition -TreeObject::id E453C832-BF91-AE20-25B1-8D9DD84DCA66
+Condition C2646E6B-7346-F832-5CF4-CFB141034BFE -active Yes -parent 674DF202-E64F-E816-AF58-7452C9EF4D0E -title {File Exists Condition} -component FileExistsCondition -TreeObject::id C2646E6B-7346-F832-5CF4-CFB141034BFE
+InstallComponent 2DB928F7-D342-E591-9256-0FA947636A9C -setup Install -type actiongroup -title {Cancel Actions} -alias {Cancel Actions} -active Yes -parent ActionGroupsInstall
+InstallComponent 8EBCC72C-28C2-C663-852D-6A75C22F8062 -setup Uninstall -type pane -title Uninstall -component Uninstall -active Yes -parent StandardUninstall
+InstallComponent B978CDAC-852C-A4F0-BE50-0F5F1CA534F6 -setup Uninstall -type action -title {Modify Widget} -component ModifyWidget -active Yes -parent 8EBCC72C-28C2-C663-852D-6A75C22F8062
+InstallComponent 1AF2627F-5ECB-7395-8DD8-4E9B08529DF6 -setup Uninstall -type action -title {Execute Action} -component ExecuteAction -active Yes -parent 8EBCC72C-28C2-C663-852D-6A75C22F8062
+InstallComponent F7DB4459-4050-E97E-8CC0-17278FD32CBC -setup Uninstall -type action -title {Move Forward} -component MoveForward -active Yes -parent 8EBCC72C-28C2-C663-852D-6A75C22F8062
+InstallComponent DE88FF59-EB09-A7AA-9D78-628B6864479F -setup Uninstall -type pane -conditions 47AB8A40-729C-CFC8-5FB8-5F382A1ADA9B -title {Uninstall Details} -component UninstallDetails -active Yes -parent StandardUninstall
+Condition 47AB8A40-729C-CFC8-5FB8-5F382A1ADA9B -active Yes -parent DE88FF59-EB09-A7AA-9D78-628B6864479F -title {String Is Condition} -component StringIsCondition -TreeObject::id 47AB8A40-729C-CFC8-5FB8-5F382A1ADA9B
+InstallComponent 8A65F199-5757-7631-54F4-ADD00121C534 -setup Uninstall -type pane -title {Uninstall Complete} -component UninstallComplete -active Yes -parent StandardUninstall
+InstallComponent 6C1A6371-C4BE-21F5-B64D-63D23BA18E30 -setup Uninstall -type action -title {Console Ask Yes Or No} -component ConsoleAskYesOrNo -active Yes -parent ConsoleUninstall
+InstallComponent D2464F4A-58AF-76B8-1FF1-35D2522EA0C8 -setup Uninstall -type action -conditions 75F027ED-70CF-BE58-F7EA-79778242D833 -title Exit -component Exit -active Yes -parent ConsoleUninstall
+Condition 75F027ED-70CF-BE58-F7EA-79778242D833 -active Yes -parent D2464F4A-58AF-76B8-1FF1-35D2522EA0C8 -title {String Is Condition} -component StringIsCondition -TreeObject::id 75F027ED-70CF-BE58-F7EA-79778242D833
+InstallComponent 077A3BD3-E470-D364-BB95-AB31F719A2D1 -setup Uninstall -type action -title {Console Message} -component ConsoleMessage -active Yes -parent ConsoleUninstall
+InstallComponent 554949F4-C4D7-F755-B502-89E482E9E729 -setup Uninstall -type action -title {Execute Action} -component ExecuteAction -active Yes -parent ConsoleUninstall
+InstallComponent 00EDB1EA-4E47-D581-162C-EEB96CD698A3 -setup Uninstall -type action -title {Console Message} -component ConsoleMessage -active Yes -parent ConsoleUninstall
+InstallComponent 6317B1A9-F3A3-AE61-9EB4-AAD00AE80773 -setup Uninstall -type action -title Exit -component Exit -active Yes -parent ConsoleUninstall
+InstallComponent 77F0ED43-F973-EA2B-F5AE-A050B131C8E8 -setup Uninstall -type action -title {Uninstall Everything} -component ExecuteAction -active Yes -parent SilentUninstall
+InstallComponent 68857FD4-6FE1-EA0B-4AFF-B94B514D9CF2 -setup Uninstall -type action -title Exit -component Exit -active Yes -parent SilentUninstall
+InstallComponent 426F150B-BA06-6B19-9AF9-3C7347FC8EA8 -setup Uninstall -type actiongroup -title {Setup Actions} -alias {Setup Actions} -active Yes -parent ActionGroupsUninstall
+InstallComponent 6E11707C-BAF5-CB5E-2707-C3CBE9C5DF0A -setup Uninstall -type actiongroup -title {Startup Actions} -alias {Startup Actions} -active Yes -parent ActionGroupsUninstall
+InstallComponent 5848E944-0B4C-ECE3-0472-C72902C865E1 -setup Uninstall -type action -conditions {DD15FE7F-4EC4-0925-1322-3AC1D2DC36E0 4309AA0A-01F1-3F97-28FD-84D1D9288161} -title Exit -component Exit -active Yes -parent 6E11707C-BAF5-CB5E-2707-C3CBE9C5DF0A
+Condition DD15FE7F-4EC4-0925-1322-3AC1D2DC36E0 -active Yes -parent 5848E944-0B4C-ECE3-0472-C72902C865E1 -title {String Is Condition} -component StringIsCondition -TreeObject::id DD15FE7F-4EC4-0925-1322-3AC1D2DC36E0
+Condition 4309AA0A-01F1-3F97-28FD-84D1D9288161 -active Yes -parent 5848E944-0B4C-ECE3-0472-C72902C865E1 -title {Ask Yes or No} -component AskYesOrNo -TreeObject::id 4309AA0A-01F1-3F97-28FD-84D1D9288161
+InstallComponent C232FFCC-6769-506F-EF11-49EA9C453441 -setup Uninstall -type actiongroup -title {Uninstall Actions} -alias {Uninstall Actions} -active Yes -parent ActionGroupsUninstall
+InstallComponent 332D8B38-09F6-BC77-A978-FD8E80C9DF6D -setup Uninstall -type action -title {Uninstall Selected Files} -component UninstallSelectedFiles -active Yes -parent C232FFCC-6769-506F-EF11-49EA9C453441
+InstallComponent 07B79EAB-651E-B28F-B4F8-1C803ADDC1BA -setup Uninstall -type actiongroup -title {Finish Actions} -alias {Finish Actions} -active Yes -parent ActionGroupsUninstall
+InstallComponent FB5174AE-E27B-9F20-A3E7-0BC13A74BDB1 -setup Uninstall -type actiongroup -title {Cancel Actions} -alias {Cancel Actions} -active Yes -parent ActionGroupsUninstall
+
+array set Properties {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message,subst
+{1}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,Background
+{#FFFFFF}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,Text,subst
+{1}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,Type
+{checkbutton}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,VirtualText
+{CreateDesktopShortcut}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,X
+{185}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,Y
+{180}
+
+04127D24-F6B3-4FB7-1163-153953CAED8C,CheckCondition
+{Before Action is Executed}
+
+04127D24-F6B3-4FB7-1163-153953CAED8C,Platform
+{Windows}
+
+0429035D-CFA1-3125-EB31-081D81E2F347,CheckCondition
+{Before Action is Executed}
+
+0429035D-CFA1-3125-EB31-081D81E2F347,Message,subst
+{1}
+
+0429035D-CFA1-3125-EB31-081D81E2F347,Title,subst
+{1}
+
+0429035D-CFA1-3125-EB31-081D81E2F347,TrueValue
+{No}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,BackButton,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,CancelButton,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,Caption,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,Conditions
+{0 conditions}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,FileLabel,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,Message,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,NextButton,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,ProgressValue,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,Subtitle,subst
+{1}
+
+0612806F-4AEA-F84A-197D-5F9993785F2C,Title,subst
+{1}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message,subst
+{1}
+
+07B79EAB-651E-B28F-B4F8-1C803ADDC1BA,Alias
+{Finish Actions}
+
+0881277D-E809-C942-CA72-F8892AA05549,CheckCondition
+{Before Action is Executed}
+
+0881277D-E809-C942-CA72-F8892AA05549,Filename
+{<%ProgramExecutable%>}
+
+0B534990-93C1-F0BD-A9B0-6B2EB5A6376B,CheckCondition
+{Before Action is Executed}
+
+0B534990-93C1-F0BD-A9B0-6B2EB5A6376B,Filename
+{<%ProgramExecutable%>}
+
+0CF532BA-65F7-F53E-D46A-BD1382F84A0C,CheckCondition
+{Before Action is Executed}
+
+0CF532BA-65F7-F53E-D46A-BD1382F84A0C,Filename
+{<%ProgramExecutable%>}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,Background
+{#FFFFFF}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,Text,subst
+{1}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,Type
+{checkbutton}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,VirtualText
+{LaunchApplication}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,X
+{185}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,Y
+{160}
+
+14F48C08-49A7-21D0-2A89-88D905CA5328,CheckCondition
+{Before Action is Executed}
+
+14F48C08-49A7-21D0-2A89-88D905CA5328,Operator
+{false}
+
+14F48C08-49A7-21D0-2A89-88D905CA5328,String
+{<%InstallStopped%>}
+
+1AF2627F-5ECB-7395-8DD8-4E9B08529DF6,Action
+{Uninstall Actions}
+
+23EA99D4-731C-DB0A-BDEA-5ACA4AAD9FC7,Comment
+{Don't display this pane in an upgrade install}
+
+23EA99D4-731C-DB0A-BDEA-5ACA4AAD9FC7,Operator
+{false}
+
+23EA99D4-731C-DB0A-BDEA-5ACA4AAD9FC7,String
+{<%UpgradeInstall%>}
+
+2437064A-AFF8-8E72-B224-A78B35335991,ExecuteAction
+{Before Pane is Displayed}
+
+2437064A-AFF8-8E72-B224-A78B35335991,State
+{disabled}
+
+2437064A-AFF8-8E72-B224-A78B35335991,Widget
+{Back Button;Next Button}
+
+2DB928F7-D342-E591-9256-0FA947636A9C,Alias
+{Cancel Actions}
+
+2E377112-5021-60E2-9792-9F9222D025A2,Background
+{#FFFFFF}
+
+2E377112-5021-60E2-9792-9F9222D025A2,Text,subst
+{1}
+
+2E377112-5021-60E2-9792-9F9222D025A2,Type
+{checkbutton}
+
+2E377112-5021-60E2-9792-9F9222D025A2,VirtualText
+{CreateQuickLaunchShortcut}
+
+2E377112-5021-60E2-9792-9F9222D025A2,X
+{185}
+
+2E377112-5021-60E2-9792-9F9222D025A2,Y
+{200}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,Background
+{#FFFFFF}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,Conditions
+{2 conditions}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,Text,subst
+{1}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,Type
+{checkbutton}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,VirtualText
+{ViewReadme}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,X
+{185}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,Y
+{140}
+
+39A09A34-6221-B9CB-7E2C-53BA7CC9A448,CheckCondition
+{Before Action is Executed}
+
+39A09A34-6221-B9CB-7E2C-53BA7CC9A448,Filename
+{<%ProgramExecutable%>}
+
+3C204F9F-A4BC-1075-A2B1-44BE93899837,CheckCondition
+{Before Action is Executed}
+
+3C204F9F-A4BC-1075-A2B1-44BE93899837,Filename
+{<%ProgramExecutable%>}
+
+3C62AE76-3CCF-5BEF-5283-0CC9CB0FD384,Conditions
+{0 conditions}
+
+3F779803-C89B-736F-6AD5-503ED0328234,Conditions
+{1 condition}
+
+426F150B-BA06-6B19-9AF9-3C7347FC8EA8,Alias
+{Setup Actions}
+
+4309AA0A-01F1-3F97-28FD-84D1D9288161,CheckCondition
+{Before Action is Executed}
+
+4309AA0A-01F1-3F97-28FD-84D1D9288161,Message,subst
+{1}
+
+4309AA0A-01F1-3F97-28FD-84D1D9288161,Title,subst
+{1}
+
+4309AA0A-01F1-3F97-28FD-84D1D9288161,TrueValue
+{No}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,Active
+{Yes}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,BackButton,subst
+{1}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,CancelButton,subst
+{1}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,Caption,subst
+{1}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,Conditions
+{2 conditions}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,DescriptionLabel,subst
+{0}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,Message,subst
+{1}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,NextButton,subst
+{1}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,Subtitle,subst
+{1}
+
+43212DDB-BE13-FB87-B3C8-61A2D45D3F88,Title,subst
+{1}
+
+43E976E4-2350-4E83-D68C-89062AB00416,Comment
+{Do not display this pane if this is an upgrade install unless there is more than one installation present}
+
+43E976E4-2350-4E83-D68C-89062AB00416,Script
+{!<%UpgradeInstall%> || <%PreviousInstallCount%> != 1}
+
+43EA5F1D-184F-51C0-7222-6199C132BE28,CheckCondition
+{Before Action is Executed}
+
+43EA5F1D-184F-51C0-7222-6199C132BE28,Operator
+{false}
+
+43EA5F1D-184F-51C0-7222-6199C132BE28,String
+{<%UpgradeInstall%>}
+
+47AB8A40-729C-CFC8-5FB8-5F382A1ADA9B,String
+{<%ErrorsOccurred%>}
+
+48362C36-9CF1-6A65-D462-EE7C7E023A11,CheckCondition
+{Before Action is Executed}
+
+48362C36-9CF1-6A65-D462-EE7C7E023A11,Operator
+{false}
+
+48362C36-9CF1-6A65-D462-EE7C7E023A11,String
+{<%InstallStopped%>}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,Background
+{#FFFFFF}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,Text,subst
+{1}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,Type
+{checkbutton}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,VirtualText
+{ViewReadme}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,X
+{185}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,Y
+{140}
+
+4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F,BackButton,subst
+{1}
+
+4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F,CancelButton,subst
+{1}
+
+4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F,Caption,subst
+{1}
+
+4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F,Conditions
+{0 conditions}
+
+4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F,Message,subst
+{1}
+
+4E4E4A96-F95C-C3F6-8FB3-E14BA9EBC54F,NextButton,subst
+{1}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,Background
+{#FFFFFF}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,Text,subst
+{1}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,Type
+{checkbutton}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,VirtualText
+{LaunchApplication}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,X
+{185}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,Y
+{160}
+
+554949F4-C4D7-F755-B502-89E482E9E729,Action
+{Uninstall Actions}
+
+5848E944-0B4C-ECE3-0472-C72902C865E1,Comment
+{Ask the user if they want to proceed with the uninstall.}
+
+5B2D5FBE-2A4B-BDB1-61EC-B69D76A968BC,FileName
+{<%ShortAppName%>-uninstall}
+
+5B2D5FBE-2A4B-BDB1-61EC-B69D76A968BC,ShortcutName
+{Uninstall <%AppName%>}
+
+5B2D5FBE-2A4B-BDB1-61EC-B69D76A968BC,TargetFileName
+{<%Uninstaller%>}
+
+5B2D5FBE-2A4B-BDB1-61EC-B69D76A968BC,WorkingDirectory
+{<%InstallDir%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message,subst
+{1}
+
+5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF,BackButton,subst
+{1}
+
+5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF,CancelButton,subst
+{1}
+
+5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF,Caption,subst
+{1}
+
+5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF,Conditions
+{0 conditions}
+
+5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF,Message,subst
+{1}
+
+5F90A1A3-37FC-8A50-3637-2FAA1D31B9FF,NextButton,subst
+{1}
+
+602EC09B-346C-8BA6-D9EE-8A2CF2887510,CheckCondition
+{Before Action is Executed}
+
+602EC09B-346C-8BA6-D9EE-8A2CF2887510,Operator
+{false}
+
+602EC09B-346C-8BA6-D9EE-8A2CF2887510,String
+{<%InstallStopped%>}
+
+604AD461-CA4C-169A-D7B3-B42B13D34E0C,CheckCondition
+{Before Action is Executed}
+
+604AD461-CA4C-169A-D7B3-B42B13D34E0C,Platform
+{Windows}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,BackButton,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,CancelButton,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,Caption,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,Conditions
+{0 conditions}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,FileLabel,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,Message,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,NextButton,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,ProgressValue,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,Subtitle,subst
+{1}
+
+6197D3F4-7325-B7EB-BAE7-C17A9A6905A3,Title,subst
+{1}
+
+6317B1A9-F3A3-AE61-9EB4-AAD00AE80773,ExitType
+{Finish}
+
+651FF88D-2B7E-AC41-A1F5-2797715E6031,CheckCondition
+{Before Next Action is Executed}
+
+651FF88D-2B7E-AC41-A1F5-2797715E6031,FailureMessage
+{<%DirectoryPermissionText%>}
+
+651FF88D-2B7E-AC41-A1F5-2797715E6031,Filename
+{<%InstallDir%>}
+
+651FF88D-2B7E-AC41-A1F5-2797715E6031,Permission
+{can create}
+
+66B4ADE5-5DD1-A448-8EAF-C94F8EF98CB2,ExecuteAction
+{Before Pane is Displayed}
+
+66C43FE4-0383-7F0A-5DC8-4184A02DFC57,CheckCondition
+{Before Action is Executed}
+
+66C43FE4-0383-7F0A-5DC8-4184A02DFC57,Operator
+{false}
+
+66C43FE4-0383-7F0A-5DC8-4184A02DFC57,String
+{<%InstallStopped%>}
+
+674DF202-E64F-E816-AF58-7452C9EF4D0E,ProgramCommandLine
+{<%ProgramExecutable%>}
+
+674DF202-E64F-E816-AF58-7452C9EF4D0E,WaitForProgram
+{No}
+
+674DF202-E64F-E816-AF58-7452C9EF4D0E,WorkingDirectory
+{<%InstallDir%>}
+
+68857FD4-6FE1-EA0B-4AFF-B94B514D9CF2,ExitType
+{Finish}
+
+69B528A6-8492-42AC-5735-098776E46144,CheckCondition
+{Before Action is Executed}
+
+69B528A6-8492-42AC-5735-098776E46144,String
+{<%ViewReadme%>}
+
+6C1A6371-C4BE-21F5-B64D-63D23BA18E30,Default
+{Yes}
+
+6C1A6371-C4BE-21F5-B64D-63D23BA18E30,Prompt
+{<%UninstallStartupText%>}
+
+6CC2835A-184F-4BC8-7B4E-F47F49A9BBE8,CheckCondition
+{Before Action is Executed}
+
+6CC2835A-184F-4BC8-7B4E-F47F49A9BBE8,Filename
+{<%ProgramExecutable%>}
+
+6E11707C-BAF5-CB5E-2707-C3CBE9C5DF0A,Alias
+{Startup Actions}
+
+7283F345-E841-0EAA-6C56-5BE7AA4FFFF7,CheckCondition
+{Before Action is Executed}
+
+7283F345-E841-0EAA-6C56-5BE7AA4FFFF7,Operator
+{false}
+
+7283F345-E841-0EAA-6C56-5BE7AA4FFFF7,String
+{<%InstallStopped%>}
+
+7319E13C-CE9F-A465-AFB5-66E01C011304,ShortcutName
+{<%AppName%>}
+
+7319E13C-CE9F-A465-AFB5-66E01C011304,TargetFileName
+{<%ProgramExecutable%>}
+
+7319E13C-CE9F-A465-AFB5-66E01C011304,WorkingDirectory
+{<%InstallDir%>}
+
+738EA98F-D564-1C65-B87B-107EB646BF51,Action
+{Install Actions}
+
+75F027ED-70CF-BE58-F7EA-79778242D833,CheckCondition
+{Before Action is Executed}
+
+75F027ED-70CF-BE58-F7EA-79778242D833,Operator
+{false}
+
+75F027ED-70CF-BE58-F7EA-79778242D833,String
+{<%Answer%>}
+
+763F59D1-AE51-3E29-150C-D45A2C7D3596,CheckCondition
+{Before Action is Executed}
+
+763F59D1-AE51-3E29-150C-D45A2C7D3596,Filename
+{<%ProgramReadme%>}
+
+76C3DA51-1026-C34F-425A-CEB7B1756E8C,Alias
+{Startup Actions}
+
+77F0ED43-F973-EA2B-F5AE-A050B131C8E8,Action
+{Uninstall Actions}
+
+79F4889D-C7EE-931E-B93F-7FC980A96D15,ExitType
+{Finish}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message,subst
+{1}
+
+80262852-F178-A5FA-743B-B0A2535D06FA,CheckCondition
+{Before Action is Executed}
+
+80262852-F178-A5FA-743B-B0A2535D06FA,Filename
+{<%ProgramReadme%>}
+
+819EAFB2-55B3-6932-B096-D1435D76D3C6,CheckCondition
+{Before Action is Executed}
+
+819EAFB2-55B3-6932-B096-D1435D76D3C6,Filename
+{<%ProgramExecutable%>}
+
+828B8587-C487-72C7-8B7A-467DD195E693,BackButton,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,BrowseButton,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,BrowseText,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,CancelButton,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,Caption,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,Conditions
+{2 conditions}
+
+828B8587-C487-72C7-8B7A-467DD195E693,Destination,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,DestinationLabel,subst
+{0}
+
+828B8587-C487-72C7-8B7A-467DD195E693,Message,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,NextButton,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,Subtitle,subst
+{1}
+
+828B8587-C487-72C7-8B7A-467DD195E693,Title,subst
+{1}
+
+8312D217-85B9-8582-339E-F034FF9A6BED,CheckCondition
+{Before Action is Executed}
+
+8312D217-85B9-8582-339E-F034FF9A6BED,Operator
+{false}
+
+8312D217-85B9-8582-339E-F034FF9A6BED,String
+{<%Answer%>}
+
+872442A9-8B39-CC50-EF16-15A204173699,Action
+{Install Actions}
+
+872442A9-8B39-CC50-EF16-15A204173699,Conditions
+{0 conditions}
+
+8734138E-CE80-8DE1-FA95-4CB71868BCFF,CheckCondition
+{Before Action is Executed}
+
+8734138E-CE80-8DE1-FA95-4CB71868BCFF,Filename
+{<%ProgramReadme%>}
+
+8819E68A-DCFD-A3B3-6FCA-E853C3F15063,CheckCondition
+{Before Action is Executed}
+
+8819E68A-DCFD-A3B3-6FCA-E853C3F15063,String
+{<%GuiMode%>}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,Background
+{#FFFFFF}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,Text,subst
+{1}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,Type
+{checkbutton}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,VirtualText
+{CreateQuickLaunchShortcut}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,X
+{185}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,Y
+{200}
+
+8A65F199-5757-7631-54F4-ADD00121C534,BackButton,subst
+{1}
+
+8A65F199-5757-7631-54F4-ADD00121C534,CancelButton,subst
+{1}
+
+8A65F199-5757-7631-54F4-ADD00121C534,Caption,subst
+{1}
+
+8A65F199-5757-7631-54F4-ADD00121C534,Message,subst
+{1}
+
+8A65F199-5757-7631-54F4-ADD00121C534,NextButton,subst
+{1}
+
+8B32A0A4-2D52-A2B4-CE8B-79143CB9F719,Description,subst
+{1}
+
+8B32A0A4-2D52-A2B4-CE8B-79143CB9F719,DisplayName,subst
+{1}
+
+8B32A0A4-2D52-A2B4-CE8B-79143CB9F719,FileGroups
+{F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B}
+
+8B32A0A4-2D52-A2B4-CE8B-79143CB9F719,Name
+{Default Component}
+
+8B32A0A4-2D52-A2B4-CE8B-79143CB9F719,RequiredComponent
+{Yes}
+
+8CE7D523-E3E2-C5B8-5CA8-960A43A32F91,CheckCondition
+{Before Action is Executed}
+
+8CE7D523-E3E2-C5B8-5CA8-960A43A32F91,String
+{<%GuiMode%>}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,BackButton,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,CancelButton,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,Caption,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,FileValue,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,Message,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,NextButton,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,ProgressValue,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,Subtitle,subst
+{1}
+
+8EBCC72C-28C2-C663-852D-6A75C22F8062,Title,subst
+{1}
+
+981C2B2A-6B39-CE06-466A-EF8717B61C71,CheckCondition
+{Before Next Pane is Displayed}
+
+981C2B2A-6B39-CE06-466A-EF8717B61C71,FailureMessage
+{<%DirectoryPermissionText%>}
+
+981C2B2A-6B39-CE06-466A-EF8717B61C71,Filename
+{<%InstallDir%>}
+
+981C2B2A-6B39-CE06-466A-EF8717B61C71,Permission
+{can create}
+
+98AEC121-EB77-2EE9-10E1-AC5C4B371B87,Action
+{Install Actions}
+
+98AEC121-EB77-2EE9-10E1-AC5C4B371B87,Conditions
+{0 conditions}
+
+9A5D9826-0D5B-B19A-3CAF-EEE98A45F656,CheckCondition
+{Before Action is Executed}
+
+9A5D9826-0D5B-B19A-3CAF-EEE98A45F656,Operator
+{false}
+
+9A5D9826-0D5B-B19A-3CAF-EEE98A45F656,String
+{<%InstallStopped%>}
+
+9FCB7C31-FD70-0560-D29F-C825B2291C60,Comment
+{Ask the user if they want to proceed with the install.}
+
+9FCB7C31-FD70-0560-D29F-C825B2291C60,Conditions
+{2 conditions}
+
+A2D2DD70-F39E-A1B0-6F90-62FB275ACC88,String1
+{<%InstallType%>}
+
+A2D2DD70-F39E-A1B0-6F90-62FB275ACC88,String2
+{Custom}
+
+A6AD1E03-6B6B-3E20-5454-400EDECF9C77,CheckCondition
+{Before Action is Executed}
+
+A6AD1E03-6B6B-3E20-5454-400EDECF9C77,String
+{<%CreateQuickLaunchShortcut%>}
+
+AAB8A486-7CFF-5D7B-48F5-AAD5476CFD7F,Components
+{8B32A0A4-2D52-A2B4-CE8B-79143CB9F719}
+
+AAB8A486-7CFF-5D7B-48F5-AAD5476CFD7F,Description,subst
+{1}
+
+AAB8A486-7CFF-5D7B-48F5-AAD5476CFD7F,DisplayName,subst
+{1}
+
+AAB8A486-7CFF-5D7B-48F5-AAD5476CFD7F,Name
+{Typical}
+
+AB5DF434-6D49-8A4D-B943-2A0775E78C6E,Conditions
+{0 conditions}
+
+AIX-ppc,Active
+{Yes}
+
+AIX-ppc,BuildSeparateArchives
+{No}
+
+AIX-ppc,DefaultDirectoryPermission
+{0755}
+
+AIX-ppc,DefaultFilePermission
+{0755}
+
+AIX-ppc,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+AIX-ppc,FallBackToConsole
+{Yes}
+
+AIX-ppc,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+AIX-ppc,InstallMode
+{Standard}
+
+AIX-ppc,InstallType
+{Typical}
+
+AIX-ppc,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+AIX-ppc,ProgramFolderAllUsers
+{No}
+
+AIX-ppc,ProgramFolderName
+{<%AppName%>}
+
+AIX-ppc,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+AIX-ppc,ProgramName
+{}
+
+AIX-ppc,ProgramReadme
+{<%InstallDir%>/README}
+
+AIX-ppc,PromptForRoot
+{Yes}
+
+AIX-ppc,RequireRoot
+{No}
+
+AIX-ppc,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+B2A3B6FE-EC8F-1FAA-C4BD-B36A1223485E,CheckCondition
+{Before Action is Executed}
+
+B2A3B6FE-EC8F-1FAA-C4BD-B36A1223485E,Operator
+{false}
+
+B2A3B6FE-EC8F-1FAA-C4BD-B36A1223485E,String
+{<%UpgradeInstall%>}
+
+B978CDAC-852C-A4F0-BE50-0F5F1CA534F6,ExecuteAction
+{Before Pane is Displayed}
+
+B978CDAC-852C-A4F0-BE50-0F5F1CA534F6,State
+{disabled}
+
+B978CDAC-852C-A4F0-BE50-0F5F1CA534F6,Widget
+{NextButton; CancelButton}
+
+BA5E8097-7E5F-8784-A3C3-F75FC9A62A1F,Alias
+{Setup Actions}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,Active
+{Yes}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,BackButton,subst
+{1}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,CancelButton,subst
+{1}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,Caption,subst
+{1}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,Conditions
+{1 condition}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,DescriptionLabel,subst
+{0}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,Message,subst
+{1}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,NextButton,subst
+{1}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,Subtitle,subst
+{1}
+
+BEC6CE4B-14D3-D36A-F1AE-EB5D73097D0B,Title,subst
+{1}
+
+BEEA8303-AC4C-F924-0E2E-D090DE0C3563,Components
+{8B32A0A4-2D52-A2B4-CE8B-79143CB9F719}
+
+BEEA8303-AC4C-F924-0E2E-D090DE0C3563,Description,subst
+{1}
+
+BEEA8303-AC4C-F924-0E2E-D090DE0C3563,DisplayName,subst
+{1}
+
+BEEA8303-AC4C-F924-0E2E-D090DE0C3563,Name
+{Custom}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,Caption,subst
+{1}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,CloseButton,subst
+{1}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,Message,subst
+{1}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,TextFile
+{<%ProgramReadme%>}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,Title,subst
+{1}
+
+C232FFCC-6769-506F-EF11-49EA9C453441,Alias
+{Uninstall Actions}
+
+C2646E6B-7346-F832-5CF4-CFB141034BFE,CheckCondition
+{Before Action is Executed}
+
+C2646E6B-7346-F832-5CF4-CFB141034BFE,Filename
+{<%ProgramExecutable%>}
+
+C46DDF06-5702-2633-BDD5-22D02B861769,Alias
+{Install Actions}
+
+C46DDF06-5702-2633-BDD5-22D02B861769,Conditions
+{0 conditions}
+
+C7B9100A-87BB-21F5-E331-A054EEB204C0,Alias
+{Finish Actions}
+
+C7B9100A-87BB-21F5-E331-A054EEB204C0,Conditions
+{0 conditions}
+
+CB1E2225-FEB2-6D26-2B49-416E510BE116,CheckCondition
+{Before Action is Executed}
+
+CB1E2225-FEB2-6D26-2B49-416E510BE116,Operator
+{false}
+
+CB1E2225-FEB2-6D26-2B49-416E510BE116,String
+{<%InstallStopped%>}
+
+CDCDBA04-1913-0893-1A14-8E12278BAD95,CheckCondition
+{Before Action is Executed}
+
+CDCDBA04-1913-0893-1A14-8E12278BAD95,Filename
+{<%ProgramExecutable%>}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,Background
+{#FFFFFF}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,Text,subst
+{1}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,Type
+{checkbutton}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,VirtualText
+{CreateDesktopShortcut}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,X
+{185}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,Y
+{180}
+
+D2E959F1-8E22-BC2B-732A-759479234176,Conditions
+{0 conditions}
+
+D2E959F1-8E22-BC2B-732A-759479234176,Default
+{Yes}
+
+D2E959F1-8E22-BC2B-732A-759479234176,Prompt
+{<%InstallStartupText%>}
+
+D4CC85A0-EAA9-D845-3652-F04E59F65B2C,CheckCondition
+{Before Action is Executed}
+
+D4CC85A0-EAA9-D845-3652-F04E59F65B2C,String
+{<%GuiMode%>}
+
+D79232FD-1E4A-F810-0BBB-1DC294955F1A,CheckCondition
+{Before Action is Executed}
+
+D79232FD-1E4A-F810-0BBB-1DC294955F1A,Operator
+{false}
+
+D79232FD-1E4A-F810-0BBB-1DC294955F1A,String
+{<%UpgradeInstall%>}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,BackButton,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,CancelButton,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,Caption,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,Conditions
+{0 conditions}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,Message,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,NextButton,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,Subtitle,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,Text,subst
+{1}
+
+DB8BC2CE-A0BD-B7B5-4568-32A654875942,Title,subst
+{1}
+
+DBC8802D-D1F7-3419-1F8C-98657815F291,Comment
+{Only display this pane if we have more than one Setup Type}
+
+DBC8802D-D1F7-3419-1F8C-98657815F291,Script
+{[llength [SetupTypes children]] > 1}
+
+DCF7083D-DF34-35A4-2FBB-982D38B6CFCA,ExecuteAction
+{Before Pane is Displayed}
+
+DD15FE7F-4EC4-0925-1322-3AC1D2DC36E0,CheckCondition
+{Before Action is Executed}
+
+DD15FE7F-4EC4-0925-1322-3AC1D2DC36E0,String
+{<%GuiMode%>}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,BackButton,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,CancelButton,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,Caption,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,Message,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,NextButton,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,Subtitle,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,Text,subst
+{1}
+
+DE88FF59-EB09-A7AA-9D78-628B6864479F,Title,subst
+{1}
+
+DE9D9481-20FD-193F-65C3-AE1AE8D4BC66,ShortcutName
+{<%AppName%>}
+
+DE9D9481-20FD-193F-65C3-AE1AE8D4BC66,TargetFileName
+{<%ProgramExecutable%>}
+
+DE9D9481-20FD-193F-65C3-AE1AE8D4BC66,WorkingDirectory
+{<%InstallDir%>}
+
+E0375A09-E759-4538-6B11-777A895FF0EA,Conditions
+{0 conditions}
+
+E0375A09-E759-4538-6B11-777A895FF0EA,ExecuteAction
+{Before Pane is Displayed}
+
+E0375A09-E759-4538-6B11-777A895FF0EA,State
+{disabled}
+
+E0375A09-E759-4538-6B11-777A895FF0EA,Widget
+{Back Button;Next Button}
+
+E4110264-D066-1A46-6974-66C0B25F5C35,Action
+{Install Actions}
+
+E453C832-BF91-AE20-25B1-8D9DD84DCA66,CheckCondition
+{Before Action is Executed}
+
+E453C832-BF91-AE20-25B1-8D9DD84DCA66,String
+{<%LaunchApplication%>}
+
+E5BAFE4E-3A6C-9C55-B9EE-CEBDB02930E1,Prompt
+{<%ConsoleSelectDestinationText%>}
+
+E5BAFE4E-3A6C-9C55-B9EE-CEBDB02930E1,VirtualText
+{InstallDir}
+
+EC4C1E4A-5C44-0F01-344F-4E822EA57635,ExitType
+{Finish}
+
+EEE2646D-07B8-BB60-33C3-E958AFC6C495,ShortcutDirectory
+{<%QUICK_LAUNCH%>}
+
+EEE2646D-07B8-BB60-33C3-E958AFC6C495,ShortcutName
+{<%AppName%>}
+
+EEE2646D-07B8-BB60-33C3-E958AFC6C495,TargetFileName
+{<%ProgramExecutable%>}
+
+EEE2646D-07B8-BB60-33C3-E958AFC6C495,WorkingDirectory
+{<%InstallDir%>}
+
+F0E8E006-BC47-2584-9A91-B34CC15C59F3,CheckCondition
+{Before Action is Executed}
+
+F0E8E006-BC47-2584-9A91-B34CC15C59F3,Operator
+{false}
+
+F0E8E006-BC47-2584-9A91-B34CC15C59F3,String
+{<%UpgradeInstall%>}
+
+F4DBCDEB-6E1F-C024-4EA5-479266D1410E,CheckCondition
+{Before Action is Executed}
+
+F4DBCDEB-6E1F-C024-4EA5-479266D1410E,String
+{<%CreateDesktopShortcut%>}
+
+F7A763E6-E138-90B5-A0B7-71D5B40FA17E,Conditions
+{0 conditions}
+
+F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B,CompressionMethod
+{lzma (solid)}
+
+F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B,Destination
+{<%InstallDir%>}
+
+F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B,FileSize
+{101305873}
+
+F7FDD0B1-ED13-39F2-02E5-F8A23F19AE7B,Name
+{Program Files}
+
+F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6,BackButton,subst
+{1}
+
+F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6,CancelButton,subst
+{1}
+
+F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6,Caption,subst
+{1}
+
+F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6,Message,subst
+{1}
+
+F9D350BC-B66A-2247-6B45-5D8E5BC3CBE6,NextButton,subst
+{1}
+
+FA0A54AD-39AA-E641-0BE3-8370E4E1BB64,CheckCondition
+{Before Action is Executed}
+
+FA0A54AD-39AA-E641-0BE3-8370E4E1BB64,Operator
+{false}
+
+FA0A54AD-39AA-E641-0BE3-8370E4E1BB64,String
+{<%InstallStopped%>}
+
+FB5174AE-E27B-9F20-A3E7-0BC13A74BDB1,Alias
+{Cancel Actions}
+
+FreeBSD-4-x86,Active
+{Yes}
+
+FreeBSD-4-x86,BuildSeparateArchives
+{No}
+
+FreeBSD-4-x86,DefaultDirectoryPermission
+{0755}
+
+FreeBSD-4-x86,DefaultFilePermission
+{0755}
+
+FreeBSD-4-x86,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+FreeBSD-4-x86,FallBackToConsole
+{Yes}
+
+FreeBSD-4-x86,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+FreeBSD-4-x86,InstallMode
+{Standard}
+
+FreeBSD-4-x86,InstallType
+{Typical}
+
+FreeBSD-4-x86,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+FreeBSD-4-x86,ProgramFolderAllUsers
+{No}
+
+FreeBSD-4-x86,ProgramFolderName
+{<%AppName%>}
+
+FreeBSD-4-x86,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+FreeBSD-4-x86,ProgramName
+{}
+
+FreeBSD-4-x86,ProgramReadme
+{<%InstallDir%>/README}
+
+FreeBSD-4-x86,PromptForRoot
+{Yes}
+
+FreeBSD-4-x86,RequireRoot
+{No}
+
+FreeBSD-4-x86,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+FreeBSD-5-x86,Active
+{Yes}
+
+FreeBSD-5-x86,BuildSeparateArchives
+{No}
+
+FreeBSD-5-x86,DefaultDirectoryPermission
+{0755}
+
+FreeBSD-5-x86,DefaultFilePermission
+{0755}
+
+FreeBSD-5-x86,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+FreeBSD-5-x86,FallBackToConsole
+{Yes}
+
+FreeBSD-5-x86,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+FreeBSD-5-x86,InstallMode
+{Standard}
+
+FreeBSD-5-x86,InstallType
+{Typical}
+
+FreeBSD-5-x86,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+FreeBSD-5-x86,ProgramFolderAllUsers
+{No}
+
+FreeBSD-5-x86,ProgramFolderName
+{<%AppName%>}
+
+FreeBSD-5-x86,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+FreeBSD-5-x86,ProgramName
+{}
+
+FreeBSD-5-x86,ProgramReadme
+{<%InstallDir%>/README}
+
+FreeBSD-5-x86,PromptForRoot
+{Yes}
+
+FreeBSD-5-x86,RequireRoot
+{No}
+
+FreeBSD-5-x86,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+FreeBSD-6-x86,Active
+{Yes}
+
+FreeBSD-6-x86,BuildSeparateArchives
+{No}
+
+FreeBSD-6-x86,DefaultDirectoryPermission
+{0755}
+
+FreeBSD-6-x86,DefaultFilePermission
+{0755}
+
+FreeBSD-6-x86,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+FreeBSD-6-x86,FallBackToConsole
+{Yes}
+
+FreeBSD-6-x86,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+FreeBSD-6-x86,InstallMode
+{Standard}
+
+FreeBSD-6-x86,InstallType
+{Typical}
+
+FreeBSD-6-x86,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+FreeBSD-6-x86,ProgramFolderAllUsers
+{No}
+
+FreeBSD-6-x86,ProgramFolderName
+{<%AppName%>}
+
+FreeBSD-6-x86,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+FreeBSD-6-x86,ProgramName
+{}
+
+FreeBSD-6-x86,ProgramReadme
+{<%InstallDir%>/README}
+
+FreeBSD-6-x86,PromptForRoot
+{Yes}
+
+FreeBSD-6-x86,RequireRoot
+{No}
+
+FreeBSD-6-x86,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+FreeBSD-7-x86,Active
+{Yes}
+
+FreeBSD-7-x86,BuildSeparateArchives
+{No}
+
+FreeBSD-7-x86,DefaultDirectoryPermission
+{0755}
+
+FreeBSD-7-x86,DefaultFilePermission
+{0755}
+
+FreeBSD-7-x86,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+FreeBSD-7-x86,FallBackToConsole
+{Yes}
+
+FreeBSD-7-x86,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+FreeBSD-7-x86,InstallMode
+{Standard}
+
+FreeBSD-7-x86,InstallType
+{Typical}
+
+FreeBSD-7-x86,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+FreeBSD-7-x86,ProgramFolderAllUsers
+{No}
+
+FreeBSD-7-x86,ProgramFolderName
+{<%AppName%>}
+
+FreeBSD-7-x86,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+FreeBSD-7-x86,ProgramName
+{}
+
+FreeBSD-7-x86,ProgramReadme
+{<%InstallDir%>/README}
+
+FreeBSD-7-x86,PromptForRoot
+{Yes}
+
+FreeBSD-7-x86,RequireRoot
+{No}
+
+FreeBSD-7-x86,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+HPUX-hppa,Active
+{Yes}
+
+HPUX-hppa,BuildSeparateArchives
+{No}
+
+HPUX-hppa,DefaultDirectoryPermission
+{0755}
+
+HPUX-hppa,DefaultFilePermission
+{0755}
+
+HPUX-hppa,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+HPUX-hppa,FallBackToConsole
+{Yes}
+
+HPUX-hppa,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+HPUX-hppa,InstallMode
+{Standard}
+
+HPUX-hppa,InstallType
+{Typical}
+
+HPUX-hppa,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+HPUX-hppa,ProgramFolderAllUsers
+{No}
+
+HPUX-hppa,ProgramFolderName
+{<%AppName%>}
+
+HPUX-hppa,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+HPUX-hppa,ProgramName
+{}
+
+HPUX-hppa,ProgramReadme
+{<%InstallDir%>/README}
+
+HPUX-hppa,PromptForRoot
+{Yes}
+
+HPUX-hppa,RequireRoot
+{No}
+
+HPUX-hppa,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+Linux-x86,Active
+{Yes}
+
+Linux-x86,BuildSeparateArchives
+{No}
+
+Linux-x86,DefaultDirectoryPermission
+{0755}
+
+Linux-x86,DefaultFilePermission
+{0755}
+
+Linux-x86,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+Linux-x86,FallBackToConsole
+{Yes}
+
+Linux-x86,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+Linux-x86,InstallMode
+{Standard}
+
+Linux-x86,InstallType
+{Typical}
+
+Linux-x86,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+Linux-x86,ProgramFolderAllUsers
+{No}
+
+Linux-x86,ProgramFolderName
+{<%AppName%>}
+
+Linux-x86,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+Linux-x86,ProgramName
+{}
+
+Linux-x86,ProgramReadme
+{<%InstallDir%>/README}
+
+Linux-x86,PromptForRoot
+{Yes}
+
+Linux-x86,RequireRoot
+{No}
+
+Linux-x86,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+Linux-x86_64,Active
+{Yes}
+
+Linux-x86_64,BuildSeparateArchives
+{No}
+
+Linux-x86_64,DefaultDirectoryPermission
+{0755}
+
+Linux-x86_64,DefaultFilePermission
+{0755}
+
+Linux-x86_64,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+Linux-x86_64,FallBackToConsole
+{Yes}
+
+Linux-x86_64,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+Linux-x86_64,InstallMode
+{Standard}
+
+Linux-x86_64,InstallType
+{Typical}
+
+Linux-x86_64,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+Linux-x86_64,ProgramFolderAllUsers
+{No}
+
+Linux-x86_64,ProgramFolderName
+{<%AppName%>}
+
+Linux-x86_64,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+Linux-x86_64,ProgramName
+{}
+
+Linux-x86_64,ProgramReadme
+{<%InstallDir%>/README}
+
+Linux-x86_64,PromptForRoot
+{Yes}
+
+Linux-x86_64,RequireRoot
+{No}
+
+Linux-x86_64,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+Solaris-sparc,Active
+{Yes}
+
+Solaris-sparc,BuildSeparateArchives
+{No}
+
+Solaris-sparc,DefaultDirectoryPermission
+{0755}
+
+Solaris-sparc,DefaultFilePermission
+{0755}
+
+Solaris-sparc,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+Solaris-sparc,FallBackToConsole
+{Yes}
+
+Solaris-sparc,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+Solaris-sparc,InstallMode
+{Standard}
+
+Solaris-sparc,InstallType
+{Typical}
+
+Solaris-sparc,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+Solaris-sparc,ProgramFolderAllUsers
+{No}
+
+Solaris-sparc,ProgramFolderName
+{<%AppName%>}
+
+Solaris-sparc,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+Solaris-sparc,ProgramName
+{}
+
+Solaris-sparc,ProgramReadme
+{<%InstallDir%>/README}
+
+Solaris-sparc,PromptForRoot
+{Yes}
+
+Solaris-sparc,RequireRoot
+{No}
+
+Solaris-sparc,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+Solaris-x86,Active
+{Yes}
+
+Solaris-x86,BuildSeparateArchives
+{No}
+
+Solaris-x86,DefaultDirectoryPermission
+{0755}
+
+Solaris-x86,DefaultFilePermission
+{0755}
+
+Solaris-x86,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+Solaris-x86,FallBackToConsole
+{Yes}
+
+Solaris-x86,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+Solaris-x86,InstallMode
+{Standard}
+
+Solaris-x86,InstallType
+{Typical}
+
+Solaris-x86,ProgramExecutable
+{<%InstallDir%>/moonstone}
+
+Solaris-x86,ProgramFolderAllUsers
+{No}
+
+Solaris-x86,ProgramFolderName
+{<%AppName%>}
+
+Solaris-x86,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+Solaris-x86,ProgramName
+{}
+
+Solaris-x86,ProgramReadme
+{<%InstallDir%>/README}
+
+Solaris-x86,PromptForRoot
+{Yes}
+
+Solaris-x86,RequireRoot
+{No}
+
+Solaris-x86,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+TarArchive,Active
+{Yes}
+
+TarArchive,BuildSeparateArchives
+{No}
+
+TarArchive,CompressionLevel
+{6}
+
+TarArchive,DefaultDirectoryPermission
+{0755}
+
+TarArchive,DefaultFilePermission
+{0755}
+
+TarArchive,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+TarArchive,FallBackToConsole
+{Yes}
+
+TarArchive,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+TarArchive,InstallMode
+{Standard}
+
+TarArchive,InstallType
+{Typical}
+
+TarArchive,OutputFileName
+{<%ShortAppName%>-<%Version%>.tar.gz}
+
+TarArchive,ProgramExecutable
+{}
+
+TarArchive,ProgramFolderAllUsers
+{No}
+
+TarArchive,ProgramFolderName
+{<%AppName%>}
+
+TarArchive,ProgramLicense
+{<%InstallDir%>/LICENSE.txt}
+
+TarArchive,ProgramName
+{}
+
+TarArchive,ProgramReadme
+{<%InstallDir%>/README.txt}
+
+TarArchive,PromptForRoot
+{Yes}
+
+TarArchive,RequireRoot
+{No}
+
+TarArchive,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+TarArchive,VirtualTextMap
+{<%InstallDir%> <%ShortAppName%>}
+
+Windows,Active
+{Yes}
+
+Windows,BuildSeparateArchives
+{No}
+
+Windows,Executable
+{<%AppName%>-<%Version%>-Setup<%Ext%>}
+
+Windows,FileDescription
+{<%AppName%> <%Version%> Setup}
+
+Windows,IncludeTWAPI
+{No}
+
+Windows,InstallDir
+{<%PROGRAM_FILES%>/<%AppName%>}
+
+Windows,InstallMode
+{Standard}
+
+Windows,InstallType
+{Typical}
+
+Windows,LastRequireAdministrator
+{Yes}
+
+Windows,ProgramExecutable
+{<%InstallDir%>/moonstone.exe}
+
+Windows,ProgramFolderAllUsers
+{No}
+
+Windows,ProgramFolderName
+{<%AppName%>}
+
+Windows,ProgramLicense
+{<%InstallDir%>/COPYING}
+
+Windows,ProgramName
+{}
+
+Windows,ProgramReadme
+{<%InstallDir%>/README}
+
+Windows,RequireAdministrator
+{Yes}
+
+Windows,UseUncompressedBinaries
+{No}
+
+Windows,WindowsIcon
+{Setup Blue Screen.ico}
+
+ZipArchive,Active
+{Yes}
+
+ZipArchive,BuildSeparateArchives
+{No}
+
+ZipArchive,CompressionLevel
+{6}
+
+ZipArchive,DefaultDirectoryPermission
+{0755}
+
+ZipArchive,DefaultFilePermission
+{0755}
+
+ZipArchive,Executable
+{<%AppName%>-<%Version%>-<%Platform%>-Install<%Ext%>}
+
+ZipArchive,FallBackToConsole
+{Yes}
+
+ZipArchive,InstallDir
+{<%Home%>/<%ShortAppName%>}
+
+ZipArchive,InstallMode
+{Standard}
+
+ZipArchive,InstallType
+{Typical}
+
+ZipArchive,OutputFileName
+{<%ShortAppName%>-<%Version%>.zip}
+
+ZipArchive,ProgramExecutable
+{}
+
+ZipArchive,ProgramFolderAllUsers
+{No}
+
+ZipArchive,ProgramFolderName
+{<%AppName%>}
+
+ZipArchive,ProgramLicense
+{<%InstallDir%>/LICENSE.txt}
+
+ZipArchive,ProgramName
+{}
+
+ZipArchive,ProgramReadme
+{<%InstallDir%>/README.txt}
+
+ZipArchive,PromptForRoot
+{Yes}
+
+ZipArchive,RequireRoot
+{No}
+
+ZipArchive,RootInstallDir
+{/usr/local/<%ShortAppName%>}
+
+ZipArchive,VirtualTextMap
+{<%InstallDir%> <%ShortAppName%>}
+
+}
+
+::msgcat::mcmset ca {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset cs {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset de {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset en {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+01DB2508-225E-87A7-C44E-F4333D8ADB45,Text
+{<%CreateDesktopShortcutText%>}
+
+0429035D-CFA1-3125-EB31-081D81E2F347,Message
+{<%InstallStartupText%>}
+
+0429035D-CFA1-3125-EB31-081D81E2F347,Title
+{<%InstallApplicationText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+11A06D6D-A3F3-CE2B-4F52-777A1CBA57BA,Text
+{<%LaunchApplicationText%>}
+
+2E377112-5021-60E2-9792-9F9222D025A2,Text
+{<%CreateQuickLaunchShortcutText%>}
+
+2FDB18B1-650E-05B3-5B6F-1F0773E04634,Text
+{<%ViewReadmeText%>}
+
+4309AA0A-01F1-3F97-28FD-84D1D9288161,Message
+{<%UninstallStartupText%>}
+
+4309AA0A-01F1-3F97-28FD-84D1D9288161,Title
+{<%UninstallApplicationText%>}
+
+4E3FF5D1-ACDE-A50A-E4A1-781ACB2569D0,Text
+{<%ViewReadmeText%>}
+
+50E06297-67AC-742C-5E65-9059B7983E0E,Text
+{<%LaunchApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+8953D352-78DB-B241-9960-CA0D5A7A011B,Text
+{<%CreateQuickLaunchShortcutText%>}
+
+8B32A0A4-2D52-A2B4-CE8B-79143CB9F719,Description
+{<%ProgramFilesDescription%>}
+
+AAB8A486-7CFF-5D7B-48F5-AAD5476CFD7F,Description
+{<%TypicalInstallDescription%>}
+
+BEEA8303-AC4C-F924-0E2E-D090DE0C3563,Description
+{<%CustomInstallDescription%>}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,Caption
+{<%ApplicationReadmeText%>}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,Message
+{}
+
+C1996D7A-DAE8-2BD3-3D27-34B154CF8452,Title
+{<%ApplicationReadmeText%>}
+
+D255A5DC-FC01-4522-B9F5-92F032CF851F,Text
+{<%CreateDesktopShortcutText%>}
+
+}
+::msgcat::mcmset es {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset fr {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset hu {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset it {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset lt {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset nl {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset pl {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset pt_br {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+::msgcat::mcmset ru {
+00EDB1EA-4E47-D581-162C-EEB96CD698A3,Message
+{<%UninstallCompleteText%>}
+
+077A3BD3-E470-D364-BB95-AB31F719A2D1,Message
+{<%UninstallingApplicationText%>}
+
+5C23E9BD-DB04-EF35-4AAD-CBDBB60E5320,Message
+{<%InstallingApplicationText%>}
+
+7C07A60E-C7B3-A1C2-8EB5-B90300D7B2D7,Message
+{<%InstallationCompleteText%>}
+
+}
+

@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/">
+    <file>static/default/icon/22x22/object-flip-horizontal.png</file>
+    <file>static/default/icon/22x22/object-flip-vertical.png</file>
+    <file>static/default/icon/48x48/object-flip-horizontal.png</file>
+    <file>static/default/icon/48x48/object-flip-vertical.png</file>
+  </qresource>
+</RCC>
