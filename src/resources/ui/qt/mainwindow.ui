@@ -43,6 +43,8 @@
    <addaction name="separator"/>
    <addaction name="actionSplitLeftNew"/>
    <addaction name="actionSplitLeftClose"/>
+   <addaction name="separator"/>
+   <addaction name="actionShowPlaneLines"/>
   </widget>
   <widget class="QDockWidget" name="toolProperties">
    <property name="sizePolicy">
@@ -104,30 +106,13 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QToolBar" name="toolBarTools">
-   <property name="windowTitle">
-    <string>Tools</string>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>32</width>
-     <height>32</height>
-    </size>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>548</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -176,6 +161,23 @@
    <addaction name="menuView"/>
    <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarTools">
+   <property name="windowTitle">
+    <string>Tools</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <action name="actionNew">
    <property name="icon">
@@ -393,6 +395,21 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionShowPlaneLines">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/static/default/icon/48x48/office-chart-polar.png</normaloff>:/static/default/icon/48x48/office-chart-polar.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show Plane Lines</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
    </property>
   </action>
  </widget>

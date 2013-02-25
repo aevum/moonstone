@@ -41,12 +41,41 @@ class SingleSliceView(SliceView):
         self._referencedPlanes = []
         super(SingleSliceView, self).__init__(mscreenParent, planeOrientation, slice, parent, title, slicePath, planeNumber)
         self.updateWidgets()
-    
-    def updateWidgets(self):
 
+    def activateAllPlanes(self):
+        logging.debug("In SingleSlicePlane::activateAllPlanes()")
+        if not "Transversal" in self.title :
+            flambda = lambda pl: not isinstance( pl, VolumeView ) \
+                                     and not isinstance( pl, MultiSliceView ) \
+                                     and not pl == self and pl.title != self.title \
+                                     and pl.title != "Transversal" \
+                and self.title.split()[0] not in pl.title.split()[0]
+            for plane in filter(flambda, self._mscreenParent._planes):
+                if not plane in self._referencedPlanes:
+                    plane.addSliderReleasedListeners( self.onReferedPlanesChange )
+                    plane.addCloseListener( self.onReferedPlaneClose )
+                    self.addReferencedPlane(plane)
+                    self.scene.addLinePlaneWidget( plane.lineWidget() )
+
+    def desactivateAllPlanes(self):
+        logging.debug("In SingleSlicePlane::desactivateAllPlanes()")
+        if self.title != "Transversal":
+            flambda = lambda pl: not isinstance(pl, VolumeView ) \
+                                     and not isinstance( pl, MultiSliceView ) \
+                                     and not pl == self and pl.title != self.title \
+                                     and pl.title != "Transversal" \
+                and self.title.split()[0] not in pl.title.split()[0]
+            for plane in filter(flambda, self._mscreenParent._planes):
+                if plane in self._referencedPlanes:
+                    plane.removeSliderReleasedListeners(self.onReferedPlanesChange)
+                    plane.removeCloseListener(self.onReferedPlaneClose)
+                    self.removeReferencedPlane(plane)
+                    self.scene.removeLinePlaneWidget(plane.lineWidget())
+
+    def updateWidgets(self):
         logging.debug("In SingleSlicePlane::updateWidgets()")
         super(SingleSliceView, self).updateWidgets()
-                        
+
     def createWidgets(self):
         logging.debug("In SingleSlicePlane::createWidgets()")
         super(SingleSliceView, self).createWidgets()
@@ -78,18 +107,18 @@ class SingleSliceView(SliceView):
 
         logging.debug("In SingleSlicePlane::slotActionImagePlaneWidget()")
         self.menu = QtGui.QMenu()
-        flambda = lambda pl: not isinstance( pl, VolumeView )\
-                             and not isinstance( pl, MultiSliceView )\
-                             and not pl == self and pl.title != self.title\
-                             and pl.title != "Transversal"\
-                             and self.title.split()[0] not in pl.title.split()[0]
+        flambda = lambda pl: not isinstance( pl, VolumeView ) \
+                                 and not isinstance( pl, MultiSliceView ) \
+                                 and not pl == self and pl.title != self.title \
+                                 and pl.title != "Transversal" \
+            and self.title.split()[0] not in pl.title.split()[0]
         for plane in filter( flambda, self._mscreenParent._planes ):
-            action = QtGui.QWidgetAction( self )
-            action.setCheckable( True )
-            action.setText( plane.title )
-            action.setData( plane )
-            action.setChecked( plane in self._referencedPlanes )
-            self.menu.addAction( action )
+            action = QtGui.QWidgetAction(self)
+            action.setCheckable(True)
+            action.setText(plane.title)
+            action.setData(plane)
+            action.setChecked(plane in self._referencedPlanes)
+            self.menu.addAction(action)
 
         self.connect( self.menu, QtCore.SIGNAL('triggered(QAction*)'), self.slotActionImagePlaneChoose )
         pos = QtGui.QCursor.pos()
@@ -143,17 +172,17 @@ class SingleSliceView(SliceView):
 
         logging.debug("In SingleSlicePlane::slotActionThickness()")
         super( SingleSliceView, self ).slotActionThickness()
-        
+
     def slotActionSlabThickness(self):
 
         logging.debug("In SingleSlicePlane::slotActionThickness()")
         super( SingleSliceView, self ).slotActionSlabThickness()
-    
+
     def slotChangeSlabThickness(self, value):
 
         logging.debug("In SingleSlicePlane::slotChangeThickness()")
         super( SingleSliceView, self ).slotChangeSlabThickness( value )
-        
+
     def slotChangeSlabQuality(self, value):
 
         logging.debug("In SingleSlicePlane::slotChangeThickness()")
@@ -164,14 +193,14 @@ class SingleSliceView(SliceView):
         self._planeSlideValue = slicer/2
         self.planeSlide.setRange(0, slicer)
         self.planeSlide.setValue(slicer/2.0)
-        
+
     def updateSliceAndPath(self, slice, slicePath):
         self.slice = slice
         self.slicePath = slicePath
         self.scene.updateSliceAndPath(self.slice, self.slicePath)
         self.slotChangeThickness(self.scene.sliceThickness)
         self.slotPlaneSlideChanged(self.planeSlide.value(), False)
-#        self.scene.updateCamera()
+        #        self.scene.updateCamera()
 
     def load(self, data):
 
@@ -195,35 +224,35 @@ class SingleSliceView(SliceView):
         p1 = self.slicePath[0]
         for i, p2 in enumerate(self.slicePath[1:]):
             dist = vtk.vtkLine.DistanceToLine(point, p1, p2)
-            
+
             d1 = vtk.vtkMath.Distance2BetweenPoints(p1, point)
             d2 = vtk.vtkMath.Distance2BetweenPoints([pp1+(pp2-pp1)/10000.0 for pp1, pp2 in zip(p1,p2)], point)
             d3 = vtk.vtkMath.Distance2BetweenPoints(p2, point)
             d4 = vtk.vtkMath.Distance2BetweenPoints([pp2+(pp1-pp2)/10000.0 for pp1, pp2 in zip(p1,p2)], point)
-            
+
             if d2 <= d1 and d4 <= d3:
                 if dist < mindistReal:
                     posReal = i
                     mindistReal = dist
-                
+
             if d1 < mindist:
                 pos = i
                 mindist = d1
-               
+
             p1 = p2
-        
+
         if posReal >= 0:
             pos = posReal
             mindist = mindistReal
-            
+
         hip2 = vtk.vtkMath.Distance2BetweenPoints(self.slicePath[pos], point)
-        
+
         distFromClosestPoint = math.sqrt(hip2 - mindist)
-        
+
         anterior = self.slicePath[0]
         sum = 0
         for point in self.slicePath[1:pos+1]:
-            actual = point 
+            actual = point
             dist = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(anterior, actual))
             sum = sum + dist
             anterior = point

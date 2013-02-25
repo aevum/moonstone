@@ -47,9 +47,33 @@ class VolumeView( View ):
         self.hounsfieldEditor = None
         self._referencedPlanes = []
         super(VolumeView, self).__init__( title, mscreenParent, planeNumber)
-    
-    
-    def closeEvent( self, event ):
+
+    def activateAllPlanes(self):
+        for plane in filter( lambda pl: not isinstance( pl, VolumeView ), self._mscreenParent._planes):
+            if not plane in self._referencedPlanes:
+                #plane.scene.addSliceChangeListener( self.onReferedPlanesChange )
+                plane.addSliderReleasedListeners( self.onReferedPlanesChange )
+                plane.addCloseListener( self.onReferedPlaneClose )
+                self.addReferencedPlane(plane)
+                self.scene.addSlicePlaneWidget( plane.planeWidget() )
+            else:
+                #plane.scene.removeSliceChangeListener( self.onReferedPlanesChange )
+                plane.removeSliderReleasedListeners( self.onReferedPlanesChange )
+                plane.addCloseListener( self.onReferedPlaneClose )
+                self.removeReferencedPlane(plane)
+                self.scene.removeSlicePlaneWidget( plane.planeWidget() )
+
+    def desactivateAllPlanes(self):
+        logging.debug("In SingleSlicePlane::desactivateAllPlanes()")
+        for plane in filter( lambda pl: not isinstance( pl, VolumeView ), self._mscreenParent._planes):
+            if plane in self._referencedPlanes:
+                plane.scene.removeSliceChangeListener( self.onReferedPlanesChange )
+                plane.removeCloseListener( self.onReferedPlaneClose )
+                if plane in self._referencedPlanes:
+                    self._referencedPlanes.remove( plane )
+                self.scene.removeSlicePlaneWidget( plane.planeWidget() )
+
+    def closeEvent(self, event ):
         logging.debug("In SliceView::closeEvent()")
         self.closeAction( event )
     

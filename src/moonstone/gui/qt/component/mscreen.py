@@ -208,7 +208,8 @@ class MScreen(QtGui.QMainWindow):
         for plane in self.planes:
             if plane.planeOrientation == VtkImagePlane.PLANE_ORIENTATION_VOLUME:
                 d3 = 1
-                break 
+                break
+
         self._mWindow.createMScreensFromImagedata(self.vtkImageData, copy.copy(self._cubeCorners), self._name, d3);
                     
         

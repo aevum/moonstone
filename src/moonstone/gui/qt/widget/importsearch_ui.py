@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/Moonstone/src/resources/ui/qt/importsearch.ui'
+# Form implementation generated from reading ui file '/home/igorznt/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/importsearch.ui'
 #
-# Created: Tue Mar  6 18:01:46 2012
-#      by: pyside-uic 0.2.11 running on PySide 1.0.6
+# Created: Mon Feb 25 08:21:20 2013
+#      by: pyside-uic 0.2.13 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 

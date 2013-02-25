@@ -14,6 +14,6 @@ if __name__ == "__main__":
                 cf = file(filepath, "r")
                 total = total + len(cf.readlines())
                 lupdateCommand = "{0} {1}".format(lupdateCommand, filepath)
-    lupdateCommand = lupdateCommand+ " -ts /home/igorznt/Desenvolvimento/neppo/Moonstone/src/resources/locale/pt_BR/LC_MESSAGES/moonstone.ts"
+    lupdateCommand = lupdateCommand+ " -ts /home/igorznt/Desenvolvimento/neppo/moonstone/src/resources/locale/pt_BR/LC_MESSAGES/moonstone.ts"
     print total, nfiles    
     os.system(lupdateCommand)

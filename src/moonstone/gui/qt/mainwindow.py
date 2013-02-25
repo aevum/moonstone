@@ -134,6 +134,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                      self.slotActionAbout)
         self.connect(self.actionLicense, QtCore.SIGNAL("triggered()"),
                      self.slotActionLicense)
+        self.connect(self.actionShowPlaneLines, QtCore.SIGNAL("triggered()"),
+                     self.slotActionShowPlaneLines)
 
         # actions panel tool properties
         self.connect(self.toolProperties,
@@ -338,11 +340,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # menu view
         self.actionSplitLeftNew.setEnabled(flag)
         self.actionSplitLeftNew.setVisible(not flag)
+        self.actionShowPlaneLines.setVisible(flag)
         self.actionSplitLeftClose.setEnabled(flag)
         self.actionSplitLeftClose.setVisible(flag)
         self.actionFullScreen.setEnabled(True)
 
-        
+
+    def slotActionShowPlaneLines(self):
+        logging.debug("In MainWindow::actionShowPlaneLines()")
+        for mscreen in self.mWindow.allTabs():
+            for plane in mscreen.planes:
+                if self.actionShowPlaneLines.isChecked():
+                    plane.activateAllPlanes()
+                else:
+                    plane.desactivateAllPlanes()
+
+
     # actions menu file
     def slotActionNew(self):
         logging.debug("In MainWindow::slotActionNew()")

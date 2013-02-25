@@ -24,6 +24,7 @@ import logging
 from ...bloodstone.scenes.imageplane import VtkImagePlane
 from ...bloodstone.scenes.multisliceimageplane import VtkMultiSliceImagePlane
 from ...bloodstone.scenes.gui.qt.component.qvtkwidget import QVtkWidget
+from volumeview import VolumeView
 from PySide import QtGui, QtCore
 
 from sliceview import SliceView
@@ -40,6 +41,32 @@ class MultiSliceView(SliceView):
                                                          QtGui.QApplication.UnicodeUTF8)
         super(MultiSliceView, self).__init__(mscreenParent, VtkImagePlane.PLANE_ORIENTATION_PANORAMIC, slices, parent, title, planeNumber=planeNumber)
         self.updateWidgets()
+
+    def activateAllPlanes(self):
+        planes = [ pl for pl in self._mscreenParent._planes \
+                   if not isinstance(pl, VolumeView) \
+                          and not pl == self and pl.title.split()[0] != self.title.split()[0] \
+                          and pl.title.split()[0] != "Coronal" \
+                and pl.title.split()[0] != "Sagittal"]
+        for plane in planes:
+            if not plane in self._referencedPlanes:
+                plane.addSliderReleasedListeners( self.onReferedPlanesChange )
+                plane.addCloseListener( self.onReferedPlaneClose )
+                self.addReferencedPlane(plane)
+                self.scene.addLineWidgetFromScene( plane.scene )
+
+    def desactivateAllPlanes(self):
+        planes = [pl for pl in self._mscreenParent._planes \
+                   if not isinstance(pl, VolumeView) \
+                          and not pl == self and pl.title.split()[0] != self.title.split()[0] \
+                          and pl.title.split()[0] != "Coronal" \
+                and pl.title.split()[0] != "Sagittal"]
+        for plane in planes:
+            if plane in self._referencedPlanes:
+                plane.removeSliderReleasedListeners( self.onReferedPlanesChange )
+                plane.removeCloseListener( self.onReferedPlaneClose )
+                self.removeReferencedPlane(plane)
+                self.scene.remLineWidgetFromScene( plane.scene )
 
     def createScene(self):
 
@@ -70,7 +97,6 @@ class MultiSliceView(SliceView):
 
         logging.debug("In MultiSliceView::slotActionImagePlaneWidget()")
         self.menu = QtGui.QMenu()
-        from volumeview import VolumeView
         fplanes = [ pl for pl in self._mscreenParent._planes\
                     if not isinstance(pl, VolumeView)\
                        and not pl == self and pl.title.split()[0] != self.title.split()[0]\

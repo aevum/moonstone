@@ -279,6 +279,19 @@
     </message>
 </context>
 <context>
+    <name>Implant</name>
+    <message>
+        <location filename="mwindow.py" line="217"/>
+        <source>Error</source>
+        <translation>Erro</translation>
+    </message>
+    <message>
+        <location filename="mwindow.py" line="220"/>
+        <source>Some tool is locking this tab and it cannot be closed.</source>
+        <translation>Alguma ferramente está bloquando essa aba e ela não pode ser fechada.</translation>
+    </message>
+</context>
+<context>
     <name>ImportChooser</name>
     <message>
         <location filename="importchooser_ui.py" line="100"/>
@@ -702,14 +715,9 @@ Tente outro nome.</translation>
 <context>
     <name>Login</name>
     <message>
-        <location filename="login_ui.py" line="81"/>
-        <source>Login</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="login_ui.py" line="82"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation type="obsolete">Senha</translation>
     </message>
     <message>
         <location filename="login_ui.py" line="75"/>
@@ -719,38 +727,28 @@ Tente outro nome.</translation>
     <message>
         <location filename="login_ui.py" line="85"/>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation type="obsolete">Editar</translation>
     </message>
     <message>
         <location filename="login_ui.py" line="86"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
-        <location filename="login_ui.py" line="87"/>
-        <source>Ok</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="login_ui.py" line="83"/>
-        <source>Logout</source>
-        <translation></translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <location filename="login_ui.py" line="84"/>
         <source> Register</source>
-        <translation>Registrar</translation>
+        <translation type="obsolete">Registrar</translation>
     </message>
 </context>
 <context>
     <name>MScreen</name>
     <message>
-        <location filename="mscreen.py" line="297"/>
+        <location filename="mscreen.py" line="298"/>
         <source>Panoramic</source>
         <translation>Panorâmica</translation>
     </message>
     <message>
-        <location filename="mscreen.py" line="301"/>
+        <location filename="mscreen.py" line="302"/>
         <source>Volume</source>
         <translation>Volume</translation>
     </message>
@@ -806,12 +804,12 @@ Tente outro nome.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow_ui.py" line="210"/>
+        <location filename="mainwindow_ui.py" line="217"/>
         <source>&amp;File</source>
         <translation>&amp;Arquivo</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="211"/>
+        <location filename="mainwindow_ui.py" line="218"/>
         <source>&amp;View</source>
         <translation>&amp;Visão</translation>
     </message>
@@ -821,7 +819,7 @@ Tente outro nome.</translation>
         <translation type="obsolete">&amp;Zoom</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="212"/>
+        <location filename="mainwindow_ui.py" line="219"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajuda</translation>
     </message>
@@ -831,7 +829,7 @@ Tente outro nome.</translation>
         <translation type="obsolete">&amp;Editar</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="213"/>
+        <location filename="mainwindow_ui.py" line="220"/>
         <source>&amp;Tools</source>
         <translation>&amp;Ferramentas</translation>
     </message>
@@ -841,7 +839,7 @@ Tente outro nome.</translation>
         <translation type="obsolete">&amp;Novo</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="217"/>
+        <location filename="mainwindow_ui.py" line="225"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
@@ -851,77 +849,77 @@ Tente outro nome.</translation>
         <translation type="obsolete">&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="219"/>
+        <location filename="mainwindow_ui.py" line="227"/>
         <source>&amp;License</source>
         <translation>&amp;Licença</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="235"/>
+        <location filename="mainwindow_ui.py" line="243"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="220"/>
+        <location filename="mainwindow_ui.py" line="228"/>
         <source>&amp;Recent Projects</source>
         <translation>&amp;Projetos Recentes</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="221"/>
+        <location filename="mainwindow_ui.py" line="229"/>
         <source>&amp;Save</source>
         <translation>&amp;Salvar</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="222"/>
+        <location filename="mainwindow_ui.py" line="230"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="223"/>
+        <location filename="mainwindow_ui.py" line="231"/>
         <source>Save &amp;As...</source>
         <translation>Salvar Como</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="224"/>
+        <location filename="mainwindow_ui.py" line="232"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="225"/>
+        <location filename="mainwindow_ui.py" line="233"/>
         <source>&amp;Print</source>
         <translation>&amp;Imprimir</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="238"/>
+        <location filename="mainwindow_ui.py" line="246"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="227"/>
+        <location filename="mainwindow_ui.py" line="235"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="228"/>
+        <location filename="mainwindow_ui.py" line="236"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="229"/>
+        <location filename="mainwindow_ui.py" line="237"/>
         <source>&amp;Quit</source>
         <translation>&amp;Sair</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="230"/>
+        <location filename="mainwindow_ui.py" line="238"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="231"/>
+        <location filename="mainwindow_ui.py" line="239"/>
         <source>Save A&amp;ll..</source>
         <translation>Salvar &amp;Todos</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="232"/>
+        <location filename="mainwindow_ui.py" line="240"/>
         <source>Ctrl+Shift+A</source>
         <translation></translation>
     </message>
@@ -931,12 +929,12 @@ Tente outro nome.</translation>
         <translation type="obsolete">&amp;Abrir Projeto</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="236"/>
+        <location filename="mainwindow_ui.py" line="244"/>
         <source>Prefere&amp;nces</source>
         <translation>Preferê&amp;ncias</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="237"/>
+        <location filename="mainwindow_ui.py" line="245"/>
         <source>Preferences</source>
         <translation>Preferências</translation>
     </message>
@@ -951,22 +949,22 @@ Tente outro nome.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="239"/>
+        <location filename="mainwindow_ui.py" line="247"/>
         <source>&amp;Help Contents</source>
         <translation>&amp;Conteúdo de Ajuda</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="240"/>
+        <location filename="mainwindow_ui.py" line="248"/>
         <source>Release &amp;Notes</source>
         <translation>Notas da Versão</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="241"/>
+        <location filename="mainwindow_ui.py" line="249"/>
         <source>&amp;Report Bugs</source>
         <translation>Relatar Erro</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="242"/>
+        <location filename="mainwindow_ui.py" line="250"/>
         <source>Check f&amp;or Updates...</source>
         <translation>Checar por Atualizações</translation>
     </message>
@@ -976,12 +974,12 @@ Tente outro nome.</translation>
         <translation type="obsolete">Mostrar Janela Lateral</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="245"/>
+        <location filename="mainwindow_ui.py" line="253"/>
         <source>&amp;Fullscreen</source>
         <translation>Tela Cheia</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="246"/>
+        <location filename="mainwindow_ui.py" line="254"/>
         <source>F11</source>
         <translation></translation>
     </message>
@@ -1016,17 +1014,17 @@ Tente outro nome.</translation>
         <translation>Mostrar janela principal...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="226"/>
+        <location filename="mainwindow.py" line="228"/>
         <source>Loading serie: {0}</source>
         <translation>Carregando série: {0}</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="294"/>
+        <location filename="mainwindow.py" line="296"/>
         <source>Loading screen: {0}</source>
         <translation>Carregando aba: {0}</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="300"/>
+        <location filename="mainwindow.py" line="302"/>
         <source>Loading finished</source>
         <translation>Carregamento terminado</translation>
     </message>
@@ -1036,52 +1034,52 @@ Tente outro nome.</translation>
         <translation type="obsolete">Selecione diretório de DICOMs</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="361"/>
+        <location filename="mainwindow.py" line="372"/>
         <source>Select the project file</source>
         <translation>Selecione o arquivo do projeto</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="384"/>
+        <location filename="mainwindow.py" line="395"/>
         <source>Saving...</source>
         <translation>Salvando...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="404"/>
+        <location filename="mainwindow.py" line="415"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="406"/>
+        <location filename="mainwindow.py" line="417"/>
         <source>Error saving study!</source>
         <translation>Erro ao salvar estudo!</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="465"/>
+        <location filename="mainwindow.py" line="476"/>
         <source>&amp;Normalscreen</source>
         <translation>Tela Normal</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="206"/>
+        <location filename="mainwindow_ui.py" line="214"/>
         <source>Moonstone :: MainWindow</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="207"/>
+        <location filename="mainwindow_ui.py" line="215"/>
         <source>Action Window</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="208"/>
+        <location filename="mainwindow_ui.py" line="216"/>
         <source>Tool Properties</source>
         <translation>Propriedades</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="209"/>
+        <location filename="mainwindow_ui.py" line="221"/>
         <source>Tools</source>
         <translation>Ferramentas</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="218"/>
+        <location filename="mainwindow_ui.py" line="226"/>
         <source>&amp;About Moonstone</source>
         <translation>Sobre Moonstone</translation>
     </message>
@@ -1191,34 +1189,44 @@ Tente outro nome.</translation>
         <translation>Transladar</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="243"/>
+        <location filename="mainwindow_ui.py" line="251"/>
         <source>&amp;Show side window</source>
         <translation>&amp;Mostrar janela lateral</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="244"/>
+        <location filename="mainwindow_ui.py" line="252"/>
         <source>&amp;Hide side window</source>
         <translation>Esconder janela lateral</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="233"/>
+        <location filename="mainwindow_ui.py" line="241"/>
         <source>&amp;Import Project</source>
         <translation>Importar Projeto</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="216"/>
+        <location filename="mainwindow_ui.py" line="224"/>
         <source>Import DICOMs</source>
         <translation>Importar DICOMs</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="214"/>
+        <location filename="mainwindow_ui.py" line="222"/>
         <source>&amp;Import DICOMs</source>
         <translation>&amp;Importar DICOMs</translation>
     </message>
     <message>
-        <location filename="mainwindow_ui.py" line="234"/>
+        <location filename="mainwindow_ui.py" line="242"/>
         <source>Import Project</source>
         <translation>Importar Projeto</translation>
+    </message>
+    <message>
+        <location filename="mainwindow_ui.py" line="255"/>
+        <source>Show Plane Lines</source>
+        <translation>Mostrar Linha dos Planos</translation>
+    </message>
+    <message>
+        <location filename="mainwindow_ui.py" line="256"/>
+        <source>Ctrl+Shift+P</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1275,7 +1283,7 @@ Tente outro nome.</translation>
 <context>
     <name>MultiSliceView</name>
     <message>
-        <location filename="multisliceview.py" line="41"/>
+        <location filename="multisliceview.py" line="42"/>
         <source>Panoramic</source>
         <translation>Panorâmica</translation>
     </message>
@@ -1285,37 +1293,32 @@ Tente outro nome.</translation>
     <message>
         <location filename="passwordchange_ui.py" line="89"/>
         <source>Register</source>
-        <translation>Cadasto</translation>
+        <translation type="obsolete">Cadasto</translation>
     </message>
     <message>
         <location filename="passwordchange_ui.py" line="90"/>
         <source>Old Password</source>
-        <translation>Senha Atual</translation>
+        <translation type="obsolete">Senha Atual</translation>
     </message>
     <message>
         <location filename="passwordchange_ui.py" line="91"/>
         <source>New Password</source>
-        <translation>Nova Senha</translation>
+        <translation type="obsolete">Nova Senha</translation>
     </message>
     <message>
         <location filename="passwordchange_ui.py" line="92"/>
         <source>Confirm </source>
-        <translation>Confirmar</translation>
+        <translation type="obsolete">Confirmar</translation>
     </message>
     <message>
         <location filename="passwordchange_ui.py" line="93"/>
         <source>User</source>
-        <translation>Usuário</translation>
+        <translation type="obsolete">Usuário</translation>
     </message>
     <message>
         <location filename="passwordchange_ui.py" line="94"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
-        <location filename="passwordchange_ui.py" line="95"/>
-        <source>Ok</source>
-        <translation></translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
 </context>
 <context>
@@ -1420,7 +1423,7 @@ Tente outro nome.</translation>
         <translation>Processando séries ({0}/{1})</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="316"/>
+        <location filename="mainwindow.py" line="318"/>
         <source>Error founded during loading!</source>
         <translation>Erro encontrado durante carregamento!</translation>
     </message>
