@@ -11,7 +11,7 @@ syntax: glob
 src/.project
 src/.pydevproject
 src/.settings/*
-src/.idea/*
+.idea/*
 src/resources/packaging/windows/missing-libs/*
 *.DS_Store
 .DS_Store
