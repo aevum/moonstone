@@ -1,0 +1,147 @@
+#Moonstone - Preparing Development Environment for Windows 
+Wiki
+  1- Install Python27 and SetupTools
+  2- Install CMake
+  3- Install Compiler
+  5- Install Sigwin
+  6- Build and install VTK
+  7- Build and install GDCM
+  8- Install PySide
+  9- Install PyYAML
+  10- Install Extensions
+  11- Install SQLObject
+  12- Install PyCrypto
+  13- Install PyIcu
+  14- Have Fun
+
+
+1- Install Python27
+
+  - Download and install python 2.7 from http://www.python.org/
+  - Download and install SetupTools from  https://pypi.python.org/pypi/setuptools
+  - Python and setuptools to PATH
+
+2- Install CMake
+
+  - Download and install python 2.7 from http://www.cmake.org/
+  - Add cmake and cmake-gui to PATH
+
+3- Install Compiler(Mingw or MSVSC)
+   
+  3.1- MinGW Compiler
+      
+    - Download and install MinGW http://www.mingw.org/ (for 32 bits version) ou MinGW64 from  http://mingw-w64.sourceforge.net/ 
+(For 64 bits. Obs: It's recommended to use MSVSC for 64 bit version instead of MinGW).
+    - Download and install appropiated version of MSys from http://sourceforge.net/projects/mingw/files/MSYS/
+    
+    3.2- MSVSC Compiler
+
+      -TODO
+
+
+4- Install Swigwin
+
+  - Donwload and install Swigwin from http://sourceforge.net/projects/swig/files/swigwin
+
+5- Build and install VTK
+
+  - Donwload VTK 5.10 or later from http://www.vtk.org/
+  - Open MSys terminal if building with MinGW or regular terminal with MSVSC 
+  - Run cmake_gui
+  - Choose the source and binary destination directory
+  - Run Configure
+  - Choose your compiler
+  - Mark the following options(Mark the availables options and run Configure until all bellow be marked):
+    -BUILD_SHARED_LIBS --------------------On
+    -VTK_WRAP_PYTHON---------------------------On
+    -VTK_USE_TK--------------------------------Off
+    -BUILD_TESTING-----------------------------Off
+    -BUILD_TYPE--------------------------------"Release"
+  - Run "Confirure"
+  - Run "Generate"
+  - Open binary destination directory and  Run "make"
+  - Add put (DESTINATION)\bin and (DESTINATION)\Wrapping\Python to PATH
+  - Open python  and run "import vtk" (if it does not work, copy libgcc_s_dw2-1.dll and libstdc++-6.dll from mingw to (DESTINATION)\bin)
+
+6- Build and install GDCM
+
+  - Donwload GDCM 2.2 or later from http://sourceforge.net/projects/gdcm/
+  - Open MSys terminal if building with MinGW or regular terminal with MSVSC 
+  - Run cmake_gui
+  - Choose the source and binary destination directory
+  - Run Configure
+  - Choose your compiler
+  - Mark the following options(Mark the availables options and run Configure until all bellow be marked):
+    -GDCM_BUILD_SHARED_LIBS --------------------On
+    -GDCM_WRAP_PYTHON---------------------------On
+    -VTK_USE_VTK--------------------------------On
+    -GDCM_USE_PTHREAD---------------------------Off(MinGW only)
+    -BUILD_TYPE--------------------------------"Release"
+  - Run "Confirure"
+  - Run "Generate"
+  - Open binary destination directory and  Run "make"
+  - Add put (DESTINATION)\bin to PATH
+  - Open python  and run "import gdcm" and "import vtkgdcm" (if it does not work, rename libvtkgdcmPython.pyd to vtkgdcmPython.pyd)
+
+7- Install PySide
+
+  - Donwload and install PySyde 1.1 or later from http://qt-project.org/wiki/PySide
+  
+8- Install PyYAML
+
+  -Run "easy_install pyyaml"
+  
+9- Install Extensions
+
+  -Run "easy_install extensions"
+  
+10- Install SQLObject
+
+  -Run "easy_install sqlobject"
+  
+11- Install PyCrypto
+
+  -Run "easy_install pycrypto"
+  -If it does not work:
+    -Download PyCrypto source code
+    -Remove -mno-cygwin from Python27/Lib/distutis/cygwinccompiler.py
+    -Run setup.py build -c mingw32
+    -Run setup.py install
+    
+12- Install PyIcu( From https://groups.google.com/forum/?fromgroups=#!msg/gcd-tech/EUUUZwZhebk/nlEzfDhToVoJ)
+  
+  1- Run "easy_install pyicu"
+  2- If it does not work(TODO: update tutorial for new PyICU where not all steps are nescessaries):
+    - Install Visual Studio 2008 Express (cannot be 2010)
+    - Download icu4c-4_4_1-Win32-msvc9.zip or later (cannot be 64 bit, since gcd python should be using 32 bit) from
+    http://icu-project.org/download/4.4.html
+    - Unzip to D:\gcd\ICU
+    - Add D:\gcd\ICU\bin to the end of the PATH env variable
+    - Download icu4c-4_4_1-RHEL52-x64.tgz from
+    http://icu-project.org/download/4.4.html
+    - Unzip to D:\gcd\ICU_rh
+    - Copy D:\gcd\ICU_rh\usr\local\include\unicode\currpinf.h to
+    D:\gcd\ICU\include\unicode
+    - Download PyICU-1.0.tar.gz from http://pypi.python.org/pypi/PyICU#downloads
+    - Unzip to D:\gcd\PyICU-1.0
+    - Reboot (for studio install & path changes to settle)
+    - Edit D:\gcd\PyICU-1.0\setup.py to add 'D:\gcd\ICU\include' to the
+    win32 includes section
+    - Edit D:\gcd\PyICU-1.0\setup.py to add '/LIBPATH:D:\gcd\ICU\lib' to
+    the win32 lflags section
+    - Edit D:\gcd\PyICU-1.0\locale.cpp to change the first line from
+    "#if defined(_MSC_VER) && defined(__WIN32)" to "#if defined (_MSC_VER)
+    || defined(__WIN32)"
+    - Edit D:\gcd\PyICU-1.0\locale.cpp to change the four instances of
+    "PyErr_SetFromWindowsErrWithFileName" to
+    "PyErr_SetFromWindowsErrWithFilename" (lower case 'n')
+    - edit D:\gcd\PyICU-1.0\regex.cpp to change the two instances of
+    "UnicodeString array[capacity]" to "UnicodeString array[31]"
+    - Edit D:\gcd\PyICU-1.0\transliterator.h to change "class U_I18N_API
+    PythonTransliterator ..." to "class PythonTransliterator ..."
+    - Open command prompt to D:\gcd\PyICU-1.0 and run 'python setup.py build'
+    - Run 'python setup.py install'
+
+13- Have Fun
+
+@Author - Igor Zanotto <igorznt@gmail.com>
