@@ -21,6 +21,7 @@
 import os
 import sys
 import traceback
+import webbrowser
 import logging
 from multiprocessing import Process, Value
 from PySide import QtCore, QtGui
@@ -43,10 +44,17 @@ from ...bloodstone.utils.data import persist_yaml_file
 from ...bloodstone.importer.serieimporter import SerieImporter
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+    LICENSE_LINK = "http://aevum.github.com/moonstone/license"
+    HELP_LINK = "http://aevum.github.com/moonstone/help"
+    REPORT_ERROR_LINK = "http://aevum.github.com/moonstone/reporterror"
+    ABOUT_LINK = "http://aevum.github.com/moonstone/about"
+    RELEASE_NOTES_LINK = "http://aevum.github.com/moonstone/releasenotes"
+    DOWNLOAD = "http://aevum.github.com/moonstone/downloads"
 
     def __init__(self, type, serie=None, parent=None, mainMainWindow=None):
         logging.debug("In MainWindow::__init__()")
         super(MainWindow, self).__init__(parent)
+
         self.mainMainWindow = mainMainWindow
         self.importWindow = None
         self._serie = serie
@@ -345,7 +353,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.actionSplitLeftClose.setVisible(flag)
         self.actionFullScreen.setEnabled(True)
 
-
+        
     def slotActionShowPlaneLines(self):
         logging.debug("In MainWindow::actionShowPlaneLines()")
         for mscreen in self.mWindow.allTabs():
@@ -376,7 +384,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                                       lastdir, 
                                                       "File (*.st)")
         if inputFile[0]:
-            if (sys.platform == 'win32'):
+            if sys.platform == 'win32':
                 filePath = os.path.abspath(inputFile[0])
                 filePath = inputFile[0].encode('latin-1')
             else:
@@ -500,21 +508,27 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     # actions menu help
     def slotActionHelpContents(self):
         logging.debug("In MainWindow::slotActionHelpContents()")
+        webbrowser.open(self.HELP_LINK)
 
     def slotActionReleaseNotes(self):
         logging.debug("In MainWindow::slotActionReleaseNotes()")
+        webbrowser.open(self.RELEASE_NOTES_LINK)
 
     def slotActionReportBugs(self):
         logging.debug("In MainWindow::slotActionReportBugs()")
+        webbrowser.open(self.REPORT_ERROR_LINK)
 
     def slotActionCheckForUpdates(self):
         logging.debug("In MainWindow::slotActionCheckForUpdates()")
+        webbrowser.open(self.DOWNLOAD)
 
     def slotActionAbout(self):
         logging.debug("In MainWindow::slotActionAbout()")
+        webbrowser.open(self.ABOUT_LINK)
 
     def slotActionLicense(self):
         logging.debug("In MainWindow::slotActionLicense()")
+        webbrowser.open(self.LICENSE_LINK)
 
     # action panel tool properties
     def slotToolPropertiesVisibilityChanged(self, visible):

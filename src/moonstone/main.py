@@ -115,8 +115,9 @@ class Moonstone(QtGui.QApplication):
                             .format(localefilename))
 
         self.showSplashScreen()
-        align = QtCore.Qt.AlignBottom | QtCore.Qt.AlignRight
-        color = QtCore.Qt.blue
+        align = QtCore.Qt.AlignTop | QtCore.Qt.AlignRight
+        color = QtGui.QColor()
+        color.setRgb(240, 240, 216)
 
         self.splash.showMessage(QtGui.QApplication.translate(
             "MainWindow", "Setting up the main window...", None,
@@ -177,6 +178,8 @@ class Moonstone(QtGui.QApplication):
     def showMainWindow(self):
         logging.debug("In Moonstone::showMainWindow()")
         from .gui.qt.mainwindow import MainWindow
+        import time
+        time.sleep(2)
         self.mainWindow = MainWindow("main")
         #self.mainWindow.createImportWindow()
         self.mainWindow.showMaximized()

@@ -106,6 +106,23 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="toolBarTools">
+   <property name="windowTitle">
+    <string>Tools</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -203,7 +220,7 @@
      <normaloff>:/static/default/icon/22x22/moonstone-about.png</normaloff>:/static/default/icon/22x22/moonstone-about.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;About Moonstone</string>
+    <string>&amp;About</string>
    </property>
   </action>
   <action name="actionLicense">
