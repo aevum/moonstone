@@ -28,14 +28,11 @@ import logging
 
 
 def my_excepthook(type, value, tback):
-    # log the exception here
     import traceback
     f_exp = traceback.format_exception(type, value, tback)
     for line in f_exp:
         logging.error(line)
-    # then call the default handler
     sys.__excepthook__(type, value, tback)
-
 sys.excepthook = my_excepthook
 
 freeze_support()
