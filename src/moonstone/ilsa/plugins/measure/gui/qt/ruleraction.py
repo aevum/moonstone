@@ -19,10 +19,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
-import vtk
 from PySide import QtCore, QtGui
 
-import widget.resources_rc
 from rulerproperties import RulerProperties
 from ...ruler import Ruler
 from ......bloodstone.scenes.imageplane import VtkImagePlane
@@ -81,7 +79,7 @@ class RulerAction(QtCore.QObject):
                     self.slotDeleteRuler(True)
             return
         self._ilsa.desactivateOthers("measure")
-        if self.propertiesAction.getRuler():
+        if self.propertiesAction.ruler:
             self.parent().toolProperties.setVisible(True)
             self.propertiesAction.show()
             self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size())
@@ -100,6 +98,7 @@ class RulerAction(QtCore.QObject):
         self.newRuler()
 
     def newRuler(self):
+        logging.debug("In RulerAction::newRuler()")
         self.ruler = Ruler()
         self.propertiesAction.addRuler(self.ruler)
         self.started = False
@@ -111,30 +110,27 @@ class RulerAction(QtCore.QObject):
                 self.scenesMap[scene.interactor.GetInteractorStyle()] = scene
     
     def slotNewRuler(self, checked):
-        if  not self.propertiesAction.ruler or self.propertiesAction.ruler.rep.GetDistance() != 0:
+        logging.debug("In RulerAction::slotNewRuler()")
+        if not self.propertiesAction.ruler or self.propertiesAction.ruler.representation.GetDistance() != 0:
             self.newRuler()
 
-    def slotDeleteRuler(self, checked):       
+    def slotDeleteRuler(self, checked):
+        logging.debug("In RulerAction::slotDeleteRuler()")
         self.propertiesAction.removeSelectedRuler()
         for scene, observer in self.observers.items():
             scene.removeObserver(observer)
         self.ruler = None
 
     def activateRuler(self, obj, evt):
-        if not self.ruler.getStarted():
+        logging.debug("In RulerAction::activateRuler()")
+        if not self.ruler.started:
             scene = self.scenesMap[obj]
-            self.ruler.setScene(scene)
+            self.ruler.scene = scene
             self.ruler.activate()
         else:
             for scene, observer in self.observers.items():
                 scene.removeObserver(observer)
     
     def removeScene(self, scene):
+        logging.debug("In RulerAction::removeScene()")
         self.propertiesAction.removeScene(scene)
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = RulerProperties()
-    win.show()
-    sys.exit(app.exec_())

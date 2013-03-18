@@ -1,55 +1,92 @@
+import logging
+
 import vtk
 
-class Ruler(vtk.vtkDistanceWidget):
 
-
+class Ruler(object):
     def __init__(self, scene=None):
-        self.scene = scene
-        self.handle = vtk.vtkPointHandleRepresentation2D()
-        self.rep = vtk.vtkDistanceRepresentation2D()
-        self.rep.SetHandleRepresentation(self.handle)
-        self.CreateDefaultRepresentation()
-        self.SetRepresentation(self.rep)
+        logging.debug("In Ruler::__init__()")
+        self._scene = scene
+        self._distanceWidget = vtk.vtkDistanceWidget()
+        self._handle = vtk.vtkPointHandleRepresentation3D()
+        self._representation = vtk.vtkDistanceRepresentation2D()
+        self._representation.SetHandleRepresentation(self._handle)
+        self._distanceWidget.SetRepresentation(self._representation)
+        self._distanceWidget.CreateDefaultRepresentation()
+        self._distanceWidget.parent = self
         self._started = False
-        self.pointColor = self.handle.GetProperty().GetColor()
-        self.lineColor = self.rep.GetAxis ().GetProperty ().GetColor()
-        self.fontColor = self.rep.GetAxis ().GetTitleTextProperty ().GetColor()
-        self.AddObserver("PlacePointEvent", self.startEvent)
+        self._pointColor = [0, 1, 0]
+        self._lineColor = [0, 1, 0]
+        self._fontColor = [0, 1, 0]
+        self._distanceWidget.AddObserver("PlacePointEvent", self.startEvent)
 
-    def getStarted(self):
+    @property
+    def representation(self):
+        logging.debug("In Ruler::representation.getter()")
+        return self._representation
+
+    @property
+    def distanceWidget(self):
+        logging.debug("In Ruler::distanceWidget.getter()")
+        return self._distanceWidget
+
+    @property
+    def started(self):
+        logging.debug("In Ruler::started.getter()")
         return self._started
 
-    def setScene(self, scene):
-        self.scene = scene
-        self.SetInteractor(scene.interactor)
+    @property
+    def scene(self):
+        logging.debug("In Ruler::scene.getter()")
+        return self._scene
+
+    @scene.setter
+    def scene(self, scene):
+        logging.debug("In Ruler::scene.setter()")
+        self._scene = scene
+        self._distanceWidget.SetInteractor(scene.interactor)
 
     def activate(self):
-        if not self.GetEnabled():
-            self.On()
+        logging.debug("In Ruler::activate()")
+        if not self._distanceWidget.GetEnabled():
+            self._distanceWidget.On()
     
     def startEvent(self, obj, evt):
+        logging.debug("In Ruler::startEvent()")
         self._started = True
 
-    def setPointColor(self, red, green, blue):
-        self.pointColor = (red, green, blue)
-        self.handle.GetProperty().SetColor(self.pointColor)
+    @property
+    def pointColor(self):
+        logging.debug("In Ruler::pointColor.getter()")
+        return self._handle.GetProperty().GetColor()
 
-    def setLineColor(self, red, green, blue):
-        self.lineColor = (red, green, blue)
-        self.rep.GetAxis ().GetProperty ().SetColor(self.lineColor)
 
-    def setFontColor(self, red, green, blue):
-        self.fontColor = (red, green, blue)
-        self.rep.GetAxis ().GetTitleTextProperty ().SetColor(self.fontColor)
+    @pointColor.setter
+    def pointColor(self, color):
+        logging.debug("In Ruler::pointColor.setter()")
+        self._handle.GetProperty().SetColor(color)
 
-    def getFontColor(self):
-        return self.fontColor
+    @property
+    def lineColor(self):
+        logging.debug("In Ruler::lineColor.getter()")
+        return self._representation.GetAxis().GetProperty().GetColor()
 
-    def getLineColor(self):
-        return self.lineColor
+    @lineColor.setter
+    def lineColor(self, color):
+        logging.debug("In Ruler::lineColor.setter()")
+        self._representation.GetAxis().GetProperty().SetColor(color)
 
-    def getPointColor(self):
-        return self.pointColor
+    @property
+    def fontColor(self):
+        logging.debug("In Ruler::fontColor.getter()")
+        return self._representation.GetAxis().GetTitleTextProperty().GetColor()
 
-    def getMeasure(self):
-        return self.rep.GetDistance()
+    @fontColor.setter
+    def fontColor(self, color):
+        logging.debug("In Ruler::fontColor.setter()")
+        self._representation.GetAxis().GetTitleTextProperty().SetColor(color)
+
+    @property
+    def measure(self):
+        logging.debug("In Ruler::measure.getter()")
+        return self._representation.GetDistance()
