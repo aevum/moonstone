@@ -63,8 +63,8 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
         if not self.contour:
             return False
         self.contour.delete()
-        for contour in self.contour.getReplyList():
-            contour.delete()
+        #for contour in self.contour.getReplyList():
+        #    contour.delete()
         self.buttonGroup.removeButton(self.contourButton)
         self.buttonGrigLayout.removeWidget(self.contourButton)
         self.contours.pop(self.contourButton)

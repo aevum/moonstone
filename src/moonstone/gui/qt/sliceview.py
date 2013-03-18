@@ -76,22 +76,24 @@ class SliceView( View ):
         self.scene.interactor.setGeometry(0, 0, size.width(), size.height())
         self.updateGeometry()
 
-    def close(self):
-        self._mscreenParent = None
-        self.scene.close() 
-        self.scene = None
-        del self.scene     
-        self.destroy()
-        self._mscreenParent = None
-        self.closeEvent = None
+    # def close(self):
+    #     print "close"
+    #     self.scene.close()
+    #     self.scene = None
+    #     del self.scene
+    #     self.destroy()
+    #     self._mscreenParent = None
+    #     self.closeEvent = None
+    #     #super(SliceView, self).close()
 
     def closeAction(self, event = None, force=False):
         logging.debug("In SliceViewPlane::closeEvent()")
         if self.scene.referenceCount < 1 or force:
-            self.notifyCloseListeners()
             if not self.mscreenParent.removeScene(self):
                 event.ignore()
-        else: 
+            else:
+                self.notifyCloseListeners()
+        else:
             event.ignore()
     
     def update(self, vtkAction):

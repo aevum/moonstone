@@ -641,8 +641,8 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
             else:
                 logging.warning("Is not instance of: (Patient, Study, Serie)")
                 raise Exception("Is not instance of: (Patient, Study, Serie)")
-            self.emit(self.confirmImportSignal, series, 
-                      self.qualityComboBox.currentIndex(), self.generate3DCheckbox.isChecked())
+            self.emit(self.confirmImportSignal, series,
+                      0, False)
         else:
             logging.warning("There's no dicom to be importer =(")
             raise Exception("There's no dicom to be importer =(")
