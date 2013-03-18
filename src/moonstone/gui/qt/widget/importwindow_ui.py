@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/Moonstone/src/resources/ui/qt/importwindow.ui'
+# Form implementation generated from reading ui file '/home/igorznt/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/importwindow.ui'
 #
-# Created: Tue Mar  6 18:01:46 2012
-#      by: pyside-uic 0.2.11 running on PySide 1.0.6
+# Created: Mon Mar 18 13:36:44 2013
+#      by: pyside-uic 0.2.13 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -76,6 +76,7 @@ class Ui_ImportWindow(object):
         self.gridLayout_3.addWidget(self.treeWidget, 1, 0, 1, 1)
         self.imageGroupBox = QtGui.QGroupBox(self.splitter)
         self.imageGroupBox.setTitle("")
+        self.imageGroupBox.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.imageGroupBox.setObjectName("imageGroupBox")
         self.gridLayout = QtGui.QGridLayout(self.imageGroupBox)
         self.gridLayout.setObjectName("gridLayout")
@@ -96,46 +97,18 @@ class Ui_ImportWindow(object):
         self.horizontalSlider = QtGui.QSlider(self.imageGroupBox)
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setObjectName("horizontalSlider")
-        self.gridLayout.addWidget(self.horizontalSlider, 2, 0, 1, 3)
-        self.verticalLayout_2.addWidget(self.splitter)
-        self.verticalLayout_3.addWidget(self.mainWidget)
-        self.widget = QtGui.QWidget(ImportWindow)
-        self.widget.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.widget)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setSizeConstraint(QtGui.QLayout.SetDefaultConstraint)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem2)
-        self.qualityLabel = QtGui.QLabel(self.widget)
-        self.qualityLabel.setObjectName("qualityLabel")
-        self.horizontalLayout.addWidget(self.qualityLabel)
-        self.qualityComboBox = QtGui.QComboBox(self.widget)
-        self.qualityComboBox.setEnabled(False)
-        self.qualityComboBox.setObjectName("qualityComboBox")
-        self.qualityComboBox.addItem("")
-        self.qualityComboBox.addItem("")
-        self.qualityComboBox.addItem("")
-        self.horizontalLayout.addWidget(self.qualityComboBox)
-        self.generate3DCheckbox = QtGui.QCheckBox(self.widget)
-        self.generate3DCheckbox.setChecked(False)
-        self.generate3DCheckbox.setTristate(False)
-        self.generate3DCheckbox.setObjectName("generate3DCheckbox")
-        self.horizontalLayout.addWidget(self.generate3DCheckbox)
-        self.importButton = QtGui.QPushButton(self.widget)
+        self.gridLayout.addWidget(self.horizontalSlider, 2, 0, 1, 2)
+        spacerItem2 = QtGui.QSpacerItem(69, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem2, 3, 0, 1, 1)
+        self.importButton = QtGui.QPushButton(self.imageGroupBox)
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap(":/static/default/icon/22x22/dialog-ok-apply.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.importButton.setIcon(icon3)
         self.importButton.setDefault(True)
         self.importButton.setObjectName("importButton")
-        self.horizontalLayout.addWidget(self.importButton)
-        self.horizontalLayout_2.addLayout(self.horizontalLayout)
-        self.verticalLayout_3.addWidget(self.widget)
-        self.qualityLabel.setBuddy(self.qualityComboBox)
+        self.gridLayout.addWidget(self.importButton, 3, 1, 1, 2)
+        self.verticalLayout_2.addWidget(self.splitter)
+        self.verticalLayout_3.addWidget(self.mainWidget)
 
         self.retranslateUi(ImportWindow)
         QtCore.QMetaObject.connectSlotsByName(ImportWindow)
@@ -153,11 +126,6 @@ class Ui_ImportWindow(object):
         self.treeWidget.headerItem().setText(5, QtGui.QApplication.translate("ImportWindow", "Institution", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidget.headerItem().setText(6, QtGui.QApplication.translate("ImportWindow", "Date of Birth", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("ImportWindow", "Serie:", None, QtGui.QApplication.UnicodeUTF8))
-        self.qualityLabel.setText(QtGui.QApplication.translate("ImportWindow", "&Quality:", None, QtGui.QApplication.UnicodeUTF8))
-        self.qualityComboBox.setItemText(0, QtGui.QApplication.translate("ImportWindow", "Optimized", None, QtGui.QApplication.UnicodeUTF8))
-        self.qualityComboBox.setItemText(1, QtGui.QApplication.translate("ImportWindow", "By a factor of 0.5", None, QtGui.QApplication.UnicodeUTF8))
-        self.qualityComboBox.setItemText(2, QtGui.QApplication.translate("ImportWindow", "Real (experimental)", None, QtGui.QApplication.UnicodeUTF8))
-        self.generate3DCheckbox.setText(QtGui.QApplication.translate("ImportWindow", "Generate 3d", None, QtGui.QApplication.UnicodeUTF8))
         self.importButton.setText(QtGui.QApplication.translate("ImportWindow", "&Load", None, QtGui.QApplication.UnicodeUTF8))
 
 import resources_rc
