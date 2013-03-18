@@ -20,10 +20,22 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from multiprocessing import freeze_support
+import logging
 import sys
 from moonstone.utils import i18n
 from PySide import QtCore
 from moonstone import main
+
+
+def my_excepthook(type, value, tback):
+    # log the exception here
+    import traceback
+    f_exp = traceback.format_exception(type, value, tback)
+    for line in f_exp:
+        logging.error(line)
+        # then call the default handler
+sys.__excepthook__(type, value, tback)
+
 freeze_support()
 
 if __name__ == "__main__":

@@ -20,12 +20,24 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from multiprocessing import freeze_support
+import sys
 from moonstone.utils import i18n
 from PySide import QtCore
 from moonstone import main
+import logging
 
-#import gdcmswig
-import sys
+
+def my_excepthook(type, value, tback):
+    # log the exception here
+    import traceback
+    f_exp = traceback.format_exception(type, value, tback)
+    for line in f_exp:
+        logging.error(line)
+    # then call the default handler
+    sys.__excepthook__(type, value, tback)
+
+sys.excepthook = my_excepthook
+
 freeze_support()
 
 if __name__ == "__main__":
@@ -35,6 +47,7 @@ if __name__ == "__main__":
     localefilename = i18n.qt_locale_filename()
     translator = QtCore.QTranslator()
     trans = translator.load(localefilename, localedir)
+
     if trans:
         QtCore.QCoreApplication.installTranslator(translator)
     sys.exit(moonstone.exec_())
