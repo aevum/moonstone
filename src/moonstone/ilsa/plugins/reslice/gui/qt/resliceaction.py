@@ -18,16 +18,16 @@
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-from ......bloodstone.scenes.imageplane import VtkImagePlane
-from ......gui.qt.widget.genericload import GenericProgressBar
-from ......bloodstone.utils import msmath
-
-import widget.resources_rc
-from PySide import QtCore, QtGui
 import logging
 import math
 import sys
+
+from PySide import QtCore, QtGui
 import vtk
+
+from ......bloodstone.scenes.imageplane import VtkImagePlane
+from ......gui.qt.widget.genericload import GenericProgressBar
+from ......bloodstone.utils import msmath
 
 
 class ResliceAction(QtCore.QObject):
@@ -40,10 +40,10 @@ class ResliceAction(QtCore.QObject):
         self.createActions()
         self.biDimensionalWidget = None
         self._action = False
+        self._rigthButtonPressEvent = None
         
     def createWidgets(self):
-        logging.debug("In ReslicerAction::createWidgets()") 
-        
+        logging.debug("In ReslicerAction::createWidgets()")
         icon41 = QtGui.QIcon()
         icon41.addPixmap(
             QtGui.QPixmap(":/static/default/icon/48x48/half-skull.png"), 
@@ -62,6 +62,7 @@ class ResliceAction(QtCore.QObject):
         
 
     def uncheck(self, actionType):
+        logging.debug("In ReslicerAction::uncheck()")
         if self.actionResliceOblique.isChecked():
             self.actionResliceOblique.setChecked(False)
             self.slotActionResliceOblique()
@@ -71,10 +72,13 @@ class ResliceAction(QtCore.QObject):
         self.connect(self.actionResliceOblique, 
                      QtCore.SIGNAL("triggered()"),
                      self.slotActionResliceOblique)
+
     def slotMouseWheelForwardCallback(self, obj, event, vtkPlane):
+        logging.debug("In ReslicerAction::slotMouseWheelForwardCallback()")
         vtkPlane.planeSlide.setValue(vtkPlane.planeSlide.value()+1)
         
-    def slotMouseWheelBackwardCallback(self, obj, event, vtkPlane):        
+    def slotMouseWheelBackwardCallback(self, obj, event, vtkPlane):
+        logging.debug("In ReslicerAction::slotMouseWheelBackwardCallback()")
         vtkPlane.planeSlide.setValue(vtkPlane.planeSlide.value()-1)
         
     def slotActionResliceOblique(self):
@@ -101,6 +105,7 @@ class ResliceAction(QtCore.QObject):
                     scene.removeObserver(self._rightButtonReleaseEvent)
                     scene.removeObserver(self._mouseWheelForwardEvent)
                     scene.removeObserver(self._mouseWheelBackwardEvent)
+                    self._rigthButtonPressEvent = None
                     scene.window.Render()
             return 
         self._ilsa.desactivateOthers("reslice")
@@ -109,18 +114,6 @@ class ResliceAction(QtCore.QObject):
         for plane in planes:
             scene = plane.scene
             if isinstance(scene, VtkImagePlane) and scene.planeOrientation == VtkImagePlane.PLANE_ORIENTATION_AXIAL:
-                self._rigthButtonPressEvent = scene.addObserver("RigthButtonPressEvent", 
-                    lambda o, e, p=plane: self.ResliceObliqueButtonCallback(o, e, p))
-                self._rightButtonReleaseEvent = scene.addObserver("RightButtonReleaseEvent", 
-                    lambda o, e, p=plane: self.ResliceObliqueButtonCallback(o, e, p))
-                
-                self._mouseWheelForwardEvent = scene.addObserver(
-                    "MouseWheelForwardEvent", 
-                    lambda o, e, p=plane: self.slotMouseWheelForwardCallback(o, e, p))
-                self._mouseWheelBackwardEvent = scene.addObserver(
-                    "MouseWheelBackwardEvent", 
-                    lambda o, e, p=plane: self.slotMouseWheelBackwardCallback(o, e, p))
-                
                 scene.coords = []
                 scene.msgBoxExec = 0
                 rep = vtk.vtkBiDimensionalRepresentation2D()
@@ -136,15 +129,13 @@ class ResliceAction(QtCore.QObject):
                 biDimensionalWidget = vtk.vtkBiDimensionalWidget()
                 biDimensionalWidget.SetRepresentation(rep)
                 biDimensionalWidget.SetInteractor(scene.interactor)
-                biDimensionalWidget.AddObserver("PlacePointEvent", 
-                    lambda o, e, s=plane: self.BiDimensionalAddPoint(o, e, s))
-                biDimensionalWidget.AddObserver("EndInteractionEvent", 
-                    lambda o, e, s=plane: self.BiDimensionalEndSelect(o, e, s))
+                biDimensionalWidget.AddObserver("PlacePointEvent",
+                    lambda o, e, s=plane: self.biDimensionalAddPoint(o, e, s))
                 biDimensionalWidget.On()
                 self.biDimensionalWidgets[plane] = biDimensionalWidget
                     
-    def ResliceObliqueButtonCallback(self, obj, event, vtkPlane):
-        logging.debug("In RescliceAction::ResliceObliqueButtonCallback()")
+    def resliceObliqueButtonCallback(self, obj, event, vtkPlane):
+        logging.debug("In RescliceAction::resliceObliqueButtonCallback()")
         if event == "RightButtonReleaseEvent":
             obj.OnRightButtonUp()
             scene = vtkPlane.scene
@@ -180,10 +171,7 @@ class ResliceAction(QtCore.QObject):
                      QtCore.SIGNAL("triggered()"),
                      self.slotActionMakeVolumeWithout3D)
             
-            if not scene.msgBoxExec:
-                actionMakeVolume.setDisabled(True)
-            else:
-                actionMakeVolume.setEnabled(True)
+            actionMakeVolume.setEnabled(True)
                 
             menu = QtGui.QMenu(vtkPlane)
             menu.addAction(actionMakeVolume)
@@ -195,58 +183,68 @@ class ResliceAction(QtCore.QObject):
     
     
     def slotActionMakeVolumeWithout3D(self):
+        logging.debug("In ReslicerAction::slotActionMakeVolumeWithout3D()")
         self.slotActionMakeVolume(0)
         
     def slotActionMakeVolume(self, generate3D=1):
+        logging.debug("In ReslicerAction::slotActionMakeVolume()")
         vtkPlane = self.VTKP
         scene = vtkPlane.scene
         self.load = GenericProgressBar(self._ilsa.parentWidget(), progressBar=True)
         self.load.updateProgress(0, QtGui.QApplication.translate("ResliceAction", "Calculating...",
                                              None, QtGui.QApplication.UnicodeUTF8))
-        if scene.msgBoxExec:
-            obj1 = self.biDimensionalWidget
-        
-            rep = obj1.GetRepresentation()
-            p1 = [0, 0, 0]
-            rep.GetPoint1WorldPosition(p1)
-#            p1[2] = xyz[0][2]
-            rep.SetPoint1WorldPosition(p1)
-            
-            p2 = [0, 0, 0]
-            rep.GetPoint2WorldPosition(p2)
-#            p2[2] = xyz[1][2]
-            rep.SetPoint2WorldPosition(p2)
-            
-            p3 = [0, 0, 0] 
-            rep.GetPoint3WorldPosition(p3)
-#            p3[2] = xyz[2][2]
-            rep.SetPoint3WorldPosition(p3)
-            
-            p4 = [0, 0, 0] 
-            rep.GetPoint4WorldPosition(p4)
-#            p4[2] = xyz[2][2]
-            rep.SetPoint4WorldPosition(p4)
-            
-            scene.coords = [p1, p2, p3, p4]
-            self.R(vtkPlane, generate3D)
-            
-            self.biDimensionalWidget.Off()
-            self.biDimensionalWidget = None
-                       
-            self.actionResliceOblique.setChecked(False)
-            self.slotActionResliceOblique()
-            
+        obj1 = self.biDimensionalWidget
+
+        rep = obj1.GetRepresentation()
+        p1 = [0, 0, 0]
+        rep.GetPoint1WorldPosition(p1)
+        rep.SetPoint1WorldPosition(p1)
+
+        p2 = [0, 0, 0]
+        rep.GetPoint2WorldPosition(p2)
+        rep.SetPoint2WorldPosition(p2)
+
+        p3 = [0, 0, 0]
+        rep.GetPoint3WorldPosition(p3)
+        rep.SetPoint3WorldPosition(p3)
+
+        p4 = [0, 0, 0]
+        rep.GetPoint4WorldPosition(p4)
+        rep.SetPoint4WorldPosition(p4)
+
+        scene.coords = [p1, p2, p3, p4]
+        self.reslice(vtkPlane, generate3D)
+
+        self.biDimensionalWidget.Off()
+        self.biDimensionalWidget = None
+
+        self.actionResliceOblique.setChecked(False)
+        self.slotActionResliceOblique()
+
         self.load.stopProcess()
         del self.load
         
             
-    def BiDimensionalAddPoint(self, obj, event, vtkPlane):
+    def biDimensionalAddPoint(self, obj, event, plane):
+        logging.debug("In ReslicerAction::biDimensionalAddPoint()")
+        scene = plane.scene
+
+        if  not self._rigthButtonPressEvent:
+            self._rigthButtonPressEvent = scene.addObserver("RigthButtonPressEvent",
+                                                            lambda o, e, p=plane: self.resliceObliqueButtonCallback(o, e, p))
+            self._rightButtonReleaseEvent = scene.addObserver("RightButtonReleaseEvent",
+                                                              lambda o, e, p=plane: self.resliceObliqueButtonCallback(o, e, p))
+            self._mouseWheelForwardEvent = scene.addObserver(
+                "MouseWheelForwardEvent",
+                lambda o, e, p=plane: self.slotMouseWheelForwardCallback(o, e, p))
+            self._mouseWheelBackwardEvent = scene.addObserver(
+                "MouseWheelBackwardEvent",
+                lambda o, e, p=plane: self.slotMouseWheelBackwardCallback(o, e, p))
         if self.biDimensionalWidgets:
-            self.biDimensionalWidget = self.biDimensionalWidgets.pop(vtkPlane)        
+            self.biDimensionalWidget = self.biDimensionalWidgets.pop(plane)
             for box in self.biDimensionalWidgets.values():
                 box.SetInteractor(None)
             self.biDimensionalWidgets.clear()
-        scene = vtkPlane.scene
         
         (X, Y) = scene.interactor.GetEventPosition()
         
@@ -287,89 +285,11 @@ class ResliceAction(QtCore.QObject):
 
         (px, py, pz) = p
         xyz = p
-#        print "Adicionado ponto:", xyz
         scene.coords.append(xyz)
-        
-    def BiDimensionalEndSelect(self, obj, event, vtkPlane):
-        scene = vtkPlane.scene
-        scene.activeSubWindow = self._ilsa.activeSubWindow()
-        if not scene.msgBoxExec:
-            scene.msgBoxExec = 1
-            
-            xyz = scene.coords
-            if xyz is None or len(xyz) != 3:
-                return
-#            print "XYZ:", xyz
-        
-            rep = obj.GetRepresentation()
-            p1 = [0, 0, 0]
-            rep.GetPoint1WorldPosition(p1)
-            p1[2] = xyz[0][2]
-            rep.SetPoint1WorldPosition(p1)
-            
-            p2 = [0, 0, 0] 
-            rep.GetPoint2WorldPosition(p2)
-            p2[2] = xyz[1][2]
-            rep.SetPoint2WorldPosition(p2)
-            
-            p3 = [0, 0, 0] 
-            rep.GetPoint3WorldPosition(p3)
-            p3[2] = xyz[2][2]
-            rep.SetPoint3WorldPosition(p3)
-            
-            p4 = [0, 0, 0] 
-            rep.GetPoint4WorldPosition(p4)
-            p4[2] = xyz[2][2]
-            rep.SetPoint4WorldPosition(p4)
-                        
-            scene.coords = [p1, p2, p3, p4]
-            
-            msgBox = QtGui.QMessageBox(vtkPlane)
-            msgBox.setIcon(QtGui.QMessageBox.Question)
-            msgBox.setText(QtGui.QApplication.translate(
-                    "RescliceAction", "Reslice",
-                    None, QtGui.QApplication.UnicodeUTF8))
-            msgBox.setInformativeText(QtGui.QApplication.translate(
-                    "RescliceAction", "Make volume?",
-                    None, QtGui.QApplication.UnicodeUTF8))
-            msgBox.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No | QtGui.QMessageBox.Cancel)
-            msgBox.setDefaultButton(QtGui.QMessageBox.Yes)
-            ret = msgBox.exec_()
-            parentSize = self._ilsa.parentWidget().size()
-            sizeFixed = (290, 130)
-            centerWidget = (abs(parentSize.width() - sizeFixed[0]) / 2.0,
-                            abs(parentSize.height() - sizeFixed[1]) / 2.0)
-            msgBox.setMaximumSize(sizeFixed[0], sizeFixed[1])
-            msgBox.setMinimumSize(sizeFixed[0], sizeFixed[1])
-            msgBox.setGeometry(centerWidget[0], centerWidget[1], 
-                             sizeFixed[0], sizeFixed[1])
-            msgBox.updateGeometry()
-            msgBox.repaint()
-            msgBox.update()
-            
-            if ret == QtGui.QMessageBox.Cancel:
-                scene.msgBoxExec = 0
-                self.biDimensionalWidget.Off()
-                self.biDimensionalWidget = None
-                
-                self.biDimensionalWidget = vtk.vtkBiDimensionalWidget()
-                self.biDimensionalWidget.SetInteractor(scene.interactor)
-                self.biDimensionalWidget.SetRepresentation(rep)
-                self.biDimensionalWidget.AddObserver("PlacePointEvent", 
-                    lambda o, e, s=vtkPlane: self.BiDimensionalAddPoint(o, e, s))
-                self.biDimensionalWidget.AddObserver("EndInteractionEvent", 
-                    lambda o, e, s=vtkPlane: self.BiDimensionalEndSelect(o, e, s))
-                self.biDimensionalWidget.On()
-                                
-                scene.renderer.Render()
-                return
-            elif ret == QtGui.QMessageBox.No:
-                return
-            else:
-                self.R(vtkPlane)
 
-    def R(self, vtkPlane, generate3D):
-        scene = vtkPlane.scene
+    def reslice(self, plane, generate3D):
+        logging.debug("In ReslicerAction::reslice()")
+        scene = plane.scene
         if len(scene.coords) >= 4:
             p1, p2, p3, p4 = scene.coords[0:4]
             
@@ -538,10 +458,10 @@ class ResliceAction(QtCore.QObject):
                                                         QtGui.QApplication.UnicodeUTF8))
 
             subWindow.createMScreensFromImagedata(scene.imagedata, cubeCorners=cubeCorners, generate3D = generate3D)
-            
             scene.window.Render()
     
     def __computePoint(self, scene, xyz):
+        logging.debug("In ReslicerAction::__computePoint()")
         imagedata = scene.imagedata
         ptId = imagedata.FindPoint(xyz)
         if ptId == -1:
@@ -568,5 +488,5 @@ class ResliceAction(QtCore.QObject):
                 
             xyz[i] = iq[i] * s[i] + o[i]
 
-        return (xyz, ptId)
+        return xyz, ptId
     
