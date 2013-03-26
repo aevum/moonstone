@@ -27,13 +27,13 @@ from PySide import QtCore
 from moonstone import main
 
 
-def my_excepthook(type, value, tback):
+def ms_excepthook(type, value, tback):
     import traceback
     f_exp = traceback.format_exception(type, value, tback)
     for line in f_exp:
         logging.error(line)
     sys.__excepthook__(type, value, tback)
-
+sys.excepthook = ms_excepthook
 freeze_support()
 
 if __name__ == "__main__":
