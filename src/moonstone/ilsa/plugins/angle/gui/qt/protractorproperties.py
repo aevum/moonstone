@@ -47,8 +47,8 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
     def addProtractor(self, protractor):
         logging.debug("In ProtractorProperties::addProtractor()")
         self.protractor = protractor
-        self.protractor.AddObserver("StartInteractionEvent", self.slotSelectButtonByProtractor)
-        self.protractor.AddObserver("EndInteractionEvent", self.slotMeasure)
+        self.protractor.angleWidget.AddObserver("StartInteractionEvent", self.slotSelectButtonByProtractor)
+        self.protractor.angleWidget.AddObserver("EndInteractionEvent", self.slotMeasure)
         self.protractorButton = QtGui.QPushButton()
         self.protractorButton.setCheckable(True)
         self.protractorButton.setChecked(True)
@@ -68,7 +68,7 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
         logging.debug("In ProtractorProperties::removeSelectedProtractor()")
         if not self.protractor:
             return None
-        self.protractor.Off()
+        self.protractor.angleWidget.Off()
         self.buttonGroup.removeButton(self.protractorButton)
         self.buttonGrigLayout.removeWidget(self.protractorButton)
         self.protractors.pop(self.protractorButton)
@@ -115,7 +115,7 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
 
     def changePointColor(self, color):
         logging.debug("In ProtractorProperties::changePointColor()")
-        self.protractor.setPointColor((color.red()/255.0,color.green()/255.0, color.blue()/255.0))
+        self.protractor.pointColor = [color.red() / 255.0, color.green() / 255.0, color.blue() / 255.0]
         self.pointColorFrame.setStyleSheet(
               "background-color : rgb(" + str(color.red()) + ","
               + str(color.green()) + "," + str(color.blue())
@@ -129,7 +129,7 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
 
     def changeLineColor(self, color):
         logging.debug("In ProtractorProperties::changeLineColor()")
-        self.protractor.setLineColor([color.red()/255.0, color.green()/255.0, color.blue()/255.0])
+        self.protractor.lineColor = [color.red()/255.0, color.green()/255.0, color.blue()/255.0]
         self.lineColorFrame.setStyleSheet(
               "background-color : rgb(" + str(color.red()) + ","
               + str(color.green()) + "," + str(color.blue())
@@ -143,7 +143,7 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
 
     def changeFontColor(self, color):
         logging.debug("In ProtractorProperties::changeFontColor()")
-        self.protractor.setFontColor((color.red()/255.0, color.green()/255.0, color.blue()/255.0))
+        self.protractor.fontColor = (color.red()/255.0, color.green()/255.0, color.blue()/255.0)
         self.fontColorFrame.setStyleSheet(
               "background-color : rgb(" + str(color.red()) + ","
               + str(color.green()) + "," + str(color.blue())
@@ -151,25 +151,25 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
 
     def _getPropertiesFromProtractor(self):
         logging.debug("In ProtractorProperties::_getPropertiesFromProtractor()")
-        lineColor = self.protractor.lineColor()
+        lineColor = self.protractor.lineColor
         self.lineColorFrame.setStyleSheet(
               "background-color : rgb(" +  str(lineColor[0]*255)+ ","
               + str(lineColor[1]*255) + "," +  str(lineColor[2]*255)
               + ");" )
 
-        pointColor = self.protractor.pointColor()
+        pointColor = self.protractor.pointColor
         self.pointColorFrame.setStyleSheet(
               "background-color : rgb(" +  str(pointColor[0]*255)+ ","
               +  str(pointColor[1]*255) + "," +  str(pointColor[2]*255)
               + ");" )
 
 
-        self.angleLabel.setText("{0:.2f}".format(self.protractor.angle()))
+        self.angleLabel.setText("{0:.2f}".format(self.protractor.angle))
 
 
     def slotSelectButtonByProtractor(self, obj, evt):
         logging.debug("In ProtractorProperties::slotSelectButtonByProtractor()")
-        self.protractor = obj
+        self.protractor = obj.parent
         self.protractorButton = self.protractorButtons[self.protractor]
         self.protractorButton.setChecked(True)
         self._getPropertiesFromProtractor()
@@ -185,11 +185,3 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
             if protractor.scene() == scene:
                 self.slotSelectButtonByProtractor(protractor, None)
                 self.removeSelectedProtractor()
-        
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = ProtractorProperties()
-    win.show()
-    sys.exit(app.exec_())
-

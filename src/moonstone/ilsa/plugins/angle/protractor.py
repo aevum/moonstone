@@ -24,39 +24,48 @@ import vtk
 
 from ....bloodstone.scenes.imageplane import VtkImagePlane
 
-class Protractor(vtk.vtkAngleWidget):
+class Protractor(object):
 
     def __init__(self, scene=None):
         logging.debug("In Protractor::__init__()")
         self._status = 0
-        self.handle = vtk.vtkPointHandleRepresentation2D()
-        self.rep = vtk.vtkAngleRepresentation2D()
-        self.rep.SetHandleRepresentation(self.handle)
-        self.CreateDefaultRepresentation()
-        self.SetRepresentation(self.rep)
+        self._angleWidget = vtk.vtkAngleWidget()
+        self._handle = vtk.vtkPointHandleRepresentation3D()
+        self._representation = vtk.vtkAngleRepresentation2D()
+        self._representation.SetHandleRepresentation(self._handle)
+        self._angleWidget.CreateDefaultRepresentation()
+        self._angleWidget.SetRepresentation(self._representation)
+        self._angleWidget.parent = self
         self._started = False
-        self._pointColor = self.handle.GetProperty().GetColor()
-        self._lineColor = self.rep.GetRay1().GetProperty().GetColor()
-        self._fontColor = self.rep.GetArc().GetLabelTextProperty().GetColor()
-        self._placePointEvent = self.AddObserver("PlacePointEvent", self._startEvent)
+        self._pointColor = self._handle.GetProperty().GetColor()
+        self._lineColor = self._representation.GetRay1().GetProperty().GetColor()
+        self._fontColor = self._representation.GetArc().GetLabelTextProperty().GetColor()
+        self._placePointEvent = self._angleWidget.AddObserver("PlacePointEvent", self._startEvent)
 
     def desactivate(self):
         logging.debug("In Protractor::desactivate()")
-        self.Off()
-        self.RemoveObserver(self._placePointEvent)
+        self._angleWidget.Off()
+        self._angleWidget.RemoveObserver(self._placePointEvent)
 
     def started(self):
         logging.debug("In Protractor::started()")
         return self._started
 
+    @property
+    def angleWidget(self):
+        logging.debug("In Protractor::angleWidget.getter()")
+        return self._angleWidget
+
+    @property
     def scene(self):
         logging.debug("In Protractor::scene()")
         return self._scene       
-        
-    def setScene(self, scene):
-        logging.debug("In Protractor::setScene()")
+
+    @scene.setter
+    def scene(self, scene):
+        logging.debug("In Protractor::scene.setter()")
         self._scene = scene
-        self.SetInteractor(scene.interactor)
+        self._angleWidget.SetInteractor(scene.interactor)
         self.activate()
         
     def mouseEvent(self):
@@ -65,9 +74,10 @@ class Protractor(vtk.vtkAngleWidget):
 
     def activate(self):
         logging.debug("In Protractor::activate()")
-        if not self.GetEnabled():
-            self.On()
+        if not self._angleWidget.GetEnabled():
+            self._angleWidget.On()
     
+    @property
     def status(self):
         return self._status
     
@@ -75,43 +85,49 @@ class Protractor(vtk.vtkAngleWidget):
         logging.debug("In Protractor::_startEvent()")
         self._status = self._status + 1
         self._started = True
-    
+
+    @property
     def pointColor(self):
         logging.debug("In Protractor::pointColor()")
         return self._pointColor
-    
-    def setPointColor(self, pointColor):
+
+    @pointColor.setter
+    def pointColor(self, pointColor):
         logging.debug("In Protractor::setPointColor()")
         self._pointColor = pointColor
-        self.handle.GetProperty().SetColor(*self._pointColor)
+        self._handle.GetProperty().SetColor(*self._pointColor)
         self._scene.window.Render()
-    
+
+    @property
     def fontColor(self):
         logging.debug("In Protractor::fontColor()")
         return self._fontColor
     
-    def setFontColor(self, fontColor):
+    @fontColor.setter
+    def fontColor(self, fontColor):
         logging.debug("In Protractor::setFontColor()")
         self._fontColor = fontColor
-        self.rep.GetArc().GetLabelTextProperty().SetColor(*self._fontColor)
+        self._representation.GetArc().GetLabelTextProperty().SetColor(*self._fontColor)
         self._scene.window.Render()
-    
-        
+
+    @property
     def lineColor(self):
         logging.debug("In Protractor::lineColor()")
         return self._lineColor
 
-    def setLineColor(self, lineColor):
+    @lineColor.setter
+    def lineColor(self, lineColor):
         logging.debug("In Protractor::setLineColor()")
         self._lineColor = lineColor
-        self.rep.GetRay1().GetProperty().SetColor(*self._lineColor)
-        self.rep.GetRay2().GetProperty().SetColor(*self._lineColor)
-        self.rep.GetArc().GetProperty().SetColor(*self._lineColor)
+        self._representation.GetRay1().GetProperty().SetColor(*self._lineColor)
+        self._representation.GetRay2().GetProperty().SetColor(*self._lineColor)
+        self._representation.GetArc().GetProperty().SetColor(*self._lineColor)
         self._scene.window.Render()
-    
+
+    @property
     def angle(self):
         logging.debug("In Protractor::angle()")
-        angle = self.rep.GetAngle()
+        angle = self._representation.GetAngle()
         if angle:
             return angle
-        return 0.0 
+        return 0.0

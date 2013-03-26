@@ -70,6 +70,7 @@ class ProtractorAction(QtCore.QObject):
         self.propertiesAction.hide()
     
     def uncheck(self, actionType):
+        logging.debug("In ProtractorAction::uncheck()")
         if self.actionProtractor.isChecked():
             self.actionProtractor.setChecked(False)
             self.slotActionProtractor()
@@ -85,7 +86,7 @@ class ProtractorAction(QtCore.QObject):
             self.propertiesAction.hide()
             self.parent().toolProperties.setVisible(False)
             if self.protractor:
-                if self.protractor.status() != 3: 
+                if self.protractor.status != 3:
                     self.desactivateProtactor()
             return
         self._ilsa.desactivateOthers("angle")
@@ -96,12 +97,14 @@ class ProtractorAction(QtCore.QObject):
             self.newProtactor()
             
     def slotNewProtractor(self, checked):
+        logging.debug("In ProtractorAction::slotNewProtractor()")
         if self.protractor:
-            if self.protractor.status() != 3:
+            if self.protractor.status != 3:
                 return
         self.newProtactor()
 
     def newProtactor(self):
+        logging.debug("In ProtractorAction::newProtactor()")
         self.protractor = Protractor()
         self.propertiesAction.addProtractor(self.protractor)
         self.scenesMap = {}
@@ -112,6 +115,7 @@ class ProtractorAction(QtCore.QObject):
                 self.scenesMap[scene.interactorStyle] = scene
 
     def slotDeleteProtractor(self, checked):
+        logging.debug("In ProtractorAction::slotDeleteProtractor()")
         self.protractor.desactivate()
         if self._mouseEvents:
             for scene in self._ilsa.scenes():
@@ -119,9 +123,9 @@ class ProtractorAction(QtCore.QObject):
                     scene.removeObserver(self._mouseEvents[scene])
             self._mouseEvents = {}
         self.protractor = self.propertiesAction.removeSelectedProtractor()
-        
 
     def desactivateProtactor(self):
+        logging.debug("In ProtractorAction::desactivateProtactor()")
         self.protractor.desactivate()
         if self._mouseEvents:
             for scene, observer in self._mouseEvents.items():
@@ -129,9 +133,10 @@ class ProtractorAction(QtCore.QObject):
         self.slotDeleteProtractor(True)
         
     def activateProtractor(self, obj, evt):
+        logging.debug("In ProtractorAction::activateProtractor()")
         if not self.protractor.started():
             scene = self.scenesMap[obj]
-            self.protractor.setScene(scene)
+            self.protractor.scene = scene
         else:
             for scene in self._ilsa.scenes():
                 if isinstance(scene, VtkImagePlane):
@@ -139,11 +144,5 @@ class ProtractorAction(QtCore.QObject):
             self._mouseEvents = {}
     
     def removeScene(self, scene):
-        self.propertiesAction.removeScene(scene)        
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = ProtractorProperties()
-    win.show()
-    sys.exit(app.exec_())
+        logging.debug("In ProtractorAction::removeScene()")
+        self.propertiesAction.removeScene(scene)
