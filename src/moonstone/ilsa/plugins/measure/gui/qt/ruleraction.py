@@ -26,7 +26,6 @@ from ...ruler import Ruler
 from ......bloodstone.scenes.imageplane import VtkImagePlane
 
 
-
 class RulerAction(QtCore.QObject):
 
     def __init__(self, ilsa):
@@ -75,7 +74,7 @@ class RulerAction(QtCore.QObject):
             self.propertiesAction.hide()
             self.parent().toolProperties.setVisible(False)
             if  self.propertiesAction.ruler:
-                if  self.propertiesAction.ruler.rep.GetDistance() == 0:
+                if  self.propertiesAction.ruler.representation.GetDistance() == 0:
                     self.slotDeleteRuler(True)
             return
         self._ilsa.desactivateOthers("measure")
