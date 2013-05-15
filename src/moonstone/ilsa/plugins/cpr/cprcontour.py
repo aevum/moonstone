@@ -23,14 +23,14 @@ import math
 
 import vtk
 from ....bloodstone.scenes.imageplane import VtkImagePlane
-from ....bloodstone.scenes.imagevolume import VtkImageVolume
 from ....bloodstone.scenes.data.slice import Slice
 from ....bloodstone.utils.msmath import intersect_line_with_plane, distance_from_plane
 
 class CPRContour(object):
 
-    def __init__(self, scenes, ilsa):
+    def __init__(self, scenes, ilsa, onCloseAction):
         logging.debug("In CPRContour::__init__()")
+        self._onCloseAction = onCloseAction
         self._panoramicPlane = None
         self._transversalPlane = None
         
@@ -84,7 +84,7 @@ class CPRContour(object):
             self._panoramicPlane.scene.removeSliceChangeListener(self.panoramicSliceChange)
             self._panoramicPlane.scene.decrementReferenceCount()
             if self._panoramicPlane.scene.referenceCount < 1:
-                if  self._panoramicPlane.mscreenParent.removeScene(self):
+                if self._panoramicPlane.mscreenParent.removeScene(self):
                     self._panoramicPlane.notifyCloseListeners()
                     self._panoramicPlane.close()
             self._panoramicPlane = None
@@ -195,6 +195,7 @@ class CPRContour(object):
             self.removeEvents()
             self._scene.interactorStyle.OnRightButtonUp()
             self.createCPRImage()
+            self._onCloseAction()
             # http://github.com/jeromevelut/Chiron/blob/Chiron-PoC/Algorithms/vtkFrenetSerretFrame.cxx
 
     def createCPRImage(self):        
@@ -217,16 +218,6 @@ class CPRContour(object):
         points = newPoints
         
         center = [(a + b) / 2.0 for a, b in zip(corners[0], corners[7])]
-        
-#        def comp(p1, p2):            
-#            p = intersect_line_with_plane(p1, [pp + n for pp, n in zip (p1, planeSource.GetNormal())], planeSource.GetNormal(), center)
-#            r1 = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(p1, p))
-#            p = intersect_line_with_plane(p2, [pp + n for pp, n in zip (p2, planeSource.GetNormal())], planeSource.GetNormal(), center)
-#            r2 = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(p2, p))
-#            return  int(1000 * (r2 - r1))
-#        
-#        corners.sort(cmp=comp)
-        
     
         pb = corners[0]
         pt = corners[7]
@@ -244,7 +235,7 @@ class CPRContour(object):
             if pt0 == pt1:
                 continue
             width = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(pt0, pt1))
-            plane  = vtk.vtkPlaneSource()
+            plane = vtk.vtkPlaneSource()
             orig = intersect_line_with_plane(pt0, [p1 + n for p1, n in zip (pt0, planeSource.GetNormal())], planeSource.GetNormal(), pb)
             plane.SetPoint1(intersect_line_with_plane(pt1, [p1 + n for p1, n in zip (pt1, planeSource.GetNormal())], planeSource.GetNormal(), pb))
             plane.SetPoint2(intersect_line_with_plane(pt0, [p1 + n for p1, n in zip (pt0, planeSource.GetNormal())], planeSource.GetNormal(), pt))

@@ -24,9 +24,8 @@ from PySide import QtCore, QtGui
 
 from mscreen import MScreen
 from ....bloodstone.scenes.imageplane import VtkImagePlane
-from ....bloodstone.utils.data import cleanYamlFile
-
 from ..rename import Rename
+from ....bloodstone.scenes.cameracontroller2d import CameraController2D
 
 
 class MWindow(QtGui.QTabWidget):
@@ -44,6 +43,7 @@ class MWindow(QtGui.QTabWidget):
         self._yamlPath = None
         self._mainImageData = None
         self._vtiPath = None
+        self._cameraController = CameraController2D(self)
         
     def addTab(self, widget, title):
         logging.debug("In MWindow::addTab()")
@@ -170,7 +170,7 @@ class MWindow(QtGui.QTabWidget):
                      self.slotTabCloseRequested)
         self.connect(self, QtCore.SIGNAL("currentChanged(int)"),
                      self.slotTabChanged)
-        self.mouseReleaseEvent  = self.rightClickAction
+        self.mouseReleaseEvent = self.rightClickAction
         self.connect(self.rename.Ok, QtCore.SIGNAL("clicked()"),
                      self.slotRenameOkButtonClicked)
         self.connect(self.rename.Cancel, QtCore.SIGNAL("clicked()"),
@@ -212,12 +212,12 @@ class MWindow(QtGui.QTabWidget):
         mScreen = self.widget(index)
         if mScreen.main or mScreen.references > 0:
             QtGui.QMessageBox.critical(self, 
-                                              QtGui.QApplication.translate(
-                                                            "Implant", "Error",
-                                                            None, QtGui.QApplication.UnicodeUTF8),
-                                              QtGui.QApplication.translate(
-                                                            "Implant", "Some tool is locking this tab and it cannot be closed.",
-                                                            None, QtGui.QApplication.UnicodeUTF8) )
+                                       QtGui.QApplication.translate(
+                                                    "Implant", "Error",
+                                                    None, QtGui.QApplication.UnicodeUTF8),
+                                       QtGui.QApplication.translate(
+                                                    "Implant", "Some tool is locking this tab and it cannot be closed.",
+                                                    None, QtGui.QApplication.UnicodeUTF8))
             return
         mScreen.close()
         self._mScreens.remove(mScreen)
@@ -252,9 +252,7 @@ class MWindow(QtGui.QTabWidget):
     def createMScreensFromImagedata(self, imagedata, cubeCorners=None, name=None, generate3D=1):
         logging.debug("In MWindow::createMScreensFromImagedata()")
         i = self.count()
-        name = QtGui.QApplication.translate("MWindow", 
-                                            "Region {0}", 
-                                             None, 
+        name = QtGui.QApplication.translate("MWindow", "Region {0}", None,
                                              QtGui.QApplication.UnicodeUTF8).format(i)
         screen = MScreen(mWindow=self, vtkImageData=imagedata, cubeCorners=cubeCorners, name=name)
         
@@ -274,15 +272,12 @@ class MWindow(QtGui.QTabWidget):
     
     def save(self):
         logging.debug("In MWindow::save()")
-        save = {"vti":self._vtiPath}
+        save = {"vti": self._vtiPath}
         mscreens = []
-        save["mScreens"] =  mscreens
-        
+        save["mScreens"] = mscreens
         for i, screen in enumerate(self._mScreens):
             mscreens.append(screen.save(self._yamlPath, i, self.tabText(i)))
-        
         return save
-    
     
     @property
     def ilsa(self):
@@ -293,6 +288,11 @@ class MWindow(QtGui.QTabWidget):
     def yamlPath(self):
         logging.debug("In MWindow::yamlPath.getter()")
         return self._yamlPath
+
+    @property
+    def cameraController(self):
+        logging.debug("In MWindow::cameraContoller.getter()")
+        return self._cameraController
     
     @yamlPath.setter
     def yamlPath(self, yamlPath):
@@ -328,5 +328,5 @@ class MWindow(QtGui.QTabWidget):
         logging.debug("In MWindow::planes.getter()")
         planes = []
         for screen in self._mScreens:
-            planes.append(screen.planes)
-            return planes
+            planes = planes + screen.planes
+        return planes

@@ -2172,7 +2172,7 @@ class VtkMultiSliceImagePlane(VtkImageData, VtkImagePlane):
         self.renderer.ResetCameraClippingRange()
         self.renderer.ResetCamera()
         self.render()
-        
+
         
     def mirror(self):
         extent = self._imageData.GetWholeExtent()

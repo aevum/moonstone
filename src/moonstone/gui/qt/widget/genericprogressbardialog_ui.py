@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/Moonstone/src/resources/ui/qt/genericprogressbardialog.ui'
+# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/genericprogressbardialog.ui'
 #
-# Created: Tue Mar  6 18:01:46 2012
-#      by: pyside-uic 0.2.11 running on PySide 1.0.6
+# Created: Wed May 15 15:27:34 2013
+#      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 

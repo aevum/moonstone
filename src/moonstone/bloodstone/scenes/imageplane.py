@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Moonstone is platform for processing of medical images (DICOM).
-# Copyright (C) 2009-2011 by Neppo Tecnologia da Informação LTDA
+# Copyright (C) 2009-2013 by Neppo Tecnologia da Informação LTDA
 # and Aevum Softwares LTDA
 #
 # This file is part of Moonstone.
@@ -18,8 +18,10 @@
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+import logging
 
-class VtkImagePlane():
+
+class VtkImagePlane(object):
     PLANE_ORIENTATION_SAGITTAL = 0
     PLANE_ORIENTATION_CORONAL = 1
     PLANE_ORIENTATION_AXIAL = 2
@@ -28,5 +30,4 @@ class VtkImagePlane():
     PLANE_ORIENTATION_PANORAMIC_SLICE = -3
     
     def __init__(self, vtkInteractor, parent):
-        pass
-        
+        logging.debug("In VtkImagePlane::__init__()")

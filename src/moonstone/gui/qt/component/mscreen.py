@@ -242,7 +242,7 @@ class MScreen(QtGui.QMainWindow):
     
     def addScene(self, scenePlane):
         self.openScene(scenePlane)
-            
+
     def closeScene(self, scenePlane):
         logging.debug("In MScreen::closeScene()")
         self.removeScene(scenePlane)
@@ -344,7 +344,7 @@ class MScreen(QtGui.QMainWindow):
             self._ilsa.addScene(scenePlane.scene)
             if data:
                scenePlane.load(data)
-
+            self._mWindow.cameraController.updatePlanes()
         return scenePlane          
 
     def restoreDockGeometry(self):

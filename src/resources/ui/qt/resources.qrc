@@ -1,6 +1,15 @@
 <RCC>
   <qresource prefix="/">
+    <file>static/default/icon/48x48/zoom-in.png</file>
+    <file>static/default/icon/48x48/object-flip-vertical.png</file>
+    <file>static/default/icon/48x48/object-flip-horizontal.png</file>
+    <file>static/default/icon/48x48/dialog-cancel.png</file>
+    <file>static/default/icon/48x48/document-decrypt.png</file>
+    <file>static/default/icon/48x48/transform-move.png</file>
+    <file>static/default/icon/48x48/transform-rotate.png</file>
+    <file>static/default/icon/48x48/snap-orthogonal.png</file>
     <file>static/default/icon/48x48/office-chart-polar.png</file>
+    <file>static/default/icon/48x48/snap-intersection.png</file>
     <file>static/default/icon/48x48/color-brightness-contrast.png</file>
     <file>static/default/icon/48x48/orage-ruler.png</file>
     <file>static/default/icon/48x48/thickness-1.png</file>

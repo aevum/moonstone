@@ -117,6 +117,7 @@ class ContrastAndBrightnessAction(QtCore.QObject):
             self.propertiesAction.hide()
             self.parent().toolProperties.setVisible(False)
             self.removeObservers()
+            self.cnbClosed()
             return 
         self._ilsa.desactivateOthers("contrastandbrightness")
         self.parent().toolProperties.setVisible(True)
@@ -125,6 +126,13 @@ class ContrastAndBrightnessAction(QtCore.QObject):
         self._leftButtonPressEvent = {}
         self._leftButtonReleaseEvent = {}
         self._mouseMoveEvent = {}
+        controller = self._ilsa.windowArea().cameraController
+        self._oldActions = [controller.getActiveAction(controller.BUTTON_LEFT),
+                            controller.getActiveAction(controller.BUTTON_RIGHT),
+                            controller.getActiveAction(controller.BUTTON_MIDDLE),
+                            controller.getActiveAction(controller.BUTTON_SCROLL)]
+        controller.selectAction(controller.ACTION_NONE, controller.BUTTON_LEFT)
+        controller.lockButton(controller.BUTTON_LEFT, True)
         for scene in scenes:
             if isinstance(scene, VtkImagePlane):
                 self._leftButtonPressEvent[scene] = scene.addObserver("LeftButtonPressEvent", 
@@ -136,6 +144,13 @@ class ContrastAndBrightnessAction(QtCore.QObject):
 
         self.updateValues()
         
+    def cnbClosed(self):
+        if self._oldActions:
+            controller = self._ilsa.windowArea().cameraController
+            controller.selectAction(self._oldActions[0], controller.BUTTON_LEFT)
+            controller.lockButton(controller.BUTTON_LEFT, False)
+            self._oldActions = []
+
     def updateValues(self):
         scenes = self._ilsa.scenes()
         self.window = scenes[0].currentWindow

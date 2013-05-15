@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/igorznt/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/mainwindow.ui'
+# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/mainwindow.ui'
 #
-# Created: Mon Mar 18 13:41:50 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.2
+# Created: Wed May 15 15:27:36 2013
+#      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,10 +12,12 @@ from PySide import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(548, 393)
+        MainWindow.resize(612, 393)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/static/default/icon/22x22/moonstone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setDocumentMode(False)
+        MainWindow.setUnifiedTitleAndToolBarOnMac(True)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -23,6 +25,8 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.toolBarActions = QtGui.QToolBar(MainWindow)
         self.toolBarActions.setIconSize(QtCore.QSize(32, 32))
+        self.toolBarActions.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        self.toolBarActions.setFloatable(True)
         self.toolBarActions.setObjectName("toolBarActions")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBarActions)
         self.toolProperties = QtGui.QDockWidget(MainWindow)
@@ -37,6 +41,9 @@ class Ui_MainWindow(object):
         self.dockWidgetContents = QtGui.QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.gridLayout_2 = QtGui.QGridLayout(self.dockWidgetContents)
+        self.gridLayout_2.setContentsMargins(-1, -1, -1, 0)
+        self.gridLayout_2.setHorizontalSpacing(0)
+        self.gridLayout_2.setVerticalSpacing(6)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.scrollArea = QtGui.QScrollArea(self.dockWidgetContents)
         self.scrollArea.setMinimumSize(QtCore.QSize(0, 0))
@@ -52,12 +59,13 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.scrollArea, 0, 0, 1, 1)
         self.toolProperties.setWidget(self.dockWidgetContents)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.toolProperties)
-        self.toolBarTools = QtGui.QToolBar(MainWindow)
-        self.toolBarTools.setIconSize(QtCore.QSize(32, 32))
-        self.toolBarTools.setObjectName("toolBarTools")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBarTools)
+        self.toolBarTools_2 = QtGui.QToolBar(MainWindow)
+        self.toolBarTools_2.setIconSize(QtCore.QSize(16, 16))
+        self.toolBarTools_2.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.toolBarTools_2.setObjectName("toolBarTools_2")
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBarTools_2)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 548, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 612, 21))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -68,10 +76,10 @@ class Ui_MainWindow(object):
         self.menuTools = QtGui.QMenu(self.menubar)
         self.menuTools.setObjectName("menuTools")
         MainWindow.setMenuBar(self.menubar)
-        self.toolBarTools1 = QtGui.QToolBar(MainWindow)
-        self.toolBarTools1.setIconSize(QtCore.QSize(32, 32))
-        self.toolBarTools1.setObjectName("toolBarTools1")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBarTools1)
+        self.toolBarTools = QtGui.QToolBar(MainWindow)
+        self.toolBarTools.setIconSize(QtCore.QSize(32, 32))
+        self.toolBarTools.setObjectName("toolBarTools")
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBarTools)
         self.actionNew = QtGui.QAction(MainWindow)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/static/default/icon/48x48/document-new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -215,12 +223,12 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Moonstone :: MainWindow", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBarActions.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Action Window", None, QtGui.QApplication.UnicodeUTF8))
         self.toolProperties.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Tool Properties", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBarTools.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Tools", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBarTools_2.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Tools", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuView.setTitle(QtGui.QApplication.translate("MainWindow", "&View", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menuTools.setTitle(QtGui.QApplication.translate("MainWindow", "&Tools", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBarTools1.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Tools", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBarTools.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Tools", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew.setText(QtGui.QApplication.translate("MainWindow", "&Import DICOMs", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew.setIconText(QtGui.QApplication.translate("MainWindow", "Import DICOMs", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew.setToolTip(QtGui.QApplication.translate("MainWindow", "Import DICOMs", None, QtGui.QApplication.UnicodeUTF8))

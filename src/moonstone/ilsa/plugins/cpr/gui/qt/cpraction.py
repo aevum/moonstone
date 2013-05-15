@@ -74,11 +74,11 @@ class CPRAction(QtCore.QObject):
 
     def slotActionCPR(self):
         logging.debug("In CPRAction::slotActionCPR()")
-        scenes = self._ilsa.scenes()
         if not self.actionCPR.isChecked():
             self.propertiesAction.hide()
             self.parent().toolProperties.setVisible(False)
             self.propertiesAction.lockAll()
+            self.cprClosed()
             return
         self._ilsa.desactivateOthers("cpr")
         self.parent().toolProperties.setVisible(True)
@@ -89,9 +89,7 @@ class CPRAction(QtCore.QObject):
             self.propertiesAction.unlockCurrent()
             return
 
-        contour = CPRContour(scenes, self._ilsa)
-        self.propertiesAction.addContour(contour)
-
+        self.slotNewCPR(True)
 
     def slotDeleteCPR(self, checked):
         logging.debug("In CPRAction::slotDeleteCPR()")
@@ -103,9 +101,29 @@ class CPRAction(QtCore.QObject):
             if not contour.getClosed():
                 return
         scenes = self._ilsa.scenes()
-        contour = CPRContour(scenes, self._ilsa)
+        controller = self._ilsa.windowArea().cameraController
+        self._oldActions = [controller.getActiveAction(controller.BUTTON_LEFT),
+                            controller.getActiveAction(controller.BUTTON_RIGHT),
+                            controller.getActiveAction(controller.BUTTON_MIDDLE),
+                            controller.getActiveAction(controller.BUTTON_SCROLL)]
+        controller.selectAction(controller.ACTION_NONE, controller.BUTTON_LEFT)
+        controller.selectAction(controller.ACTION_NONE, controller.BUTTON_RIGHT)
+        controller.selectAction(controller.ACTION_TRANSLATE, controller.BUTTON_MIDDLE)
+        controller.selectAction(controller.ACTION_ZOOM, controller.BUTTON_SCROLL)
+        controller.lockButtons(True)
+        contour = CPRContour(scenes, self._ilsa, self.cprClosed)
         self.propertiesAction.addContour(contour)
-            
+
+    def cprClosed(self):
+        if self._oldActions:
+            controller = self._ilsa.windowArea().cameraController
+            controller.selectAction(self._oldActions[0], controller.BUTTON_LEFT)
+            controller.selectAction(self._oldActions[1], controller.BUTTON_RIGHT)
+            controller.selectAction(self._oldActions[2], controller.BUTTON_MIDDLE)
+            controller.selectAction(self._oldActions[3], controller.BUTTON_SCROLL)
+            controller.lockButtons(False)
+            self._oldActions = []
+
     def save(self):
         logging.debug("In CPRAction::save()")
         contours = self.propertiesAction.contours.values()
@@ -113,7 +131,7 @@ class CPRAction(QtCore.QObject):
         for contour in contours:
             if contour.getClosed():
                 yamlContours.append(contour.save())
-        yaml = {"contours" : yamlContours}
+        yaml = {"contours": yamlContours}
         return yaml
     
     def restore(self, value):
@@ -150,8 +168,7 @@ class CPRAction(QtCore.QObject):
         self.propertiesAction.slotActionVisible(contourData["visible"])
         self.propertiesAction.slotActionLock(contourData["locked"])
         self.propertiesAction.lock.setChecked(contourData["locked"])
-#        contour.lock()
-    
+
     def addScene(self, scene):
         logging.debug("In CPRAction::addScene()")
         contours = self.propertiesAction.contours.values()
@@ -160,7 +177,6 @@ class CPRAction(QtCore.QObject):
             
     def removeScene(self, scene):
         logging.debug("In CPRAction::removeScene()")
-        return
         contours = self.propertiesAction.contours.values()
         for contour in contours:
             if contour.scene == scene:

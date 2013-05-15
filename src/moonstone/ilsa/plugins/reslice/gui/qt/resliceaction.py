@@ -28,6 +28,7 @@ import vtk
 from ......bloodstone.scenes.imageplane import VtkImagePlane
 from ......gui.qt.widget.genericload import GenericProgressBar
 from ......bloodstone.utils import msmath
+import widget.resources_rc
 
 
 class ResliceAction(QtCore.QObject):
@@ -36,11 +37,13 @@ class ResliceAction(QtCore.QObject):
         logging.debug("In ReslicerAction::__init__()")
         super(ResliceAction, self).__init__(ilsa.parentWidget())
         self._ilsa = ilsa
+        self._rigthButtonPressEvent = None
+        self._rightButtonReleaseEvent = None
+        self._counter = 0
         self.createWidgets()
         self.createActions()
         self.biDimensionalWidget = None
         self._action = False
-        self._rigthButtonPressEvent = None
         
     def createWidgets(self):
         logging.debug("In ReslicerAction::createWidgets()")
@@ -58,8 +61,6 @@ class ResliceAction(QtCore.QObject):
         
         self.parent().menuTools.addAction(self.actionResliceOblique)
         self.parent().toolBarTools.addAction(self.actionResliceOblique)
-        
-        
 
     def uncheck(self, actionType):
         logging.debug("In ReslicerAction::uncheck()")
@@ -73,27 +74,19 @@ class ResliceAction(QtCore.QObject):
                      QtCore.SIGNAL("triggered()"),
                      self.slotActionResliceOblique)
 
-    def slotMouseWheelForwardCallback(self, obj, event, vtkPlane):
-        logging.debug("In ReslicerAction::slotMouseWheelForwardCallback()")
-        vtkPlane.planeSlide.setValue(vtkPlane.planeSlide.value()+1)
-        
-    def slotMouseWheelBackwardCallback(self, obj, event, vtkPlane):
-        logging.debug("In ReslicerAction::slotMouseWheelBackwardCallback()")
-        vtkPlane.planeSlide.setValue(vtkPlane.planeSlide.value()-1)
-        
     def slotActionResliceOblique(self):
         logging.debug("In ReslicerAction::slotActionResliceOblique()")
+
         self._action = False
-        
         scenes = self._ilsa.scenes()
         if not self.actionResliceOblique.isChecked():
             if self.biDimensionalWidget:
                 self.biDimensionalWidget.Off()
-            for plane, widget in self.biDimensionalWidgets.items():
-                widget.Off()
+            self.bdwClosed()
+            for plane, bdWidget in self.biDimensionalWidgets.items():
+                bdWidget.Off()
                 plane.scene.renderer.Render()
                 plane.scene.window.Render()
-                widget = None
             self.biDimensionalWidgets = {}
             for scene in scenes:
                 if isinstance(scene, VtkImagePlane):
@@ -103,14 +96,25 @@ class ResliceAction(QtCore.QObject):
                         self.biDimensionalWidget = None
                     scene.removeObserver(self._rigthButtonPressEvent)
                     scene.removeObserver(self._rightButtonReleaseEvent)
-                    scene.removeObserver(self._mouseWheelForwardEvent)
-                    scene.removeObserver(self._mouseWheelBackwardEvent)
+                    self._counter = 0
                     self._rigthButtonPressEvent = None
+                    self._rightButtonReleaseEvent = None
                     scene.window.Render()
             return 
         self._ilsa.desactivateOthers("reslice")
         planes = self._ilsa.planes()
         self.biDimensionalWidgets = {}
+        controller = self._ilsa.windowArea().cameraController
+        self._oldActions = [controller.getActiveAction(controller.BUTTON_LEFT),
+                            controller.getActiveAction(controller.BUTTON_RIGHT),
+                            controller.getActiveAction(controller.BUTTON_MIDDLE),
+                            controller.getActiveAction(controller.BUTTON_SCROLL)]
+        controller.selectAction(controller.ACTION_NONE, controller.BUTTON_LEFT)
+        controller.selectAction(controller.ACTION_NONE, controller.BUTTON_RIGHT)
+        controller.selectAction(controller.ACTION_TRANSLATE, controller.BUTTON_MIDDLE)
+        controller.selectAction(controller.ACTION_ZOOM, controller.BUTTON_SCROLL)
+        controller.lockButton(controller.BUTTON_LEFT, True)
+        controller.lockButton(controller.BUTTON_RIGHT, True)
         for plane in planes:
             scene = plane.scene
             if isinstance(scene, VtkImagePlane) and scene.planeOrientation == VtkImagePlane.PLANE_ORIENTATION_AXIAL:
@@ -133,13 +137,24 @@ class ResliceAction(QtCore.QObject):
                     lambda o, e, s=plane: self.biDimensionalAddPoint(o, e, s))
                 biDimensionalWidget.On()
                 self.biDimensionalWidgets[plane] = biDimensionalWidget
-                    
+
+    def bdwClosed(self):
+        if self._oldActions:
+            controller = self._ilsa.windowArea().cameraController
+            controller.selectAction(self._oldActions[0], controller.BUTTON_LEFT)
+            controller.selectAction(self._oldActions[1], controller.BUTTON_RIGHT)
+            controller.selectAction(self._oldActions[2], controller.BUTTON_MIDDLE)
+            controller.selectAction(self._oldActions[3], controller.BUTTON_SCROLL)
+            controller.lockButton(controller.BUTTON_LEFT, False)
+            controller.lockButton(controller.BUTTON_RIGHT, False)
+            self._oldActions = []
+
+
     def resliceObliqueButtonCallback(self, obj, event, vtkPlane):
         logging.debug("In RescliceAction::resliceObliqueButtonCallback()")
         if event == "RightButtonReleaseEvent":
             obj.OnRightButtonUp()
-            scene = vtkPlane.scene
-            self.VTKP = vtkPlane
+            self._plane = vtkPlane
             
             icon41 = QtGui.QIcon()
             icon41.addPixmap(
@@ -168,9 +183,9 @@ class ResliceAction(QtCore.QObject):
                 QtGui.QApplication.translate("MainWindow", "&Make Volume without 3D",
                                              None, QtGui.QApplication.UnicodeUTF8))
             self.connect(actionMakeVolumeWithout3D, 
-                     QtCore.SIGNAL("triggered()"),
-                     self.slotActionMakeVolumeWithout3D)
-            
+                         QtCore.SIGNAL("triggered()"),
+                         self.slotActionMakeVolumeWithout3D)
+
             actionMakeVolume.setEnabled(True)
                 
             menu = QtGui.QMenu(vtkPlane)
@@ -181,14 +196,13 @@ class ResliceAction(QtCore.QObject):
         else:
             obj.OnRightButtonDown()
     
-    
     def slotActionMakeVolumeWithout3D(self):
         logging.debug("In ReslicerAction::slotActionMakeVolumeWithout3D()")
         self.slotActionMakeVolume(0)
         
     def slotActionMakeVolume(self, generate3D=1):
         logging.debug("In ReslicerAction::slotActionMakeVolume()")
-        vtkPlane = self.VTKP
+        vtkPlane = self._plane
         scene = vtkPlane.scene
         self.load = GenericProgressBar(self._ilsa.parentWidget(), progressBar=True)
         self.load.updateProgress(0, QtGui.QApplication.translate("ResliceAction", "Calculating...",
@@ -223,23 +237,19 @@ class ResliceAction(QtCore.QObject):
 
         self.load.stopProcess()
         del self.load
-        
-            
+        self._ilsa.windowArea().cameraController.updatePlanes()
+
     def biDimensionalAddPoint(self, obj, event, plane):
         logging.debug("In ReslicerAction::biDimensionalAddPoint()")
         scene = plane.scene
-
-        if  not self._rigthButtonPressEvent:
+        self._counter = self._counter + 1
+        if self._counter == 4:
+            controller = self._ilsa.windowArea().cameraController
+            controller.lockButton(controller.BUTTON_LEFT, False)
             self._rigthButtonPressEvent = scene.addObserver("RigthButtonPressEvent",
                                                             lambda o, e, p=plane: self.resliceObliqueButtonCallback(o, e, p))
             self._rightButtonReleaseEvent = scene.addObserver("RightButtonReleaseEvent",
                                                               lambda o, e, p=plane: self.resliceObliqueButtonCallback(o, e, p))
-            self._mouseWheelForwardEvent = scene.addObserver(
-                "MouseWheelForwardEvent",
-                lambda o, e, p=plane: self.slotMouseWheelForwardCallback(o, e, p))
-            self._mouseWheelBackwardEvent = scene.addObserver(
-                "MouseWheelBackwardEvent",
-                lambda o, e, p=plane: self.slotMouseWheelBackwardCallback(o, e, p))
         if self.biDimensionalWidgets:
             self.biDimensionalWidget = self.biDimensionalWidgets.pop(plane)
             for box in self.biDimensionalWidgets.values():
@@ -270,8 +280,7 @@ class ResliceAction(QtCore.QObject):
         e = imagedata.GetExtent()
         
         iq = [0, 0, 0]
-        iqtemp = 0
-        
+
         for i in range(3):
             iqtemp = vtk.vtkMath.Round((a[i] - o[i]) / s[i])
             if iqtemp < e[2*i]:
@@ -283,7 +292,6 @@ class ResliceAction(QtCore.QObject):
                 
             p[i] = iq[i] * s[i] + o[i]
 
-        (px, py, pz) = p
         xyz = p
         scene.coords.append(xyz)
 
@@ -292,19 +300,11 @@ class ResliceAction(QtCore.QObject):
         scene = plane.scene
         if len(scene.coords) >= 4:
             p1, p2, p3, p4 = scene.coords[0:4]
-            
-            if scene.planeOrientation == scene.PLANE_ORIENTATION_SAGITTAL: 
-                type = 0
-            elif scene.planeOrientation == scene.PLANE_ORIENTATION_CORONAL: 
-                type = 1
-            else:
-                type = 2
-                
+
             #getting the plane normal to use like direction of cutting
             n = list(scene.planeSource.GetNormal())
             origin = scene.imagedata.GetOrigin()
-            #scene.vtkActorTransform.TransformPoint(origin, origin)
-            
+
             planeProj = vtk.vtkPlane()
             planeProj.SetOrigin(origin)
             planeProj.SetNormal(n)
@@ -315,15 +315,15 @@ class ResliceAction(QtCore.QObject):
             vtk.vtkPlane.ProjectPoint(p4, planeProj.GetOrigin(), planeProj.GetNormal(), p4)
 
             u1 = [(_p2-_p1)*0.5 for _p1,_p2 in zip(p4, p3)]
-            o1 = [_p1+_v1 for _p1,_v1 in zip(p2, u1)]
+            o1 = [_p1+_v1 for _p1, _v1 in zip(p2, u1)]
             
             u2 = [(_p2-_p1)*0.5 for _p1,_p2 in zip(p4, p3)]
-            o2 = [_p1+_v1 for _p1,_v1 in zip(p1, u2)]
+            o2 = [_p1+_v1 for _p1, _v1 in zip(p1, u2)]
             
-            u3 = [(_p2-_p1)*0.5 for _p1,_p2 in zip(p3, p4)]
+            u3 = [(_p2-_p1)*0.5 for _p1, _p2 in zip(p3, p4)]
             o3 = [_p1+_v1 for _p1,_v1 in zip(p1, u3)]
             
-            u4 = [(_p2-_p1)*0.5 for _p1,_p2 in zip(p3, p4)]
+            u4 = [(_p2-_p1)*0.5 for _p1 ,_p2 in zip(p3, p4)]
             o4 = [_p1+_v1 for _p1,_v1 in zip(p2, u4)]
             
             origin = scene.imagedata.GetOrigin()
@@ -339,11 +339,7 @@ class ResliceAction(QtCore.QObject):
                 q1, q2, q3, q4 = o3, o4, o1, o2
             else:
                 q1, q2, q3, q4 = o4, o1, o2, o3
-            origin = q1
-            
-            d1 = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(q1, q2))
-            d2 = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(q1, q4))
-            
+
             # ----------------------------------------------------------------
             t1, t2, t3 = q1, q2, [q2[0], q1[1], q2[2]]
             hi = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(t1, t2))
@@ -361,7 +357,7 @@ class ResliceAction(QtCore.QObject):
             transform.RotateZ(self.TETHA)
             transform.Update()
             
-            # Canonica!
+            # Canonical
             xAxis = [1.0, 0.0, 0.0, 0.0]
             transform.MultiplyPoint(xAxis, xAxis)
             xAxis = xAxis[0:3]
@@ -388,22 +384,20 @@ class ResliceAction(QtCore.QObject):
                       origin2[2] + spacing[2]*extent[5]] # zmax
             
             thePlaneNormal = [0,0,0]
-            thePlaneNormal[type] = 1
+            thePlaneNormal[scene.planeOrientation] = 1
             thePlaneOriginBase = [bounds[0],bounds[2], bounds[4]]
             thePlaneOriginTop = [bounds[1],bounds[3], bounds[5]]
             
-            corners = []
-            corners.append((q1, [y+z for y, z in zip(n, q1)]))
-            corners.append((q2, [y+z for y, z in zip(n, q2)]))
-            corners.append((q3, [y+z for y, z in zip(n, q3)]))
-            corners.append((q4, [y+z for y, z in zip(n, q4)]))
-            
+            corners = [(q1, [y + z for y, z in zip(n, q1)]),
+                       (q2, [y + z for y, z in zip(n, q2)]),
+                       (q3, [y + z for y, z in zip(n, q3)]),
+                       (q4, [y + z for y, z in zip(n, q4)])]
+
             distB = 0
             distBN = sys.maxint
             distT = 0
             distTN = 0
-            originBaseOffset = [0,0,0]
-            originBaseOffsetN = [0,0,0]
+            originBaseOffset = [0, 0, 0]
             for q, c in corners:
                 qb = msmath.intersect_line_with_plane(q, c, thePlaneNormal, thePlaneOriginBase)
                 qt = msmath.intersect_line_with_plane(q, c, thePlaneNormal, thePlaneOriginTop)
@@ -412,7 +406,6 @@ class ResliceAction(QtCore.QObject):
                     originBaseOffset = [y - z for y, z in zip(qb, q)]
                     distB = dist
                 if dist < distBN:
-                    originBaseOffsetN = [y - z for y, z in zip(qb, q)]
                     distBN = dist
                 dist = math.sqrt(vtk.vtkMath.Distance2BetweenPoints(q, qt))
                 if dist > distT:
@@ -422,14 +415,11 @@ class ResliceAction(QtCore.QObject):
             if distTN > distT:
                 n = [-p for p in n] 
             
-            if originBaseOffset[type] > 0:
-                origin = [y + z for y, z in zip(origin, originBaseOffsetN)]
+            if originBaseOffset[scene.planeOrientation] > 0:
                 distH = distT - distBN
             else:
-                origin = [y + z for y, z in zip(origin, originBaseOffset)]
                 distH = distT + distB
-                
-            
+
             q5 = [x * distT + y for x, y in zip(n, q1)]
             q6 = [x * distT + y for x, y in zip(n, q2)]
             q7 = [x * distT + y for x, y in zip(n, q3)]
@@ -439,8 +429,7 @@ class ResliceAction(QtCore.QObject):
             q2 = [y - x * distH for x, y in zip(n, q6)]
             q3 = [y - x * distH for x, y in zip(n, q7)]
             q4 = [y - x * distH for x, y in zip(n, q8)]
-               
-            
+
             cubeCorners = [q1, q5, q4, q8, q2, q6, q3, q7] 
             self.load.updateProgress(10, self.load.updateProgress(0, 
                                                     QtGui.QApplication.translate("ResliceAction", 
@@ -450,16 +439,17 @@ class ResliceAction(QtCore.QObject):
 
             activeSubWindow = self._ilsa.activeSubWindow()
             if activeSubWindow:
-                subWindow =  self._ilsa.windowArea()
+                subWindow = self._ilsa.windowArea()
                 
-            self.load.updateProgress(100, QtGui.QApplication.translate("ResliceAction", 
-                                                        "Completed",
-                                                        None, 
-                                                        QtGui.QApplication.UnicodeUTF8))
+            self.load.updateProgress(100,
+                                     QtGui.QApplication.translate("ResliceAction",
+                                                                  "Completed",
+                                                                  None,
+                                                                  QtGui.QApplication.UnicodeUTF8))
 
-            subWindow.createMScreensFromImagedata(scene.imagedata, cubeCorners=cubeCorners, generate3D = generate3D)
+            subWindow.createMScreensFromImagedata(scene.imagedata, cubeCorners=cubeCorners, generate3D=generate3D)
             scene.window.Render()
-    
+
     def __computePoint(self, scene, xyz):
         logging.debug("In ReslicerAction::__computePoint()")
         imagedata = scene.imagedata
@@ -489,4 +479,3 @@ class ResliceAction(QtCore.QObject):
             xyz[i] = iq[i] * s[i] + o[i]
 
         return xyz, ptId
-    

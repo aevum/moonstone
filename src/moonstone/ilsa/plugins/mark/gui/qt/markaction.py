@@ -209,11 +209,3 @@ class MarkAction(QtCore.QObject):
             for reply in contour.replyList:
                 reply.removeScenePlugin(toRemove)
             toRemove.delete()
-                
-        
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = MarkProperties()
-    win.show()
-    sys.exit(app.exec_())

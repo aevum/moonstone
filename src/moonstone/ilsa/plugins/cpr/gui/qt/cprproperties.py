@@ -55,7 +55,9 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
         self.contourButton.setIcon(icon)
         self.contourButtons[self.contour] = self.contourButton
         self.contours[self.contourButton] = self.contour
-        self.buttonGrigLayout.addWidget(self.contourButton,(len(self.contours)-1)/4,(len(self.contours)-1)%4 )
+        self.buttonGrigLayout.addWidget(self.contourButton,
+                                        (len(self.contours)-1) / 4,
+                                        (len(self.contours)-1) % 4)
         self.buttonGroup.addButton(self.contourButton)
         self._getPropertiesFromContour()
 

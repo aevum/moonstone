@@ -358,9 +358,7 @@ class VtkImageVolume(VtkImageData):
                 self.volumeProperty.SetSpecularPower(volumePropertiesMap["specular_power"])
             if volumePropertiesMap.has_key("scalar_opacity_unit_distance"):
                 self.volumeProperty.SetScalarOpacityUnitDistance(volumePropertiesMap["scalar_opacity_unit_distance"])
-        
         self.resetColorOpacityFunPoints()
-                        
      
     def changeHounsfieldMode(self, mode):
         if mode == self.mode:
@@ -534,4 +532,3 @@ class ColorTransferFunctionRGBPoint:
     
     def calcExpression(self, value, window, level):        
         return (level - window /2) + value * window
-    

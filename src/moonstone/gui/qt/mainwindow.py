@@ -312,6 +312,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 mainwindow.restoreSavedGeometry()
                 mainwindow.showMaximized()
                 mainwindow.slotActionSplitLeftNew()
+                mainwindow.mWindow.cameraController.setDefaults()
             dicomProcess.close()
         except Exception as ex:
             traceback.print_exc(file=sys.stdout)
