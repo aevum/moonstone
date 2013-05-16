@@ -2399,6 +2399,10 @@ class VtkMultiSliceImagePlane(VtkImageData, VtkImagePlane):
                 "slices" : slices,
                 "slabSpacing" : self._slabSpacing, 
                 "slabThickness" : self._slabThickness,
+                "cameraViewUp" : self.camera.GetViewUp(),
+                "cameraPosition" : self.camera.GetPosition(),
+                "cameraFocal" : self.camera.GetFocalPoint(),
+                "cameraZoom" : self.camera.GetParallelScale(),
                 "sliceWidgets" : [ plane.scene._id for plane in self.parent._referencedPlanes ]
                 }
         save = {"planeOrientation" : self._planeOrientation, "data" : data}

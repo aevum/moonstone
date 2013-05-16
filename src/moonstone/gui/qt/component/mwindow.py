@@ -275,6 +275,10 @@ class MWindow(QtGui.QTabWidget):
         save = {"vti": self._vtiPath}
         mscreens = []
         save["mScreens"] = mscreens
+        save["camera"] = [self.cameraController.getActiveAction(self.cameraController.BUTTON_LEFT),
+                          self.cameraController.getActiveAction(self.cameraController.BUTTON_RIGHT),
+                          self.cameraController.getActiveAction(self.cameraController.BUTTON_MIDDLE),
+                          self.cameraController.getActiveAction(self.cameraController.BUTTON_SCROLL)]
         for i, screen in enumerate(self._mScreens):
             mscreens.append(screen.save(self._yamlPath, i, self.tabText(i)))
         return save

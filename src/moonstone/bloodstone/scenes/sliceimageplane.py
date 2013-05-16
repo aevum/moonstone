@@ -2289,7 +2289,12 @@ class VtkSliceImagePlane(VtkImageData, VtkImagePlane):
                 "sliceThickness" : self._sliceThickness, 
                 "slabSpacing" : self._slabSpacing, 
                 "slabThickness" : self._slabThickness,
-                "sliceWidgets" : [ plane.scene._id for plane in self.parent._referencedPlanes ]
+                "sliceWidgets" : [ plane.scene._id for plane in self.parent._referencedPlanes ],
+                "slicePosition" : self.parent.planeSlideValue,
+                "cameraViewUp" : self.camera.GetViewUp(),
+                "cameraPosition" : self.camera.GetPosition(),
+                "cameraFocal" : self.camera.GetFocalPoint(),
+                "cameraZoom" : self.camera.GetParallelScale()
                 }
         if self.planeOrientation == self.PLANE_ORIENTATION_PANORAMIC_SLICE:
             data["slice"] = self.slice.save()

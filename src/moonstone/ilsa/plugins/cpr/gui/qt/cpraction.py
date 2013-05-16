@@ -140,12 +140,13 @@ class CPRAction(QtCore.QObject):
         if contours:
             for contour in contours:
                 self.loadContour(contour)
+        self._oldActions=[]
         self.slotActionCPR()
                     
     def loadContour(self, contourData):
         logging.debug("In CPRAction::loadContour()")
         scenes = self._ilsa.scenes()
-        contour = CPRContour(scenes, self._ilsa)
+        contour = CPRContour(scenes, self._ilsa, self.cprClosed)
         for scene in scenes:
             if contourData["sceneId"] == scene.id:
                 contour.setScene(scene)

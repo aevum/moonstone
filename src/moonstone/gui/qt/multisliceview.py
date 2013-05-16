@@ -176,3 +176,4 @@ class MultiSliceView(SliceView):
                 self.addReferencedPlane(plane)
 
                 self.scene.addLineWidgetFromScene( plane.scene )
+        self.scene.renderer.ResetCameraClippingRange()

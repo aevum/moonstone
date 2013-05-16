@@ -236,7 +236,6 @@ class SliceView( View ):
         return self._mscreenParent
 
     def load( self, data):
-
         if data.has_key("id"):
             self.setSceneId(data["id"])
         if data.has_key("sliceThickness"):
@@ -247,6 +246,13 @@ class SliceView( View ):
         if data.has_key("slabThickness"):
             self.scene.slabThickness = data["slabThickness"]
             self.scene.updatePlane()
+        if data.has_key("slicePosition"):
+            self.slotPlaneSlideChanged(data["slicePosition"])
+        if data.has_key("cameraPosition"):
+            self.scene.camera.SetViewUp(data["cameraViewUp"])
+            self.scene.camera.SetPosition(data["cameraPosition"])
+            self.scene.camera.SetFocalPoint(data["cameraFocal"])
+            self.scene.camera.SetParallelScale(data["cameraZoom"])
 
     def notifyCloseListeners( self ):
 

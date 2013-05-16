@@ -35,6 +35,8 @@ class QDicomProcess(QtGui.QDialog, Ui_ProgressBarDialog):
         logging.debug("In QDicomProcess::__init__()")
         super(QDicomProcess, self).__init__(parent)
         self.setupUi(self)
+        self.stopButton.setVisible(False)
+        self.cancelButton.setVisible(False)
         self.setWindowTitle(constant.TITLE_PROGRAM)
         self._series = series
         self._quality = quality
@@ -126,11 +128,6 @@ class QDicomProcess(QtGui.QDialog, Ui_ProgressBarDialog):
                 self._readers.append(allVtis)
     
                 self._indicator += 1
-    
-            self.horizontalLayout.removeWidget(self.stopButton)
-            self.horizontalLayout.removeWidget(self.cancelButton)
-            self.stopButton.setVisible(False)
-            self.cancelButton.setVisible(False)
     
             logging.debug(":: Processing DICOM reader")
             self.progressBar.setValue(50)

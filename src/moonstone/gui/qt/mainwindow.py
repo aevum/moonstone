@@ -238,7 +238,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 mainWindow.setWindowTitle("{0} :: {1} - {2}".format(constant.NAME_PROGRAM, 
                                                                     series[i].study.patient.name, 
                                                                     series[i].description))
-                
                 widget = MWindow(mainWindow.ilsa, mainWindow.centralwidget, series[i])
                 mainWindow.mWindow = widget
                 widget.vtiPath = mwindow["vti"]
@@ -309,14 +308,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                                          None, 
                                                          QtGui.QApplication.UnicodeUTF8))
             for mainwindow in mainWindows:
+                if mwindow.has_key("camera"):
+                    camera = mwindow["camera"]
+                    mainwindow.mWindow.cameraController.selectAction(camera[0], mainwindow.mWindow.cameraController.BUTTON_LEFT)
+                    mainwindow.mWindow.cameraController.selectAction(camera[1], mainwindow.mWindow.cameraController.BUTTON_RIGHT)
+                    mainwindow.mWindow.cameraController.selectAction(camera[2], mainwindow.mWindow.cameraController.BUTTON_MIDDLE)
+                    mainwindow.mWindow.cameraController.selectAction(camera[3],mainwindow.mWindow.cameraController.BUTTON_SCROLL)
+
+                else:
+                    mainwindow.mWindow.cameraController.setDefaults()
                 mainwindow.restoreSavedGeometry()
                 mainwindow.showMaximized()
                 mainwindow.slotActionSplitLeftNew()
-                mainwindow.mWindow.cameraController.setDefaults()
             dicomProcess.close()
-        except Exception as ex:
+        except Exception:
             traceback.print_exc(file=sys.stdout)
-            self.close()
             QtGui.QMessageBox.critical(self, QtGui.QApplication.translate("ImportChooser", 
                                                      "Error", 
                                                      None, 
