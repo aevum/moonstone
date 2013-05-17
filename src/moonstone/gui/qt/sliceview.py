@@ -28,7 +28,7 @@ from view import View
 from slicethickness import SliceThickness
 from blendthickness import BlendThickness
 
-class SliceView( View ):
+class SliceView(View):
 
     def __init__(self, mscreenParent, planeOrientation, slice, parent=None, title=None, slicePath=None, planeNumber = 1):
         logging.debug("In SliceView::__init__()")
@@ -64,7 +64,7 @@ class SliceView( View ):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/static/default/icon/48x48/thickness-1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSlabThickness.setIcon(icon)
-        self.actionSlabThickness.setObjectName("actionThickness")
+        self.actionSlabThickness.setObjectName("actionSlabThickness")
         self.toolbar.addAction(self.actionSlabThickness)
         self.slabThickness = BlendThickness(self)
     

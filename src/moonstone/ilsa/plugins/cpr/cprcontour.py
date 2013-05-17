@@ -150,7 +150,12 @@ class CPRContour(object):
         self._transversalPlane.scene.addSliceChangeListener(self.transversalSliceChange)
         self.transversalSliceChange(self._transversalPlane.scene)
 
-    def setScene(self, scene):
+    @property
+    def scene(self):
+        return self._scene
+
+    @scene.setter
+    def scene(self, scene):
         self._scene = scene
         self._scene.incrementReferenceCount()
         self._scene.getPlane().mscreenParent.incrementReferenceCount()
@@ -173,7 +178,7 @@ class CPRContour(object):
         logging.debug("In CPRContour::start()")
         if not self._closed:
             if not self._started:
-                self.setScene(scene)
+                self.scene = scene
                 self._started = True
                 (X, Y) = self._scene.interactor.GetEventPosition()
                 self._scene.picker.Pick(X, Y, 0, self._scene.renderer)

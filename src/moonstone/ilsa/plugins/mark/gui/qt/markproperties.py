@@ -36,6 +36,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
         self.buttonGrigLayout.setAlignment(QtCore.Qt.AlignLeft)
         self.buttonGroup = QtGui.QButtonGroup()
         self.markGroup.setLayout(self.buttonGrigLayout)
+        self.thicknessBox.setSingleStep(0.1)
         self.createActions()
         if contour:
             self._getPropertiesFromContour()

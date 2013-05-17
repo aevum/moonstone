@@ -149,7 +149,7 @@ class CPRAction(QtCore.QObject):
         contour = CPRContour(scenes, self._ilsa, self.cprClosed)
         for scene in scenes:
             if contourData["sceneId"] == scene.id:
-                contour.setScene(scene)
+                contour.scene = scene
             elif contourData["panoramicSceneId"] == scene.id:
                 contour.setPanoramicPlane(scene.parent)
             elif contourData["transversalSceneId"] == scene.id:
@@ -176,26 +176,6 @@ class CPRAction(QtCore.QObject):
         for contour in contours:
             contour.addScene(scene)
             
-    def removeScene(self, scene):
+    def removeScene(self, contour):
         logging.debug("In CPRAction::removeScene()")
-        contours = self.propertiesAction.contours.values()
-        for contour in contours:
-            if contour.scene == scene:
-                toRemove = contour
-                if contour.replyList:
-                    contour = contour.replyList[0]
-                    self.propertiesAction.switchContourReference(toRemove, contour)
-                else:
-                    self.propertiesAction.removeCountour(contour)
-                    continue
-                
-            else:
-                for reply in contour.replyList:
-                    if reply.scene == scene:
-                        toRemove = reply
-                        break
-            contour.removeScenePlugin(toRemove)
-            #TODO free em ToRemove
-            for reply in contour.replyList:
-                reply.removeScenePlugin(toRemove)
-            toRemove.delete()
+        return

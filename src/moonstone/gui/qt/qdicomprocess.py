@@ -168,10 +168,3 @@ class QDicomProcess(QtGui.QDialog, Ui_ProgressBarDialog):
         self.repaint()
         self.update()
         QtCore.QCoreApplication.processEvents()
- 
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = QDicomProcess([])
-    win.show()
-    sys.exit(app.exec_())

@@ -319,7 +319,6 @@ class VtkSliceImagePlane(VtkImageData, VtkImagePlane):
     def onLeftButtonUp(self):
         logging.debug("In VtkSliceImagePlane::onLeftButtonUp()")
         
-        print "opa"
 #        if self._leftButtonAction == "cursor":
 #            self.stopCursor()
 #        elif self._leftButtonAction == "slice-motion":
