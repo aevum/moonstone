@@ -80,7 +80,7 @@ class MultiSliceView(SliceView):
         super( MultiSliceView, self ).createWidgets()
         self.actionImagePlaneWidget = QtGui.QAction( self )
         icon1 = QtGui.QIcon()
-        icon1.addPixmap( QtGui.QPixmap( ':/static/default/icon/22x22/office-chart-polar.png' ), QtGui.QIcon.Normal, QtGui.QIcon.Off )
+        icon1.addPixmap( QtGui.QPixmap( ':/static/default/icon/48x48/office-chart-polar.png' ), QtGui.QIcon.Normal, QtGui.QIcon.Off )
         self.actionImagePlaneWidget.setIcon( icon1 )
         self.actionImagePlaneWidget.setObjectName( 'actionSlicePlaneWidgetPresets' )
         if self.title != "Transversal":

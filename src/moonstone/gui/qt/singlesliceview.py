@@ -82,7 +82,7 @@ class SingleSliceView(SliceView):
 
         self.actionImagePlaneWidget = QtGui.QAction( self )
         icon1 = QtGui.QIcon()
-        icon1.addPixmap( QtGui.QPixmap( ':/static/default/icon/22x22/office-chart-polar.png' ), QtGui.QIcon.Normal, QtGui.QIcon.Off )
+        icon1.addPixmap( QtGui.QPixmap( ':/static/default/icon/48x48/office-chart-polar.png' ), QtGui.QIcon.Normal, QtGui.QIcon.Off )
         self.actionImagePlaneWidget.setIcon( icon1 )
         self.actionImagePlaneWidget.setObjectName( 'actionSlicePlaneWidgetPresets' )
         if self.title != "Transversal":
@@ -137,13 +137,11 @@ class SingleSliceView(SliceView):
         logging.debug( 'In SingleSliceView::slotActionImagePlaneChoose()' )
         plane = action.data()
         if action.isChecked():
-            #plane.scene.addSliceChangeListener( self.onReferedPlanesChange )
             plane.addSliderReleasedListeners( self.onReferedPlanesChange )
             plane.addCloseListener( self.onReferedPlaneClose )
             self.addReferencedPlane(plane)
             self.scene.addLinePlaneWidget( plane.lineWidget() )
         else:
-            #plane.scene.removeSliceChangeListener( self.onReferedPlanesChange )
             plane.removeSliderReleasedListeners( self.onReferedPlanesChange )
             plane.removeCloseListener( self.onReferedPlaneClose )
             self.removeReferencedPlane(plane)

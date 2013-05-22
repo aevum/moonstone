@@ -107,10 +107,27 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
                     "ImportWindow", "Rename",
                     None, QtGui.QApplication.UnicodeUTF8))
         self.renameSerieAction.setIconVisibleInMenu(True)
-        self.renameSerieAction.setObjectName("resetAction")
+        self.renameSerieAction.setObjectName("renameSerieAction")
         self.renameSerieAction.setIcon(icon4)
+
+        self.renamePatientAction = QtGui.QAction(self)
+        self.renamePatientAction.setText(QtGui.QApplication.translate(
+                    "ImportWindow", "Rename",
+                    None, QtGui.QApplication.UnicodeUTF8))
+        self.renamePatientAction.setIconVisibleInMenu(True)
+        self.renamePatientAction.setObjectName("renamePatientAction")
+        self.renamePatientAction.setIcon(icon4)
+
+        self.renameStudyAction = QtGui.QAction(self)
+        self.renameStudyAction.setText(QtGui.QApplication.translate(
+                    "ImportWindow", "Rename",
+                    None, QtGui.QApplication.UnicodeUTF8))
+        self.renameStudyAction.setIconVisibleInMenu(True)
+        self.renameStudyAction.setObjectName("renameStudyAction")
+        self.renameStudyAction.setIcon(icon4)
+
+
         self.treeMenu = QtGui.QMenu(self.treeWidget)
-        
         self.rename = Rename(self)
         
 #        self.treeMenu.addAction(self.deleteAction)
@@ -161,17 +178,17 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
                      self.slotRenameCancelButtonClicked)
     
     def slotRenameOkButtonClicked(self):
-        description =  utils.decode_string(self.rename.newName.text())
-        id = self.rename.serie.uid
-        if list(Serie.select("uid='{0}' AND description='{1}'".format(id, description))):
-            QtGui.QMessageBox.critical(self.rename, "Error", 
-                        QtGui.QApplication.translate(
-                                    "ImportWindow", 
-                                    "This serie is already registered in database with this name. \nTry another one.",
-                    None, QtGui.QApplication.UnicodeUTF8))
-        else:
-            if self.rename.action == self.renameSerieAction:
-                print hashStr(self.rename.serie.study.patient.uid)
+        if self.rename.action == self.renameSerieAction:          
+            description =  utils.decode_string(self.rename.newName.text())
+            id = self.rename.serie.uid
+            if list(Serie.select("uid='{0}' AND description='{1}'".format(id, description))):
+                QtGui.QMessageBox.critical(self.rename, "Error", 
+                            QtGui.QApplication.translate(
+                                        "ImportWindow", 
+                                        "This serie is already registered in database with this name. \nTry another one.",
+                        None, QtGui.QApplication.UnicodeUTF8))
+                return
+            else:
                 basePath = os.path.join(constant.INSTALL_DIR, "data")
                 patientPath = os.path.join(basePath, hashStr(self.rename.serie.study.patient.uid))
                 oldSeriePath = os.path.join(patientPath,"{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(self.rename.serie.description)))
@@ -193,43 +210,56 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
                 if os.path.exists(newSeriePath):
                     shutil.rmtree(newSeriePath)  
                 shutil.move(oldSeriePath, newSeriePath)
-                self.rename.hide()
-                self.updateTree()
-            else:
-                #copy files to new directory
-                basePath = os.path.join(constant.INSTALL_DIR, "data")
-                patientPath = os.path.join(basePath, hashStr(self.rename.serie.study.patient.uid))
-                oldSeriePath = os.path.join(patientPath,"{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(self.rename.serie.description)))
-                newSeriePath = os.path.join(patientPath,"{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(description)))
-                if os.path.exists(newSeriePath):
-                    shutil.rmtree(newSeriePath)  
-                shutil.copytree(oldSeriePath, newSeriePath)
-                yamlFile = os.path.join("{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(description))
-                                    , "{0}{1}".format(hashStr(self.rename.serie.uid),".yaml"))
-                
-                filePath = file(os.path.join(newSeriePath
-                                    , "{0}{1}".format(hashStr(self.rename.serie.uid),".yaml")), 'r')
-                vti = yaml.load(filePath)
-                vti["vti"] = vti["vti"].replace("{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(self.rename.serie.description)), 
-                                                "{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(description)))
-                
-                filePath.close()
-                filePath = file(os.path.join(newSeriePath
-                                    , "{0}{1}".format(hashStr(self.rename.serie.uid),".yaml")), 'w')
-                yaml.dump(vti, filePath)
-                filePath.close()
-                #create new serie
-                Serie(uid=self.rename.serie.uid, 
-                      file=yamlFile,
-                      description=description,
-                      thickness=self.rename.serie.thickness, 
-                      size=self.rename.serie.size,   
-                      zSpacing=self.rename.serie.zSpacing,
-                      tmp = False,
-                      dicomImages=self.rename.serie.dicomImages,
-                      study=self.rename.serie.study)
-                self.rename.hide()
-                self.updateTree()
+        elif self.rename.action == self.renamePatientAction:    
+            name =  utils.decode_string(self.rename.newName.text())
+            self.rename.patient.name =  name.encode("utf-8")
+        elif self.rename.action == self.renameStudyAction:
+            description =  utils.decode_string(self.rename.newName.text())
+            self.rename.study.description =  description.encode("utf-8")
+        else:
+            #copy files to new directory
+            description =  utils.decode_string(self.rename.newName.text())
+            id = self.rename.serie.uid
+            if list(Serie.select("uid='{0}' AND description='{1}'".format(id, description))):
+                QtGui.QMessageBox.critical(self.rename, "Error", 
+                            QtGui.QApplication.translate(
+                                        "ImportWindow", 
+                                        "This serie is already registered in database with this name. \nTry another one.",
+                        None, QtGui.QApplication.UnicodeUTF8))
+                return
+            basePath = os.path.join(constant.INSTALL_DIR, "data")
+            patientPath = os.path.join(basePath, hashStr(self.rename.serie.study.patient.uid))
+            oldSeriePath = os.path.join(patientPath,"{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(self.rename.serie.description)))
+            newSeriePath = os.path.join(patientPath,"{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(description)))
+            if os.path.exists(newSeriePath):
+                shutil.rmtree(newSeriePath)  
+            shutil.copytree(oldSeriePath, newSeriePath)
+            yamlFile = os.path.join("{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(description))
+                                , "{0}{1}".format(hashStr(self.rename.serie.uid),".yaml"))
+            
+            filePath = file(os.path.join(newSeriePath
+                                , "{0}{1}".format(hashStr(self.rename.serie.uid),".yaml")), 'r')
+            vti = yaml.load(filePath)
+            vti["vti"] = vti["vti"].replace("{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(self.rename.serie.description)), 
+                                            "{0}{1}".format(hashStr(self.rename.serie.uid), hashStr(description)))
+            
+            filePath.close()
+            filePath = file(os.path.join(newSeriePath
+                                , "{0}{1}".format(hashStr(self.rename.serie.uid),".yaml")), 'w')
+            yaml.dump(vti, filePath)
+            filePath.close()
+            #create new serie
+            Serie(uid=self.rename.serie.uid, 
+                  file=yamlFile,
+                  description=description,
+                  thickness=self.rename.serie.thickness, 
+                  size=self.rename.serie.size,   
+                  zSpacing=self.rename.serie.zSpacing,
+                  tmp = False,
+                  dicomImages=self.rename.serie.dicomImages,
+                  study=self.rename.serie.study)
+        self.rename.hide()
+        self.updateTree()
     
     def slotRenameCancelButtonClicked(self):
         self.rename.hide()
@@ -462,16 +492,38 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         self.rename.show()
     
     def renameSerieActionExec(self, window, item):
-        self.rename.serie = self.getSeriesFromItem(item)[0]
-        self.rename.setWindowTitle(QtGui.QApplication.translate(
-                                "ImportWindow", "Rename Serie", None,
-                                QtGui.QApplication.UnicodeUTF8))
-        self.rename.label.setText(QtGui.QApplication.translate(
-                                "ImportWindow", "Description:", None,
-                                QtGui.QApplication.UnicodeUTF8))
+        if isinstance(self.seriesDictionary[item], Patient):
+            self.rename.patient = self.seriesDictionary[item]
+            self.rename.setWindowTitle(QtGui.QApplication.translate(
+                                    "ImportWindow", "Rename Patient", None,
+                                    QtGui.QApplication.UnicodeUTF8))
+            self.rename.label.setText(QtGui.QApplication.translate(
+                                    "ImportWindow", "Name:", None,
+                                    QtGui.QApplication.UnicodeUTF8))
+            self.rename.action = self.renamePatientAction
+            self.rename.newName.setText(self.rename.patient.name)
+        elif isinstance(self.seriesDictionary[item], Study):
+            self.rename.study = self.seriesDictionary[item]
+            self.rename.setWindowTitle(QtGui.QApplication.translate(
+                                    "ImportWindow", "Rename Study", None,
+                                    QtGui.QApplication.UnicodeUTF8))
+            self.rename.label.setText(QtGui.QApplication.translate(
+                                    "ImportWindow", "Description:", None,
+                                    QtGui.QApplication.UnicodeUTF8))
+            self.rename.action = self.renameStudyAction
+            self.rename.newName.setText(self.rename.study.description)
+        else:
+            self.rename.serie = self.seriesDictionary[item]
+            self.rename.setWindowTitle(QtGui.QApplication.translate(
+                                    "ImportWindow", "Rename Serie", None,
+                                    QtGui.QApplication.UnicodeUTF8))
+            self.rename.label.setText(QtGui.QApplication.translate(
+                                    "ImportWindow", "Description:", None,
+                                    QtGui.QApplication.UnicodeUTF8))
+            self.rename.action = self.renameSerieAction
+            self.rename.newName.setText(self.rename.serie.description)
         self.rename.setWindowIcon(self.renameSerieAction.icon())
-        self.rename.action = self.renameSerieAction
-        self.rename.newName.setText(self.rename.serie.description)
+        
         self.rename.show()
         
     def getTreeContextMenuActions(self, window, item):
@@ -479,10 +531,10 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         if item:
             result.append((self.deleteAction, self.deleteActionExec))
             result.append((self.exportAction, self.exportActionExec))
+            result.append((self.renameSerieAction, self.renameSerieActionExec))
             if isinstance(self.seriesDictionary[item], Serie):
                 result.append((self.resetAction, self.resetActionExec))
                 result.append((self.duplicateSerieAction, self.duplicateSerieActionExec))
-                result.append((self.renameSerieAction, self.renameSerieActionExec))
         for provider in self._contextMenuProviders:
             actions = provider(window, item)
             if actions:

@@ -728,7 +728,7 @@ class CameraController2D(object):
         self._mainWindow.toolBarTools_2.addAction(self._actionMiddleButton)
 
         self._actionScroll = QtGui.QAction(self._mainWindow)
-        self._actionScroll.setCheckable(True)
+        self._actionScroll.setCheckable(False)
         self._actionScroll.setObjectName("actionScroll")
         self._actionScroll.setText(
             QtGui.QApplication.translate("CameraController2D", "Scroll",

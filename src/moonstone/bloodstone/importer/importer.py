@@ -317,13 +317,7 @@ def createVTI(serie):
 def updateDatabase(serie):
     logging.debug("In Importer::updateDatabase()")
     patient = list(Patient.selectBy(uid=serie["patientUID"]))
-    if patient:
-        patient = patient[0]
-        patient.name = serie["patientName"]
-        patient.birthdate = serie["patientBirthdate"]
-        patient.sex = serie["patientSex"]
-        patient.directory = serie["patientPath"]
-    else:      
+    if not patient:      
         patient = Patient(uid=serie["patientUID"], 
                           name=serie["patientName"],
                           birthdate=serie["patientBirthdate"],
@@ -333,12 +327,7 @@ def updateDatabase(serie):
     
     
     study = list(Study.selectBy(uid=serie["studyUID"]))
-    if study:
-        study = study[0]
-        study.modality = serie["studyModality"]
-        study.description = serie["studyDescription"]
-        study.institution = serie["studyInstitution"]
-    else:
+    if not study:
         study = Study(uid = serie["studyUID"], 
                   modality=serie["studyModality"],
                   description=serie["studyDescription"],
