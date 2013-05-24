@@ -233,7 +233,6 @@ def copyFiles(serie):
     logging.debug("In Importer::copyFiles()")
     basePath = os.path.join(constant.INSTALL_DIR, "data")
     patientPath = os.path.join(basePath, hashStr(serie["patientUID"]))
-    print patientPath
     seriePath = os.path.join(patientPath,"{0}{1}".format(hashStr(serie["uid"]), hashStr(serie["serieDescription"])))
     imagePath = os.path.join(patientPath,hashStr(serie["uid"]), "images/")
     serie["path"] = seriePath

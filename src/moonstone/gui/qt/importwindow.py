@@ -323,9 +323,9 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
             if patient.sex:
                 item.setText(1, patient.sex)
             if patient.birthdate:
-                age = (datetime.datetime.now().toordinal() -patient.birthdate.toordinal()) / 365
+                age = (datetime.datetime.now().toordinal() - patient.birthdate.toordinal()) / 365
                 item.setText(2, "{0}".format(age))
-                item.setText(6, patient.birthdate.isoformat())
+                item.setText(6, patient.birthdate.strftime("%x"))
             self.seriesDictionary[item] = patient                   
             studies = Study.findContaining(patient=patient,
                                            description=self.importSearch.studyDescription.text(),

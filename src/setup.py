@@ -244,7 +244,6 @@ def get_include_files():
     except OSError:
         langs = []
     for lang in langs:
-        listFiles = []
         data_path_src = os.path.join("resources", "locale", lang, "LC_MESSAGES")
         data_path_dst = os.path.join("resources", "locale", lang, "LC_MESSAGES")
         mo = os.path.join("resources", "locale", lang,
