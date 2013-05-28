@@ -30,7 +30,7 @@ Wiki
    
   3.1- MinGW Compiler
       
-    - Download and install MinGW http://www.mingw.org/ (for 32 bits version) ou MinGW64 from  http://mingw-w64.sourceforge.net/ 
+    - Download and install MinGW http://www.mingw.org/ (for 32 bits version) ou MinGW64 and MSYS from  http://sourceforge.net/projects/swig/files/swigwin 
 (For 64 bits. Obs: It's recommended to use MSVSC for 64 bit version instead of MinGW).
     - Download and install appropiated version of MSys from http://sourceforge.net/projects/mingw/files/MSYS/
     
