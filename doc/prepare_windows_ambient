@@ -142,6 +142,6 @@ Wiki
     - Open command prompt to D:\gcd\PyICU-1.0 and run 'python setup.py build'
     - Run 'python setup.py install'
 
-13- Have Fun
+13- Boot linux and have fun
 
 @Author - Igor Zanotto <igorznt@gmail.com>
