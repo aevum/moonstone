@@ -3,7 +3,7 @@ Wiki
   1- Install Python27 and SetupTools
   2- Install CMake
   3- Install Compiler
-  5- Install Sigwin
+  5- Install Swigwin
   6- Build and install VTK
   7- Build and install GDCM
   8- Install PySide
