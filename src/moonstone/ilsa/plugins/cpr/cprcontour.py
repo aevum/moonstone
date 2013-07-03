@@ -84,7 +84,7 @@ class CPRContour(object):
             self._panoramicPlane.scene.removeSliceChangeListener(self.panoramicSliceChange)
             self._panoramicPlane.scene.decrementReferenceCount()
             if self._panoramicPlane.scene.referenceCount < 1:
-                if self._panoramicPlane.mscreenParent.removeScene(self):
+                if self._panoramicPlane.mscreenParent.removeScene(self._scene):
                     self._panoramicPlane.notifyCloseListeners()
                     self._panoramicPlane.close()
             self._panoramicPlane = None
@@ -92,7 +92,7 @@ class CPRContour(object):
             self._transversalPlane.scene.removeSliceChangeListener(self.transversalSliceChange)
             self._transversalPlane.scene.decrementReferenceCount()
             if self._transversalPlane.scene.referenceCount < 1:
-                if  self._transversalPlane.mscreenParent.removeScene(self):
+                if  self._transversalPlane.mscreenParent.removeScene(self.scene):
                     self._transversalPlane.notifyCloseListeners()
                     self._transversalPlane.close()
             self._transversalPlane = None

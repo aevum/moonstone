@@ -266,7 +266,6 @@ class ResliceAction(QtCore.QObject):
             return
         p = list(xyz)
         
-        ###teste
         imagedata = scene.imagedata
         ptId = imagedata.FindPoint(p)
         if ptId == -1:

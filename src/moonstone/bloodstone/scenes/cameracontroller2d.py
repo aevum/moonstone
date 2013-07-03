@@ -331,6 +331,9 @@ class CameraController2D(object):
                                                     QtGui.QApplication.UnicodeUTF8))
 
     def _slotActionChangeSliceScroll(self, obj, event, plane):
+        if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+            self.actionsChooser(self.BUTTON_SCROLL)
+            return
         if event == "MouseWheelForwardEvent":
             plane.planeSlide.setValue(plane.planeSlideValue + 1)
 
@@ -348,6 +351,10 @@ class CameraController2D(object):
         except:
             obj._actionLeft = False
         if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                obj._actionLeft = False
+                self.actionsChooser(self.BUTTON_LEFT)
+                return
             obj._actionLeft = True
         elif event == "LeftButtonReleaseEvent":
             obj._actionLeft = False
@@ -374,6 +381,10 @@ class CameraController2D(object):
         except:
             obj._actionRight = False
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             obj._actionRight = True
         elif event == "RightButtonReleaseEvent":
             obj._actionRight = False
@@ -400,6 +411,10 @@ class CameraController2D(object):
         except:
             obj._actionMiddle = False
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             obj._actionMiddle = True
         elif event == "MiddleButtonReleaseEvent":
             obj._actionMiddle = False
@@ -427,6 +442,10 @@ class CameraController2D(object):
         except:
             obj._actionLeft = False
         if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              obj._actionLeft = False
+              self.actionsChooser(self.BUTTON_LEFT)
+              return
             obj._actionLeft = True
         elif event == "LeftButtonReleaseEvent":
             obj._actionLeft = False
@@ -449,6 +468,10 @@ class CameraController2D(object):
         except:
             obj._actionRight = False
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             obj._actionRight = True
         elif event == "RightButtonReleaseEvent":
             obj._actionRight = False
@@ -471,6 +494,10 @@ class CameraController2D(object):
         except:
             obj._actionMiddle = False
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             obj._actionMiddle = True
         elif event == "MiddleButtonReleaseEvent":
             obj._actionMiddle = False
@@ -494,7 +521,12 @@ class CameraController2D(object):
         except:
             obj._actionLeft = False
         if event == "LeftButtonPressEvent":
-            obj._actionLeft = True
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              obj._actionLeft = False
+              self.actionsChooser(self.BUTTON_LEFT)
+              return
+            else:
+              obj._actionLeft = True
         elif event == "LeftButtonReleaseEvent":
             obj._actionLeft = False
             obj.OnLeftButtonUp()
@@ -507,21 +539,37 @@ class CameraController2D(object):
     def _slotActionFlipHorizontalLeft(self, obj, event, plane):
         scene = plane.scene
         if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              obj._actionLeft = False
+              self.actionsChooser(self.BUTTON_LEFT)
+              return
             scene.flipHorizontal()
 
     def _slotActionFlipHorizontalRight(self, obj, event, plane):
         scene = plane.scene
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             scene.flipHorizontal()
 
     def _slotActionFlipHorizontalMiddle(self, obj, event, plane):
         scene = plane.scene
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             scene.flipHorizontal()
 
     def _slotActionFlipVerticalLeft(self, obj, event, plane):
         scene = plane.scene
         if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              obj._actionLeft = False
+              self.actionsChooser(self.BUTTON_LEFT)
+              return
             scene.flipVertical()
         elif event == "LeftButtonReleaseEvent":
             obj.OnLeftButtonUp()
@@ -529,6 +577,10 @@ class CameraController2D(object):
     def _slotActionFlipVerticalRight(self, obj, event, plane):
         scene = plane.scene
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             scene.flipVertical()
         elif event == "RightButtonReleaseEvent":
             obj.OnRightButtonUp()
@@ -536,6 +588,10 @@ class CameraController2D(object):
     def _slotActionFlipVerticalMiddle(self, obj, event, plane):
         scene = plane.scene
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             scene.flipVertical()
         elif event == "MiddleButtonReleaseEvent":
             obj.OnMiddleButtonUp()
@@ -547,6 +603,10 @@ class CameraController2D(object):
         except:
             obj._actionLeft = False
         if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              obj._actionLeft = False
+              self.actionsChooser(self.BUTTON_LEFT)
+              return
             obj._actionLeft = True
         elif event == "LeftButtonReleaseEvent":
             obj._actionLeft = False
@@ -566,6 +626,10 @@ class CameraController2D(object):
         except:
             obj._actionRight = False
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             obj._actionRight = True
         elif event == "RightButtonReleaseEvent":
             obj._actionRight = False
@@ -579,6 +643,9 @@ class CameraController2D(object):
                 obj.OnRightButtonUp()
 
     def _slotActionZoomScroll(self, obj, event, plane):
+        if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  self.actionsChooser(self.BUTTON_SCROLL)
+                  return
         if event == "MouseWheelForwardEvent":
             plane.scene.camera.Zoom(1.1)
 
@@ -594,6 +661,10 @@ class CameraController2D(object):
         except:
             obj._actionMiddle = False
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             obj._actionMiddle = True
         elif event == "MiddleButtonReleaseEvent":
             obj._actionMiddle = False
@@ -613,6 +684,10 @@ class CameraController2D(object):
         except:
             obj._actionLeft = False
         if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              obj._actionLeft = False
+              self.actionsChooser(self.BUTTON_LEFT)
+              return
             obj._actionLeft = True
         elif event == "LeftButtonReleaseEvent":
             obj._actionLeft = False
@@ -632,6 +707,10 @@ class CameraController2D(object):
         except:
             obj._actionRight = False
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             obj._actionRight = True
         elif event == "RightButtonReleaseEvent":
             obj._actionRight = False
@@ -651,6 +730,10 @@ class CameraController2D(object):
         except:
             obj._actionMiddle = False
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             obj._actionMiddle = True
         elif event == "MiddleButtonReleaseEvent":
             obj._actionMiddle = False
@@ -671,6 +754,10 @@ class CameraController2D(object):
         except:
             obj._actionRight = False
         if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionRight = False
+                  self.actionsChooser(self.BUTTON_RIGHT)
+                  return
             obj._actionRight = True
         elif event == "RightButtonReleaseEvent":
             obj._actionRight = False
@@ -691,6 +778,10 @@ class CameraController2D(object):
         except:
             obj._actionMiddle = False
         if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  obj._actionMiddle = False
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+                  return
             obj._actionMiddle = True
         elif event == "MiddleButtonReleaseEvent":
             obj._actionMiddle = False
@@ -746,6 +837,7 @@ class CameraController2D(object):
         self._mWindow.connect(self._actionRightButton, QtCore.SIGNAL("triggered()"),
                               lambda a=self.BUTTON_RIGHT: self.actionsChooser(a))
         self._mainWindow.toolBarTools_2.addAction(self._actionRightButton)
+    
     def actionsChooser(self, actionType):
         logging.debug("In CameraController2D::leftButtonChooser()")
         menu = QtGui.QMenu(self._mWindow)
