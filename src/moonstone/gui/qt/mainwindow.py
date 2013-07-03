@@ -320,6 +320,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 mainwindow.restoreSavedGeometry()
                 mainwindow.showMaximized()
                 mainwindow.slotActionSplitLeftNew()
+                mainwindow.actionShowPlaneLines.setChecked(True)
+                mainwindow.slotActionShowPlaneLines()
             dicomProcess.close()
         except Exception:
             traceback.print_exc(file=sys.stdout)

@@ -59,7 +59,7 @@ class CameraController2D(object):
             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.addAction(self.ACTION_NONE,
                        self.BUTTON_LEFT,
-                       self._slotActionNone,
+                       self._slotActionNoneLeft,
                        icon,
                        QtGui.QApplication.translate("CameraController2D",
                                                     "None",
@@ -68,7 +68,7 @@ class CameraController2D(object):
 
         self.addAction(self.ACTION_NONE,
                        self.BUTTON_RIGHT,
-                       self._slotActionNone,
+                       self._slotActionNoneRight,
                        icon,
                        QtGui.QApplication.translate("CameraController2D",
                                                     "None",
@@ -77,7 +77,7 @@ class CameraController2D(object):
 
         self.addAction(self.ACTION_NONE,
                        self.BUTTON_MIDDLE,
-                       self._slotActionNone,
+                       self._slotActionNoneMiddle,
                        icon,
                        QtGui.QApplication.translate("CameraController2D",
                                                     "None",
@@ -86,7 +86,7 @@ class CameraController2D(object):
 
         self.addAction(self.ACTION_NONE,
                        self.BUTTON_SCROLL,
-                       self._slotActionNone,
+                       self._slotActionNoneScroll,
                        icon,
                        QtGui.QApplication.translate("CameraController2D",
                                                     "None",
@@ -510,8 +510,28 @@ class CameraController2D(object):
                 plane.planeSlide.update()
                 scene.render()
 
-    def _slotActionNone(self, obj, event, plane):
+    def _slotActionNoneLeft(self, obj, event, plane):
         logging.debug("In CameraController2D::_slotActionNone()")
+        if event == "LeftButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  self.actionsChooser(self.BUTTON_LEFT)
+
+    def _slotActionNoneRight(self, obj, event, plane):
+        logging.debug("In CameraController2D::_slotActionNone()")
+        if event == "RightButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  self.actionsChooser(self.BUTTON_RIGHT)
+
+    def _slotActionNoneMiddle(self, obj, event, plane):
+        logging.debug("In CameraController2D::_slotActionNone()")
+        if event == "MiddleButtonPressEvent":
+            if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+                  self.actionsChooser(self.BUTTON_MIDDLE)
+
+    def _slotActionNoneScroll(self, obj, event, plane):
+        logging.debug("In CameraController2D::_slotActionNone()")
+        if plane.scene.interactor.GetRenderWindow().GetInteractor().GetControlKey():
+              self.actionsChooser(self.BUTTON_SCROLL)
 
     def _slotActionTranslateLeft(self, obj, event, plane):
         logging.debug("In CameraController2D::_slotActionTranslate()")
