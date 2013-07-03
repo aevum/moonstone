@@ -3,7 +3,7 @@ Wiki
   1- Install Python27 and SetupTools
   2- Install CMake
   3- Install Compiler
-  5- Install Sigwin
+  5- Install Swigwin
   6- Build and install VTK
   7- Build and install GDCM
   8- Install PySide
@@ -30,7 +30,7 @@ Wiki
    
   3.1- MinGW Compiler
       
-    - Download and install MinGW http://www.mingw.org/ (for 32 bits version) ou MinGW64 from  http://mingw-w64.sourceforge.net/ 
+    - Download and install MinGW http://www.mingw.org/ (for 32 bits version) ou MinGW64 and MSYS from  http://sourceforge.net/projects/swig/files/swigwin 
 (For 64 bits. Obs: It's recommended to use MSVSC for 64 bit version instead of MinGW).
     - Download and install appropiated version of MSys from http://sourceforge.net/projects/mingw/files/MSYS/
     
@@ -142,6 +142,6 @@ Wiki
     - Open command prompt to D:\gcd\PyICU-1.0 and run 'python setup.py build'
     - Run 'python setup.py install'
 
-13- Have Fun
+13- Boot linux and have fun
 
 @Author - Igor Zanotto <igorznt@gmail.com>
