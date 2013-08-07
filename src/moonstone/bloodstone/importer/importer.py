@@ -323,6 +323,8 @@ def updateDatabase(serie):
                           sex=serie["patientSex"],
                           tmp = False,
                           directory=serie["patientPath"])
+    else:
+        patient = patient[0]
     
     
     study = list(Study.selectBy(uid=serie["studyUID"]))
@@ -333,7 +335,8 @@ def updateDatabase(serie):
                   institution=serie["studyInstitution"],
                   tmp=False,
                   patient=patient)
-    
+    else:
+        study = study[0]
     serieDB = list(Serie.selectBy(uid=serie["uid"], description=serie["serieDescription"]))      
     if serieDB:
         serieDB = serieDB[0]
