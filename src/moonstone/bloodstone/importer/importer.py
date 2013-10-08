@@ -112,46 +112,46 @@ class Importer(object):
     
 def processImport(indexes, series, queue, stopCancelQueue):
     for index in indexes:
-        try:
-            serie = series[index]
-            serie["progress"] = 5
-            queue.put(["series", series])
+    
+        serie = series[index]
+        serie["progress"] = 5
+        queue.put(["series", series])
 
-            if not stopCancelQueue.empty():
-                break
-            sortSerie(serie)
+        if not stopCancelQueue.empty():
+            break
+        sortSerie(serie)
 
-            serie["progress"] = 25
-            queue.put(["series", series])
+        serie["progress"] = 25
+        queue.put(["series", series])
 
-            if not stopCancelQueue.empty():
-                break
-            copyFiles(serie)
+        if not stopCancelQueue.empty():
+            break
+        copyFiles(serie)
 
-            serie["progress"] = 50
-            queue.put(["series", series])
-            if not stopCancelQueue.empty():
-                break
-            createVTI(serie)
+        serie["progress"] = 50
+        queue.put(["series", series])
+        if not stopCancelQueue.empty():
+            break
+        createVTI(serie)
 
-            serie["progress"] = 90
-            queue.put(["series", series])
-            if not stopCancelQueue.empty():
-                break
-            createYAMLFile(serie)
-            serie["progress"] = 95
-            queue.put(["series", series])
-            if not stopCancelQueue.empty():
-                break
-            updateDatabase(serie)
-            serie["progress"] = 100
-            queue.put(["series", series])
-            if not stopCancelQueue.empty():
-                break
-            serie["error"] = False
-        except:
-            serie["error"] = True
-            rollback(serie)
+        serie["progress"] = 90
+        queue.put(["series", series])
+        if not stopCancelQueue.empty():
+            break
+        createYAMLFile(serie)
+        serie["progress"] = 95
+        queue.put(["series", series])
+        if not stopCancelQueue.empty():
+            break
+        updateDatabase(serie)
+        serie["progress"] = 100
+        queue.put(["series", series])
+        if not stopCancelQueue.empty():
+            break
+        serie["error"] = False
+        # except:
+        #     serie["error"] = True
+        #     rollback(serie)
 
     if not stopCancelQueue.empty():
         msg = stopCancelQueue.get()
@@ -405,6 +405,8 @@ def scanFiles(files, path, series):
                     serieDict["progress"] = 0
                     serieDict["patientBirthdate"] = retrieveDicomTag(0x0010, 0x0030, dataset)
                     serieDict["patientBirthdate"] = serieDict["patientBirthdate"].replace(" ", "")
+                    serieDict["patientBirthdate"] = serieDict["patientBirthdate"].replace("/", "")
+                    serieDict["patientBirthdate"] = serieDict["patientBirthdate"].replace("-", "")
                     serieDict["error"] = False
                     serieDict["path"] = ""
                     if serieDict["patientBirthdate"]:
