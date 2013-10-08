@@ -31,7 +31,7 @@ from .database.study import Study
 from .database.dbutils import DBUtils
 from ..utils import compact
 from ...gui.qt.widget.genericload import GenericProgressBar
-from ..utils.data import remove_file, load_vtis_from_yaml_file
+from ..utils.data import remove_file, load_vtis_from_yaml_file, load_yaml_file, persist_yaml_file
 from ...utils.strUtils import hashStr
 from ...utils import constant
 
@@ -323,3 +323,127 @@ class Importer():
         finally:
             if rootFile:
                 shutil.rmtree(rootFile, True)
+
+
+def importSeries(inputFile, key=compact.Zipper.key, serieDescription=None):
+    try :
+        importedSeries = []
+        ignoredSeries = []
+        errorSeries = []
+        status = "running"
+        rootFile = None
+        inputFile = str(inputFile)
+        if not zipfile.is_zipfile(inputFile):
+            print "1"
+            return False
+        try :
+            inputZip = zipfile.ZipFile(inputFile)
+            basePath = os.path.join(constant.INSTALL_DIR, "data")
+            rootFile = tempfile.mkdtemp()
+            Importer.createstructure(inputFile, rootFile)
+            for myFile in inputZip.namelist():
+                if not os.path.isdir(myFile):
+                    p = os.path.join(rootFile, myFile)
+                    outfile = file(p, "wb")
+                    outfile.write(inputZip.read(myFile))
+                    outfile.flush()
+                    outfile.close()
+        except Exception as ex:
+            print 2, ex
+            return False
+        seriesInfoPath = os.path.join(rootFile, "seriesInfo")
+        seriesInfoFilename = compact.decryptFile(seriesInfoPath, key)
+        seriesInfo = load_vtis_from_yaml_file(seriesInfoFilename)
+        if not seriesInfo:
+            print 3
+            return False
+        
+        database = DBUtils()
+        database.createConnection()
+        for serie in seriesInfo:
+                try :   
+                    serieYaml = None
+                    serieDbPath = os.path.join(os.path.join(rootFile, serie["serieFolder"]), "export.db")
+                    serieDb = load_vtis_from_yaml_file(serieDbPath)
+                    serieYaml = serieDb["serie"]
+                    if serieDescription:
+                        serieYaml["description"] = serieDescription     
+                    remove_file(serieDbPath)
+                    
+                    patientYaml = serieDb["patient"]
+                    patientList = list(Patient.selectBy(uid=patientYaml["uid"]))
+                    if not patientList:
+                        patient = Patient(uid = patientYaml["uid"],
+                                          name = patientYaml["name"],
+                                          birthdate = patientYaml["birthdate"],
+                                          sex =patientYaml["sex"],
+                                          directory = os.path.join(basePath, hashStr(patientYaml["uid"])))
+                    else :
+                        patient = patientList[0]
+                    
+                    studyYaml = serieDb["study"]
+                    studyList = list(Study.selectBy(uid=studyYaml["uid"]))
+                    if not studyList:
+                        study = Study(uid = studyYaml["uid"],
+                                      modality = studyYaml["modality"],
+                                      description = studyYaml["description"],
+                                      institution = studyYaml["institution"],
+                                      patient = patient)
+                    else :
+                        study = studyList[0]
+                    
+                    serieList = list(Serie.selectBy(uid=serieYaml["uid"], description=serieYaml["description"]))
+                    if not serieList:
+                        serieDb = Serie(uid = serieYaml["uid"],
+                                        dicomImages = serieYaml["dicomImages"],
+                                        file = os.path.join("{0}{1}".format(hashStr(serieYaml["uid"]),hashStr(serieYaml["description"])),"{0}.yaml".format(hashStr(serieYaml["uid"]))), 
+                                        description = serieYaml["description"],
+                                        thickness = serieYaml["thickness"],
+                                        size = serieYaml["size"],
+                                        zSpacing = serieYaml["zSpacing"],
+                                        study = study)
+                        oldPath = os.path.join(rootFile, serie["serieDicomFolder"])
+                        if serieDescription:
+                            newPath =  os.path.join(patient.directory, hashStr(serieYaml["uid"]))
+
+                        else:      
+                            newPath = os.path.join(patient.directory, serie["serieDicomFolder"])
+                        if not os.path.exists(newPath):
+                            shutil.copytree(oldPath, newPath)
+                        
+                        oldPath = os.path.join(rootFile, serie["serieFolder"])
+                        if serieDescription:
+                            newPath = os.path.join(patient.directory, "{0}{1}".format(hashStr(serieYaml["uid"]), hashStr(serieYaml["description"])))
+                        else:
+                            newPath = os.path.join(patient.directory, serie["serieFolder"])
+                        shutil.copytree(oldPath, newPath)
+                        if serieDescription:
+                            yamlFilepath = os.path.join(
+                                                    patient.directory, 
+                                                    "{0}{1}".format(hashStr(serieYaml["uid"]), hashStr(serieYaml["description"])), 
+                                                    "{0}.yaml".format(hashStr(serieYaml["uid"]))
+                                                    )
+                            newYamlData = load_yaml_file(yamlFilepath)
+                            newYamlData["vti"] = os.path.join("{0}{1}".format(hashStr(serieYaml["uid"]),hashStr(serieYaml["description"])), "main", "main.vti")
+                            persist_yaml_file(yamlFilepath, newYamlData) 
+                        serieDesc = "{0}{1}".format(serieYaml["uid"], serieYaml["description"])
+
+                        importedSeries.append(serieDesc)
+                        
+                except Exception as ex:
+                    print type(ex)
+                    print ex.args
+                    print ex
+                    if serieYaml:
+                        serie = "{0}{1}".format(serieYaml["uid"], serieYaml["description"])
+                        errorSeries.append(serie)
+                    return False
+                        
+        if status == "running":
+            status = "completed"
+    except Exception as ex:
+        return False
+    finally:
+        if rootFile:
+            shutil.rmtree(rootFile, True)
+        return True

@@ -35,6 +35,7 @@ from ...utils.strUtils import hashStr
 from ...bloodstone.importer.database.patient import Patient
 from ...bloodstone.importer.database.serie import Serie
 from ...bloodstone.importer.database.study import Study
+from ...bloodstone.importer.database.dbutils import DBUtils
 from ...bloodstone.importer.serieexporter import SerieExporter
 from ...bloodstone.utils.data import reader_vti, reader_to_imagedata
 from component.vtkimageview import VTKImageView
@@ -61,6 +62,7 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         self.updateTree()
         self.series = []
         self._contextMenuProviders = []
+        self.outsideMenuContext = None
         
     def createComponents(self):
         logging.debug("In ImportWindow::createComponents()")
@@ -321,62 +323,67 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         for patient in patients:
             item = QtGui.QTreeWidgetItem(self.treeWidget)
             if patient.sex:
-                item.setText(1, patient.sex)
+                item.setText(2, patient.sex)
             if patient.birthdate:
                 age = (datetime.datetime.now().toordinal() - patient.birthdate.toordinal()) / 365
-                item.setText(2, "{0}".format(age))
-                item.setText(6, patient.birthdate.strftime("%x"))
+                item.setText(3, "{0}".format(age))
+                item.setText(7, patient.birthdate.strftime("%x"))
             self.seriesDictionary[item] = patient                   
             studies = Study.findContaining(patient=patient,
                                            description=self.importSearch.studyDescription.text(),
                                            modality=self.importSearch.modality.text(),
                                            institution= self.importSearch.institution.text())
-            item.setText(0, QtGui.QApplication.translate(
+            item.setText(0, "Ok")
+            item.setText(1, QtGui.QApplication.translate(
                     "ImportWindow", "Patient: {0} ({1} studies)",
                     None, QtGui.QApplication.UnicodeUTF8).format(patient.name, len(studies)))
             totalPatientImages = 0 
             for study in studies:
                 studyItem = QtGui.QTreeWidgetItem(item)
                 if study.modality:
-                    studyItem.setText(3, study.modality)
+                    studyItem.setText(4, study.modality)
                 if study.institution:
-                    studyItem.setText(5, study.institution)
+                    studyItem.setText(6, study.institution)
                 
-                self.seriesDictionary[studyItem] = study    
-                series = Serie.findContaining(study=study, description=self.importSearch.serieDescription.text())
-                
+                self.seriesDictionary[studyItem] = study 
+                try:   
+                    series = Serie.findContaining(study=study, description=self.importSearch.serieDescription.text())
+                except:
+                    DBUtils.updateTable()
+                    series = Serie.findContaining(study=study, description=self.importSearch.serieDescription.text())
                 if not series:
                     item.removeChild(studyItem)
                     self.seriesDictionary.pop(studyItem)
                 if study.description:
-                    studyItem.setText(0, QtGui.QApplication.translate(
+                    studyItem.setText(1, QtGui.QApplication.translate(
                     "ImportWindow", "Study: {0}  ({1} series)",
                     None, QtGui.QApplication.UnicodeUTF8).format(study.description, len(series)))
                 else:
-                    studyItem.setText(0, QtGui.QApplication.translate(
+                    studyItem.setText(1, QtGui.QApplication.translate(
                     "ImportWindow", "Study: ({0} series)",
                     None, QtGui.QApplication.UnicodeUTF8).format(len(series)))
                 
                 totalStudyImages = 0
                 for serie in series:
                     serieItem = QtGui.QTreeWidgetItem(studyItem)
-                    serieItem.setText(0,QtGui.QApplication.translate(
+                    serieItem.setText(1,QtGui.QApplication.translate(
                                          "ImportWindow", "Serie: {0}({1} images)",
                                          None, 
                                          QtGui.QApplication.UnicodeUTF8).format(
                                                             serie.description, serie.dicomImages))
-                    serieItem.setText(4,"{0}".format(serie.dicomImages))
+                    serieItem.setText(5,"{0}".format(serie.dicomImages))
                     self.seriesDictionary[serieItem] = serie
                     totalStudyImages = totalStudyImages + serie.dicomImages
-                studyItem.setText(4,"{0}".format(totalStudyImages))
+                studyItem.setText(5,"{0}".format(totalStudyImages))
                 totalPatientImages = totalPatientImages + totalStudyImages
             
-            item.setText(4,"{0}".format(totalPatientImages))
+            item.setText(5,"{0}".format(totalPatientImages))
                     
             if item.childCount() == 0:
                 self.treeWidget.takeTopLevelItem(self.treeWidget.topLevelItemCount()-1)
                 self.seriesDictionary.pop(item)
         self.resizeTreeColumns()
+        self.emit(QtCore.SIGNAL("treeUpdated()"))
         
     def slotHSplit(self, pos, index):
         logging.debug("In ImportWindow::slotHSplit()")
@@ -419,12 +426,7 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
                 self.series.append(self.seriesDictionary[item])     
             self.showPreview()
         except Exception as e:
-            print e
-            print self.seriesDictionary
-            print item
-            print Patient
-            print self.seriesDictionary[item]
-            print isinstance(self.seriesDictionary[item], Patient)
+            logging.warning(e)
             
     def deleteActionExec(self, window, item):
         msg = QtGui.QMessageBox()
@@ -448,7 +450,6 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         caption = QtGui.QApplication.translate(
             "ImportWindow", "Select the output directory", None,
             QtGui.QApplication.UnicodeUTF8)
-        file = "{0}{1}{2}".format(lastdir, os.path.sep, "Export.st") 
         dialog = QtGui.QFileDialog.getSaveFileName(self, caption, lastdir, "File (*.st)")
         if dialog[0]:
             outputDirectory = os.path.abspath(dialog[0])
@@ -489,9 +490,11 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         self.rename.serie = self.getSeriesFromItem(item)[0]
         self.rename.setWindowIcon(self.duplicateSerieAction.icon())
         self.rename.newName.setText(self.rename.serie.description)
+        self.rename.setDisabled(False)
         self.rename.show()
     
     def renameSerieActionExec(self, window, item):
+        self.rename.setDisabled(False)
         if isinstance(self.seriesDictionary[item], Patient):
             self.rename.patient = self.seriesDictionary[item]
             self.rename.setWindowTitle(QtGui.QApplication.translate(
@@ -528,17 +531,23 @@ class ImportWindow(QtGui.QWidget, Ui_ImportWindow):
         
     def getTreeContextMenuActions(self, window, item):
         result = []
-        if item:
-            result.append((self.deleteAction, self.deleteActionExec))
-            result.append((self.exportAction, self.exportActionExec))
-            result.append((self.renameSerieAction, self.renameSerieActionExec))
-            if isinstance(self.seriesDictionary[item], Serie):
-                result.append((self.resetAction, self.resetActionExec))
-                result.append((self.duplicateSerieAction, self.duplicateSerieActionExec))
-        for provider in self._contextMenuProviders:
-            actions = provider(window, item)
-            if actions:
-                result = result + actions
+        try:
+            if item:
+                    result.append((self.deleteAction, self.deleteActionExec))
+                    result.append((self.exportAction, self.exportActionExec))
+                    result.append((self.renameSerieAction, self.renameSerieActionExec))
+                    if isinstance(self.seriesDictionary[item], Serie):
+                        result.append((self.resetAction, self.resetActionExec))
+                        result.append((self.duplicateSerieAction, self.duplicateSerieActionExec))
+                
+            for provider in self._contextMenuProviders:
+                actions = provider(window, item)
+                if actions:
+                    result = result + actions
+        except:
+            if self.outsideMenuContext:
+                return self.outsideMenuContext(window, item)
+            return []
         return result
         
     def treeContextEvent(self, event):

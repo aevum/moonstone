@@ -39,7 +39,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
         self.thicknessBox.setSingleStep(0.1)
         self.createActions()
         if contour:
-            self._getPropertiesFromContour()
+            self.getPropertiesFromContour()
 
     def addContour(self, contour):
         self.contour = contour
@@ -57,7 +57,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
         self.contours[self.contourButton] = self.contour
         self.buttonGrigLayout.addWidget(self.contourButton,(len(self.contours)-1)/4,(len(self.contours)-1)%4 )
         self.buttonGroup.addButton(self.contourButton)
-        self._getPropertiesFromContour()
+        self.getPropertiesFromContour()
 
     def removeSelectedContour(self):
         if not self.contour:
@@ -76,7 +76,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
             self.contour = self.contours.values()[0]
             self.contourButton = self.contourButtons[self.contour]
             self.contourButton.setChecked(True)
-            self._getPropertiesFromContour()
+            self.getPropertiesFromContour()
         else:
             self.contour = None
             self.rulerButton = None
@@ -139,7 +139,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
                     break
                 except:
                     pass
-        self._getPropertiesFromContour()
+        self.getPropertiesFromContour()
 
     def slotLineColorClicked(self, event):
         self.colorDialog = QtGui.QColorDialog()
@@ -156,7 +156,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
               + str(color.green()) + "," + str(color.blue())
               + ");" )
 
-    def _getPropertiesFromContour(self):
+    def getPropertiesFromContour(self):
         lineColor = self.contour.lineColor
         self.lineColorFrame.setStyleSheet(
               "background-color : rgb(" +  str(lineColor[0]*255)+ ","
@@ -182,7 +182,7 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
                     pass
 
         self.contourButton.setChecked(True)
-        self._getPropertiesFromContour()
+        self.getPropertiesFromContour()
         
     def switchContourReference(self, oldContour, newContour):
         button = self.contourButtons.pop(oldContour)
@@ -195,11 +195,4 @@ class MarkProperties(QtGui.QWidget, Ui_MarkProperties):
         self.contour = contour
         self.contourButton = self.contourButtons[self.contour]
         self.removeSelectedContour()
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = MarkProperties()
-    win.show()
-    sys.exit(app.exec_())
 

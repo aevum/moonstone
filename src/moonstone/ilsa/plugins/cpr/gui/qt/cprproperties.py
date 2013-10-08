@@ -38,7 +38,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
         self.cprGroup.setLayout(self.buttonGrigLayout)
         self.createActions()
         if contour:
-            self._getPropertiesFromContour()
+            self.getPropertiesFromContour()
 
     def addContour(self, contour):
         for c in self.contourButtons.keys():
@@ -59,7 +59,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
                                         (len(self.contours)-1) / 4,
                                         (len(self.contours)-1) % 4)
         self.buttonGroup.addButton(self.contourButton)
-        self._getPropertiesFromContour()
+        self.getPropertiesFromContour()
 
     def removeSelectedContour(self):
         if not self.contour:
@@ -79,7 +79,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
             self.contour = self.contours.values()[0]
             self.contourButton = self.contourButtons[self.contour]
             self.contourButton.setChecked(True)
-            self._getPropertiesFromContour()
+            self.getPropertiesFromContour()
         else:
             self.contour = None
             self.rulerButton = None
@@ -91,7 +91,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
             contour.lock()
 
     def unlockCurrent(self):
-        self._getPropertiesFromContour()
+        self.getPropertiesFromContour()
         self.contour.unlock()
         self.lock.setChecked(0)
 
@@ -144,7 +144,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
                     break
                 except:
                     pass
-        self._getPropertiesFromContour()
+        self.getPropertiesFromContour()
 
 
 
@@ -185,7 +185,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
         for contour in lst:
             contour.setTransversalSize(size)
             
-    def _getPropertiesFromContour(self):
+    def getPropertiesFromContour(self):
         lineColor = self.contour.getLineColor()
         self.lineColorFrame.setStyleSheet(
               "background-color : rgb(" +  str(lineColor[0]*255)+ ","
@@ -219,7 +219,7 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
 #                    pass
 #
 #        self.contourButton.setChecked(True)
-#        self._getPropertiesFromContour()
+#        self.getPropertiesFromContour()
         
     def switchContourReference(self, oldContour, newContour):
         button = self.contourButtons.pop(oldContour)
@@ -232,11 +232,3 @@ class CPRProperties(QtGui.QWidget, Ui_CPRProperties):
         self.contour = contour
         self.contourButton = self.contourButtons[self.contour]
         self.removeSelectedContour()
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    win = CPRProperties()
-    win.show()
-    sys.exit(app.exec_())
-

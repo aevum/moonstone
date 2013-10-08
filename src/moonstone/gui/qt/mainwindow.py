@@ -51,7 +51,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     RELEASE_NOTES_LINK = "http://aevum.github.com/moonstone/releasenotes"
     DOWNLOAD = "http://aevum.github.com/moonstone/downloads"
 
-    def __init__(self, type, serie=None, parent=None, mainMainWindow=None):
+    def __init__(self, windowType, serie=None, parent=None, mainMainWindow=None):
         logging.debug("In MainWindow::__init__()")
         super(MainWindow, self).__init__(parent)
 
@@ -59,14 +59,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.importWindow = None
         self._serie = serie
         self.setupUi(self)
-        self.type = type
+        self.windowType = windowType
         self.createActions()
         self.createSignals()
-        self.createSystray()
-        if type == "main":
+        #self.createSystray()
+        if windowType == "main":
             self.createImportWindow()
         self.createPlugins()
         self.updateWidgets()
+        self.login = None
+        self.mainWindows = []
         #self.toolLayout = QtGui.QHBoxLayout()
         #self.scrollAreaWidgetContents.setLayout(self.toolLayout)
         
@@ -77,7 +79,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def closeEvent(self, event):
         logging.debug("In MainWindow::closeEvent()")
-        MainWindow.systray.removeWindow(self)
+        #MainWindow.systray.removeWindow(self)
+        if self.windowType == "main":
+            for mainWindow in self.mainWindows:
+                mainWindow.close()
+        else:
+            self.mainMainWindow.mainWindows.remove(self)
         for children in self.centralwidget.children():
             if isinstance(children, MWindow):
                 children.setParent(None)
@@ -87,15 +94,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             children = None
             del children
         super(MainWindow, self).closeEvent(event)
+        self.actionClose.emit(QtCore.SIGNAL("triggered()"))
 
-    def setVisible(self, visible):
-        logging.debug("In MainWindow::setVisible()")
-        if MainWindow.systray and MainWindow.systray.windows.has_key(self):
-            if(MainWindow.systray.windows[self]):
-                MainWindow.systray.windows[self].minimizeAction.setEnabled(visible)
-                MainWindow.systray.windows[self].maximizeAction.setEnabled(not self.isMaximized())
-                MainWindow.systray.windows[self].restoreAction.setEnabled(self.isMaximized() or not visible)
-        super(MainWindow, self).setVisible(visible)
+    # def setVisible(self, visible):
+    #     logging.debug("In MainWindow::setVisible()")
+    #     if MainWindow.systray and MainWindow.systray.windows.has_key(self):
+    #         if(MainWindow.systray.windows[self]):
+    #             MainWindow.systray.windows[self].minimizeAction.setEnabled(visible)
+    #             MainWindow.systray.windows[self].maximizeAction.setEnabled(not self.isMaximized())
+    #             MainWindow.systray.windows[self].restoreAction.setEnabled(self.isMaximized() or not visible)
+    #     super(MainWindow, self).setVisible(visible)
 
     def createActions(self):
         logging.debug("In MainWindow::createActions()")
@@ -157,7 +165,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         logging.debug("In MainWindow::createSystray()")
         if QtGui.QSystemTrayIcon.isSystemTrayAvailable():
             QtGui.QApplication.setQuitOnLastWindowClosed(True)
-            if(self.type == "main"):
+            if(self.windowType == "main"):
                 MainWindow.systray = MSystray(self)
                 MainWindow.systray.show()
             else :
@@ -171,7 +179,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.menuTools.clear()
         self.toolBarTools.clear()
         self.ilsa = Ilsa(self)
-        if self.type == "main":
+        if self.windowType == "main":
             self.toolBarTools.setVisible(False)
         else :
             self.menuFile.removeAction(self.actionNew)
@@ -186,7 +194,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.groupTools.setExclusive(False)
         for action in self.menuTools.actions():
             self.groupTools.addAction(action)
-            if self.type == "main":
+            if self.windowType == "main":
                 action.setDisabled(True)
 
     def createImportWindow(self):
@@ -303,6 +311,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                                          QtGui.QApplication.UnicodeUTF8).format(i+1)) 
                 mainWindow.loadPlugins(dicomProcess, progress, ((j+1)*50/len(mwindows))/len(mwindow)/2)
                 mainWindows.append(mainWindow)
+                self.mainWindows.append(mainWindow)
             dicomProcess.setProgress(100, QtGui.QApplication.translate("MainWindow", 
                                                          "Loading finished", 
                                                          None, 
@@ -376,7 +385,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     # actions menu file
     def slotActionNew(self):
         logging.debug("In MainWindow::slotActionNew()")
-        self.importer = ImportChooser(self, self.importWindow.updateTree, -1)
+        self.importer = ImportChooser(self.importWindow.treeWidgetContainer, self.importWindow.updateTree, -1)
+        self.importWindow.gridLayout_3.addWidget(self.importer, 2, 0, 1, 1)
         self.importer.show()
 
     def slotActionOpenProject(self):
@@ -566,7 +576,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.show()
     
     def quit(self, reason=None):
-        if (self.type == "main"):
+        if (self.windowType == "main"):
             QtGui.QApplication.instance().quit()
         else:
             self.close()

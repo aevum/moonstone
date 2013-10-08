@@ -90,7 +90,6 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
 
     def createActions(self):
         logging.debug("In ProtractorProperties::createActions()")
-        self.pointColorFrame.mousePressEvent = self.slotPointColorClicked
         self.fontColorFrame.mousePressEvent = self.slotFontColorClicked
         self.lineColorFrame.mousePressEvent = self.slotLineColorClicked
         self.connect(self.buttonGroup, QtCore.SIGNAL(
@@ -101,25 +100,11 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
         logging.debug("In ProtractorProperties::slotFontSizeChanged()")
         self.protractor.setFontSize(size)
 
-    def slotPointColorClicked(self, event):
-        logging.debug("In ProtractorProperties::slotPointColorClicked()")
-        self.colorDialog = QtGui.QColorDialog()
-        self.connect(self.colorDialog, QtCore.SIGNAL("colorSelected ( QColor)"), self.changePointColor)
-        self.colorDialog.show()
-
     def slotProtractorChoosed(self, button):
         logging.debug("In ProtractorProperties::slotProtractorChoosed()")
         self.protractorButton = button
         self.protractor = self.protractors[button]
         self._getPropertiesFromProtractor()
-
-    def changePointColor(self, color):
-        logging.debug("In ProtractorProperties::changePointColor()")
-        self.protractor.pointColor = [color.red() / 255.0, color.green() / 255.0, color.blue() / 255.0]
-        self.pointColorFrame.setStyleSheet(
-              "background-color : rgb(" + str(color.red()) + ","
-              + str(color.green()) + "," + str(color.blue())
-              + ");" )
 
     def slotLineColorClicked(self, event):
         logging.debug("In ProtractorProperties::slotLineColorClicked()")
@@ -156,13 +141,6 @@ class ProtractorProperties(QtGui.QWidget, Ui_ProtractorProperties):
               "background-color : rgb(" +  str(lineColor[0]*255)+ ","
               + str(lineColor[1]*255) + "," +  str(lineColor[2]*255)
               + ");" )
-
-        pointColor = self.protractor.pointColor
-        self.pointColorFrame.setStyleSheet(
-              "background-color : rgb(" +  str(pointColor[0]*255)+ ","
-              +  str(pointColor[1]*255) + "," +  str(pointColor[2]*255)
-              + ");" )
-
 
         self.angleLabel.setText("{0:.2f}".format(self.protractor.angle))
 

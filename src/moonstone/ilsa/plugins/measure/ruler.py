@@ -15,9 +15,9 @@ class Ruler(object):
         self._distanceWidget.CreateDefaultRepresentation()
         self._distanceWidget.parent = self
         self._started = False
-        self._pointColor = [0, 1, 0]
         self._lineColor = [0, 1, 0]
         self._fontColor = [0, 1, 0]
+        self._handle.GetProperty().SetOpacity(0.01)
         self._distanceWidget.AddObserver("PlacePointEvent", self.startEvent)
 
     @property
@@ -54,17 +54,6 @@ class Ruler(object):
     def startEvent(self, obj, evt):
         logging.debug("In Ruler::startEvent()")
         self._started = True
-
-    @property
-    def pointColor(self):
-        logging.debug("In Ruler::pointColor.getter()")
-        return self._handle.GetProperty().GetColor()
-
-
-    @pointColor.setter
-    def pointColor(self, color):
-        logging.debug("In Ruler::pointColor.setter()")
-        self._handle.GetProperty().SetColor(color)
 
     @property
     def lineColor(self):

@@ -93,31 +93,17 @@ class RulerProperties(QtGui.QWidget, Ui_RulerProperties):
 
     def createActions(self):
         logging.debug("In RulerProperties::createActions")
-        self.pointColorFrame.mousePressEvent = self.slotPointColorClicked
         self.fontColorFrame.mousePressEvent = self.slotFontColorClicked
         self.lineColorFrame.mousePressEvent = self.slotLineColorClicked
         self.connect(self._buttonGroup, QtCore.SIGNAL(
                       "buttonClicked ( QAbstractButton*)"),
                       self.slotRulerChoosed)
 
-    def slotPointColorClicked(self, event):
-        logging.debug("In RulerProperties::slotPointColorClicked")
-        self.colorDialog = QtGui.QColorDialog()
-        self.connect(self.colorDialog, QtCore.SIGNAL("colorSelected ( QColor)"), self.changePointColor)
-        self.colorDialog.show()
-
     def slotRulerChoosed(self, button):
         logging.debug("In RulerProperties::slotRulerChoosed")
         self._rulerButton = button
         self._ruler = self._rulers[button]
         self._getPropertiesFromRuler()
-
-    def changePointColor(self, color):
-        self._ruler.pointColor = color.red()/255.0,color.green()/255.0, color.blue()/255.0
-        self.pointColorFrame.setStyleSheet(
-              "background-color : rgb(" + str(color.red()) + ","
-              + str(color.green()) + "," + str(color.blue())
-              + ");" )
 
     def slotLineColorClicked(self, event):
         logging.debug("In RulerProperties::slotLineColorClicked")
@@ -153,12 +139,6 @@ class RulerProperties(QtGui.QWidget, Ui_RulerProperties):
         self.lineColorFrame.setStyleSheet(
               "background-color : rgb(" +  str(lineColor[0]*255)+ ","
               + str(lineColor[1]*255) + "," +  str(lineColor[2]*255)
-              + ");")
-
-        pointColor = self._ruler.pointColor
-        self.pointColorFrame.setStyleSheet(
-              "background-color : rgb(" +  str(pointColor[0]*255)+ ","
-              +  str(pointColor[1]*255) + "," +  str(pointColor[2]*255)
               + ");")
 
         fontColor = self._ruler.fontColor

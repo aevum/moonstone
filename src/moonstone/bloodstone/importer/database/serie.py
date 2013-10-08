@@ -21,9 +21,10 @@
 import os
 import logging
 from ..utils.strUtils import hashStr
+from datetime import datetime
 
 
-from sqlobject import SQLObject, StringCol, ForeignKey, IntCol, FloatCol
+from sqlobject import SQLObject, StringCol, DateTimeCol, ForeignKey, IntCol, FloatCol
 
 class Serie(SQLObject):
     uid = StringCol()
@@ -34,13 +35,24 @@ class Serie(SQLObject):
     thickness = StringCol()
     size = StringCol()
     zSpacing = FloatCol()
+    lastSavedDate = DateTimeCol(default=datetime.now())
+    importingDate = DateTimeCol(default=datetime.now())
     tmp = IntCol(default=0)
-    
+
     def delete(self):
         logging.debug("In Serie::delete()")
         toRemove = [os.path.join(self.study.patient.directory, hashStr(self.uid) + hashStr(self.description))]
         super(Serie, self).destroySelf()
         return toRemove
+    
+    @staticmethod
+    def getSerieByUIDAndDescription(uid, description):
+        logging.debug("In Serie::findContaining()")
+        select = "uid='{0}' and description='{1}'".format(uid, description)
+        result = list(Serie.select(select))
+        if result:
+            return result[0]      
+        return None  
     
     @staticmethod
     def findContaining(study=None, file=None, description=None):

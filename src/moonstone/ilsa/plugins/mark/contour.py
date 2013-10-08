@@ -44,12 +44,18 @@ class Contour(object):
         self._lineColor = (1, 0, 0)
         self._createCutter()
         self._replyList = []
+        self._showLine = True
         self._contourWidget.SetInteractor(scene.interactor)
         self._contourWidget.SetRepresentation(self._representation)
         self._contourWidget.AddObserver("InteractionEvent", self._onInteractAction)
         self._contourWidget.AddObserver("EndInteractionEvent", self._endIteractAction)
         if isinstance(self._scene, VtkImagePlane):
             self._startEvent = self._scene.addObserver("MouseMoveEvent", self._start)
+            if scene.planeOrientation == VtkImagePlane.PLANE_ORIENTATION_CORONAL or scene.planeOrientation == VtkImagePlane.PLANE_ORIENTATION_PANORAMIC_SLICE:
+                self._showLine = False
+                self._representation.GetProperty().SetOpacity(0.0)
+                self._representation.GetLinesProperty().SetOpacity (0.0)
+                self._representation.GetActiveProperty().SetOpacity (0.0)
         else:
             self._startEvent = -1
         
@@ -297,11 +303,13 @@ class Contour(object):
     def lock(self):
         logging.debug("In Contour::lock()")
         self._contourWidget.ProcessEventsOff()
-        self._representation.GetProperty().SetOpacity(0.0)
-        self._representation.GetLinesProperty().SetOpacity (0.0)
+        if self._showLine:
+            self._representation.GetProperty().SetOpacity(0.0)
+            self._representation.GetLinesProperty().SetOpacity (0.0)
         for contour in self._replyList:
-            contour.representation.GetProperty().SetOpacity(0.0)
-            contour.representation.GetLinesProperty().SetOpacity (0.0)
+            if self._showLine:
+                contour.representation.GetProperty().SetOpacity(0.0)
+                contour.representation.GetLinesProperty().SetOpacity (0.0)
             contour.contourWidget.ProcessEventsOff()
             contour.scene.window.Render()
         self._scene.window.Render()
@@ -309,10 +317,12 @@ class Contour(object):
     def unlock(self):
         logging.debug("In Contour::unlock()")
         self._contourWidget.ProcessEventsOn()
-        self._representation.GetProperty().SetOpacity(1)
-        self._representation.GetLinesProperty().SetOpacity (1)
+        if self._showLine:
+            self._representation.GetProperty().SetOpacity(1)
+            self._representation.GetLinesProperty().SetOpacity (1)
         for contour in self._replyList:
-            contour.representation.GetProperty().SetOpacity(1)
+            if self._showLine:
+                contour.representation.GetProperty().SetOpacity(1)
             contour.contourWidget.ProcessEventsOn()
             contour.scene.window.Render()
         self._scene.window.Render() 

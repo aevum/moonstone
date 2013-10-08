@@ -42,6 +42,21 @@ class DBUtils(object):
         else:
             self.clearDB()
     
+    @staticmethod
+    def updateTable():
+        dbFolder = utils.decode_string(os.path.join(constant.INSTALL_DIR, "data"))
+        dbFile = os.path.join(dbFolder, "moonstone.db")
+        connectionString = dbFile.replace("\\", "/") #.replace("C:","///C|/")
+        import sqlite3
+        conn = sqlite3.connect(connectionString)
+        c = conn.cursor()
+        try:
+            c.execute('ALTER TABLE serie ADD last_saved_date datetime;')
+            c.execute('ALTER TABLE serie ADD importing_date datetime;')
+        except:
+            pass # handle the error
+        c.close()
+
     def clearDB(self):
         pass
              

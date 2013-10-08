@@ -54,7 +54,9 @@ class Rename(QtGui.QDialog, Ui_Rename):
         self.hide()
     
     def slotActionOk(self):
+        self.setDisabled(True)
         self._serie["serieDescription"] = self.newName.text()
         self._serie["exists"] = importer.serieExists(self._serie["uid"], self._serie["serieDescription"])
         self._updater()
         self.hide()
+        
