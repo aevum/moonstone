@@ -86,7 +86,8 @@ class CPRAction(QtCore.QObject):
         self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size())
             
         if self.propertiesAction.getContour():
-            self.propertiesAction.unlockCurrent()
+            #self.propertiesAction.unlockCurrent()
+            self.propertiesAction.getPropertiesFromContour()
             return
 
         self.slotNewCPR(True)

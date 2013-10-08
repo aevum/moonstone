@@ -149,6 +149,7 @@ class QDicomProcess(QtGui.QDialog, Ui_ProgressBarDialog):
             self.emit(self.signalProcessDicomFinished, self._readers, self._series, self._generate3D, self)
             self._readers = None
         except Exception as ex:
+            import sys
             traceback.print_exc(file=sys.stdout)
             self.close()
             QtGui.QMessageBox.critical(self, QtGui.QApplication.translate("ImportChooser", 

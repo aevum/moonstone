@@ -265,11 +265,10 @@ def createVTI(serie):
             filenames.InsertNextValue(filename)
             
         reader.SetFileNames(filenames)
-        imagedata = reader.GetOutput()
-        imagedata.UpdateInformation()
-        spacing = imagedata.GetSpacing()     
-        change.SetInput(imagedata)
-        change.SetOutputOrigin(imagedata.GetOrigin())
+        reader.Update()
+        spacing = reader.GetOutput().GetSpacing()     
+        change.SetInputConnection(reader.GetOutputPort())
+        #change.SetOutputOrigin(reader.GetOutput().GetSpacing())
         change.SetOutputSpacing(spacing[0], spacing[1], serie["zspacing"])
         change.Update()
         imagedata = change.GetOutput()
@@ -278,7 +277,7 @@ def createVTI(serie):
         if not os.path.exists(path):
             os.makedirs(path) 
         
-        extent = imagedata.GetWholeExtent()
+        extent = imagedata.GetExtent()
         spacing = imagedata.GetSpacing()
         origin = imagedata.GetOrigin()
     
@@ -325,7 +324,6 @@ def updateDatabase(serie):
                           directory=serie["patientPath"])
     else:
         patient = patient[0]
-    
     
     study = list(Study.selectBy(uid=serie["studyUID"]))
     if not study:

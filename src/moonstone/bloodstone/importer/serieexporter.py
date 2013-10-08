@@ -49,6 +49,7 @@ class SerieExporter(QtCore.QObject):
 
         QtCore.QTimer.singleShot(500, self.updateValue)
         self.status = "running"
+    
     def parseSeries(self, series):
         result = []
         for serie in series:
@@ -184,6 +185,57 @@ class ExporterProcess():
             self._status = "finish"
             self._sharedStatus.value = "f"
             self.updateStatus()
- 
+
+def exportSerie(serie, outputFile):
+    seriesDicom = []
+    zipper = Zipper()  
+    zipper.start(outputFile)
+    seriesInfo = []
+    study = serie.study
+    patient = study.patient
+    serieDicomFolder = "{0}{1}{2}".format(patient.directory, os.path.sep, hashStr(serie.uid))
+    serieFolder = "{0}{1}".format(serieDicomFolder, hashStr(serie.description))
+    serieDbPath = "{0}{1}{2}".format(serieFolder,os.path.sep, "export.db")
+    
+    serieDb = {}
+    serieDb["uid"] = serie.uid
+    serieDb["dicomImages"] = serie.dicomImages
+    serieDb["description"] = serie.description
+    serieDb["thickness"] = serie.thickness
+    serieDb["size"] = serie.size
+    serieDb["zSpacing"] = serie.zSpacing
+    
+    serieDb["study"] = study.uid
+    studyDb = {}
+    studyDb["uid"] = study.uid
+    studyDb["modality"] = study.modality
+    studyDb["description"] = study.description
+    studyDb["institution"] = study.institution
+    studyDb["patient"] = patient.uid
+    
+    patientDb = {}
+    patientDb["uid"] = patient.uid
+    patientDb["name"] = patient.name
+    patientDb["birthdate"] = str(patient.birthdate)
+    patientDb["sex"] = patient.sex
+    patientDb["directory"] = patient.directory
+            
+    serieDict = {"serie": serieDb, "study" : studyDb, "patient" : patientDb}
+    persist_yaml_file(serieDbPath, serieDict)
+    zipper.recursive_zip(serieFolder)
+    remove_file(serieDbPath)
+    
+    if seriesDicom.count(serie.uid) == 0:
+        zipper.recursive_zip(serieDicomFolder)
+        seriesDicom.append(serie.uid)
+    serieDicomOutFolder = hashStr(serie.uid)
+    serieOutFolder = "{0}{1}".format(serieDicomOutFolder, hashStr(serie.description))
+    seriesInfo.append({"serieFolder" :serieOutFolder, "serieDicomFolder" : serieDicomOutFolder})
+    seriesInfoFile = tempfile.NamedTemporaryFile(delete=False)
+    persist_yaml_file(seriesInfoFile.name, seriesInfo)
+    seriesInfoFilename = compact.encryptFile(seriesInfoFile.name, zipper.key)
+    zipper.recursive_zip(seriesInfoFilename, "seriesInfo")
+    zipper.finish()
+
     
     

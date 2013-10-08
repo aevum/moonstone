@@ -91,7 +91,8 @@ class MarkAction(QtCore.QObject):
         self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size())
             
         if self.propertiesAction.getContour():
-            self.propertiesAction.unlockCurrent()
+            self.propertiesAction.getPropertiesFromContour()
+            self.pr
             return
 
         replyList = []
