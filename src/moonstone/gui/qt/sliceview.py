@@ -198,6 +198,7 @@ class SliceView(View):
         logging.debug("In SliceViewPlane::updateWidgets()")
         self.planeSlide.setVisible(False)
         self.setWindowTitle(self.title)
+        self.setObjectName("{0}{1}".format(self.title, self._id))
         
     def reset(self):
         logging.debug("In SliceViewPlane::reset()")
@@ -247,6 +248,7 @@ class SliceView(View):
             self.scene.slabThickness = data["slabThickness"]
             self.scene.updatePlane()
         if data.has_key("slicePosition"):
+            self.planeSlide.setValue(data["slicePosition"])
             self.slotPlaneSlideChanged(data["slicePosition"])
         if data.has_key("cameraPosition"):
             self.scene.camera.SetViewUp(data["cameraViewUp"])

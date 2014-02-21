@@ -307,7 +307,7 @@ class Contour(object):
             self._representation.GetProperty().SetOpacity(0.0)
             self._representation.GetLinesProperty().SetOpacity (0.0)
         for contour in self._replyList:
-            if self._showLine:
+            if contour._showLine:
                 contour.representation.GetProperty().SetOpacity(0.0)
                 contour.representation.GetLinesProperty().SetOpacity (0.0)
             contour.contourWidget.ProcessEventsOff()
@@ -321,7 +321,7 @@ class Contour(object):
             self._representation.GetProperty().SetOpacity(1)
             self._representation.GetLinesProperty().SetOpacity (1)
         for contour in self._replyList:
-            if self._showLine:
+            if contour._showLine:
                 contour.representation.GetProperty().SetOpacity(1)
             contour.contourWidget.ProcessEventsOn()
             contour.scene.window.Render()
@@ -337,7 +337,7 @@ class Contour(object):
         yaml = {}
         yaml["lineColor"] = self._lineColor
         yaml["visible"] = self._visible
-        yaml["locked"] = self.locked
+        yaml["locked"] = True
         yaml["radius"] = self.radius
         points = []
         i = 0

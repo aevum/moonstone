@@ -34,13 +34,13 @@ class MultiSliceView(SliceView):
     def __init__(self, mscreenParent, slices, parent=None, title = None, planeNumber = 1):
         logging.debug("In MultiSlicePlane::__init__()")
         self._referencedPlanes = []
-        if not title:
-            title = QtGui.QApplication.translate("MultiSliceView", 
-                                                         "Panoramic", 
-                                                         None, 
-                                                         QtGui.QApplication.UnicodeUTF8)
+        #if not title:
+        #    title = QtGui.QApplication.translate("MultiSliceView", 
+        #                                                 "Panoramic", 
+        #                                                 None, 
+        #                                                 QtGui.QApplication.UnicodeUTF8)
         super(MultiSliceView, self).__init__(mscreenParent, VtkImagePlane.PLANE_ORIENTATION_PANORAMIC, slices, parent, title, planeNumber=planeNumber)
-        self.updateWidgets()
+        #self.updateWidgets()
 
     def activateAllPlanes(self):
         planes = [ pl for pl in self._mscreenParent._planes \

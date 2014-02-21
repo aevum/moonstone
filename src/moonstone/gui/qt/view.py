@@ -26,6 +26,15 @@ class View( QtGui.QDockWidget, Ui_ViewPlane ):
         self.createScene()
         self.createActions()
         self.updateWidgets()
+        self.active = True
+
+
+
+    def setVisible(self, status):
+        self.active = status
+        super( View, self ).setVisible(status)
+
+
 
     def createWidgets( self ):
 

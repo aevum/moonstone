@@ -92,7 +92,6 @@ class MarkAction(QtCore.QObject):
             
         if self.propertiesAction.getContour():
             self.propertiesAction.getPropertiesFromContour()
-            self.pr
             return
 
         replyList = []
@@ -161,7 +160,10 @@ class MarkAction(QtCore.QObject):
         replyList = []
 
         for scene in scenes:
-            contour = Contour(scene)
+            if isinstance(scene, VtkMultiSliceImagePlane):
+                contour = MultiSliceContour(scene)
+            else:
+                contour = Contour(scene) 
             replyList.append(contour)
 
         self.propertiesAction.addContour(replyList[0])

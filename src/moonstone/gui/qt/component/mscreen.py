@@ -26,7 +26,6 @@ import time
 import vtk
 from PySide import QtCore, QtGui
 
-from ....bloodstone.utils.data import dicom_to_vti2
 from ..volumeview import VolumeView
 from ....bloodstone.scenes.data.slice import Slice
 from ..multisliceview import MultiSliceView
@@ -236,9 +235,10 @@ class MScreen(QtGui.QMainWindow):
             for i in range(center, len(planes)):
                 planes[i].setParent(self.hsplitter2)
         
+    @property
     def scenes(self):
         logging.debug("In MScreen::scenes()")
-        return self.scenes
+        return self._scenes
     
     def addScene(self, scenePlane):
         self.openScene(scenePlane)
@@ -381,23 +381,17 @@ class MScreen(QtGui.QMainWindow):
             self._activePlanes.remove(scenePlane)
         if self._inactivePlanes.count(scenePlane) > 0:
             self._inactivePlanes.remove(scenePlane)
-
-        #scenePlane.close()
-        #self.removeDockWidget(scenePlane)
-        #scenePlane.destroy()
                                 
 
-    def save(self, fname, index, name):
-        scenes = []
-        for plane in self.planes:
-            scenes.append(plane.scene) 
-            
+    def save(self, fname, index, name):            
         saveScenes = []
-        for scene in scenes:
-            saveScenes.append(scene.save())
+        for plane in self.planes:
+            sceneYaml = plane.scene.save()
+            sceneYaml["visible"] = plane.active
+            saveScenes.append(sceneYaml)
         settings = QtCore.QSettings("Moonstone", "Medical")
         settings.setValue("{0}{1}geometry".format(self.id, name), self.saveGeometry())
-        settings.setValue("{0}{1}state".format(self.id, name), self.saveState())
+        settings.setValue("{0}{1}state".format(self.id, name), self.saveState()) 
         save = {"name": name, 
                 "cubeCorners" : self._cubeCorners,
                 "lastChildId" : self._lastChildId, 

@@ -275,12 +275,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         
                     screen = MScreen(mWindow=widget, vtkImageData=mwindow["imagedata"], name=mscreen["name"], cubeCorners=mscreen["cubeCorners"], creationTime=creationTime)
                     widget.addTab(screen, mscreen["name"])
+                    visibleScreens = {}
                     if mscreen["scenes"]:
                         for scene in mscreen["scenes"]:
                             if not scene.has_key("data"):
                                 scene["data"] = None
-                            screen.createScene(int(scene["planeOrientation"]), data=scene["data"])
-
+                            scenePlane = screen.createScene(int(scene["planeOrientation"]), data=scene["data"])
+                            if scene.has_key("visible"):
+                                visibleScreens[scenePlane] = scene["visible"]
                         # each scene is created one after the other, so after all scenes had
                         # been created we must reload all planes so the slice widgets are
                         # loaded correctly
@@ -300,6 +302,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         mscreen["main"] = True
                     screen.main = mscreen["main"]
                     screen.restoreDockGeometry()
+                    for scenePlane in screen.planes:
+                        if visibleScreens.has_key(scenePlane):
+                            scenePlane.setVisible(visibleScreens[scenePlane])
                     if mscreen.has_key("lastChildId"):
                         screen.lastChildId = mscreen["lastChildId"]
 

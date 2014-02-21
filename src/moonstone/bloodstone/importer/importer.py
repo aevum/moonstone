@@ -112,46 +112,46 @@ class Importer(object):
     
 def processImport(indexes, series, queue, stopCancelQueue):
     for index in indexes:
-    
-        serie = series[index]
-        serie["progress"] = 5
-        queue.put(["series", series])
+        try:
+            serie = series[index]
+            serie["progress"] = 5
+            queue.put(["series", series])
 
-        if not stopCancelQueue.empty():
-            break
-        sortSerie(serie)
+            if not stopCancelQueue.empty():
+                break
+            sortSerie(serie)
 
-        serie["progress"] = 25
-        queue.put(["series", series])
+            serie["progress"] = 25
+            queue.put(["series", series])
 
-        if not stopCancelQueue.empty():
-            break
-        copyFiles(serie)
+            if not stopCancelQueue.empty():
+                break
+            copyFiles(serie)
 
-        serie["progress"] = 50
-        queue.put(["series", series])
-        if not stopCancelQueue.empty():
-            break
-        createVTI(serie)
+            serie["progress"] = 50
+            queue.put(["series", series])
+            if not stopCancelQueue.empty():
+                break
+            createVTI(serie)
 
-        serie["progress"] = 90
-        queue.put(["series", series])
-        if not stopCancelQueue.empty():
-            break
-        createYAMLFile(serie)
-        serie["progress"] = 95
-        queue.put(["series", series])
-        if not stopCancelQueue.empty():
-            break
-        updateDatabase(serie)
-        serie["progress"] = 100
-        queue.put(["series", series])
-        if not stopCancelQueue.empty():
-            break
-        serie["error"] = False
-        # except:
-        #     serie["error"] = True
-        #     rollback(serie)
+            serie["progress"] = 90
+            queue.put(["series", series])
+            if not stopCancelQueue.empty():
+                break
+            createYAMLFile(serie)
+            serie["progress"] = 95
+            queue.put(["series", series])
+            if not stopCancelQueue.empty():
+                break
+            updateDatabase(serie)
+            serie["progress"] = 100
+            queue.put(["series", series])
+            if not stopCancelQueue.empty():
+                break
+            serie["error"] = False
+        except:
+            serie["error"] = True
+            rollback(serie)
 
     if not stopCancelQueue.empty():
         msg = stopCancelQueue.get()
@@ -228,7 +228,23 @@ def sortSerie(serie):
     serie["zspacing"] = sorter.GetZSpacing() if result else 1.0
     if sorter.GetFilenames():
         serie["files"] = sorter.GetFilenames()
-    
+    try:
+        if not serie["zspacing"]:
+            reader = gdcm.ImageReader()
+            reader.SetFileName(serie["files"][0])
+            if reader.Read():
+                dataset = reader.GetFile().GetDataSet()
+                z1 = float(retrieveDicomTag(0x0020, 0x0032, dataset).split("\\")[2])
+            reader = gdcm.ImageReader()
+            reader.SetFileName(serie["files"][1])
+            if reader.Read():
+                dataset = reader.GetFile().GetDataSet()
+                z2 = float(retrieveDicomTag(0x0020, 0x0032, dataset).split("\\")[2])
+            serie["zspacing"] = abs(z2-z1)
+    except:
+        return
+
+
 def copyFiles(serie):
     logging.debug("In Importer::copyFiles()")
     basePath = os.path.join(constant.INSTALL_DIR, "data")
@@ -256,6 +272,7 @@ def createVTI(serie):
     writer = vtk.vtkXMLImageDataWriter()
     writer.ReleaseDataFlagOn()
     
+
     for i in range(numberOfParts):
         filenames = vtk.vtkStringArray()
         limit = (i+1)*size
@@ -263,9 +280,10 @@ def createVTI(serie):
             limit = len(serie["files"])
         for filename in serie["files"][i*size:limit]:
             filenames.InsertNextValue(filename)
-            
         reader.SetFileNames(filenames)
         reader.Update()
+        extent =  reader.GetOutput().GetExtent()
+        #serie["zspacing"] = len(serie["files"])/(extent[5]-extent[4])
         spacing = reader.GetOutput().GetSpacing()     
         change.SetInputConnection(reader.GetOutputPort())
         #change.SetOutputOrigin(reader.GetOutput().GetSpacing())
@@ -280,7 +298,6 @@ def createVTI(serie):
         extent = imagedata.GetExtent()
         spacing = imagedata.GetSpacing()
         origin = imagedata.GetOrigin()
-    
         center = (
             origin[0] + spacing[0] * 0.5 * (extent[0] + extent[1]),
             origin[1] + spacing[1] * 0.5 * (extent[2] + extent[3]),
@@ -433,7 +450,7 @@ def scanFiles(files, path, series):
         except:
             traceback.print_exc(file=sys.stdout)
             logging.debug("Error loading file: {0}".format(filepath))
-    
+
 def serieExists(serieID, description):
     if list(Serie.select("uid='{0}' AND description='{1}'".format(serieID, description))):
         return True

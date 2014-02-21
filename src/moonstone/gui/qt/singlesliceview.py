@@ -40,7 +40,7 @@ class SingleSliceView(SliceView):
         logging.debug("In SingleSlicePlane::__init__()")
         self._referencedPlanes = []
         super(SingleSliceView, self).__init__(mscreenParent, planeOrientation, slice, parent, title, slicePath, planeNumber)
-        self.updateWidgets()
+        #self.updateWidgets()
 
     def activateAllPlanes(self):
         logging.debug("In SingleSlicePlane::activateAllPlanes()")

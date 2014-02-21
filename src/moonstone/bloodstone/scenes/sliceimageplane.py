@@ -26,7 +26,7 @@ import math
 from PySide import QtGui
 
 from data.imagedata import VtkImageData
-from ..utils.msmath import intersect_line_with_plane
+from ..utils.msmath import intersect_line_with_plane, calculateAngle, trasnlate_vector, subtract_vector
 from imageplane import VtkImagePlane
 
 class VtkSliceImagePlane(VtkImageData, VtkImagePlane):
@@ -41,6 +41,7 @@ class VtkSliceImagePlane(VtkImageData, VtkImagePlane):
         self._restrictPlaneToVolume = True
         self._originalWindow = 1.0
         self._originalLevel = 0.5
+        self._planeCenter = 0.0
         self._currentWindow = 1.0
         self._currentLevel = 0.5
         self._textureInterpolate = True
@@ -236,7 +237,7 @@ class VtkSliceImagePlane(VtkImageData, VtkImagePlane):
         
         self._sliceChangeListeners = []
         self.actualCameraPosition = None
-        self.lastNomal = None
+        self.lastNormal = None
         self.__imageWidgetList = []
 
     def getBorderColor(self):
@@ -1260,11 +1261,50 @@ class VtkSliceImagePlane(VtkImageData, VtkImagePlane):
             elif self.planeOrientation == VtkImagePlane.PLANE_ORIENTATION_SAGITTAL:
                 revertConst = 1
         center = self._planeSource.GetCenter()
-        self.camera.SetPosition([c - n * 600 * revertConst for c, n in zip(center,  self._planeSource.GetNormal())])
-        self.camera.SetFocalPoint([p1+p2 for p1, p2 in zip(center, self._planeSource.GetNormal())])
+        cameraPosition = [c - n * 600 * revertConst for c, n in zip(center,  self._planeSource.GetNormal())]
+        # if self._planeCenter:
+        #     distanceFromCenter = subtract_vector(self._planeCenter, self._planeSource.GetCenter())  
+        #     if self.lastNormal != self.getSlicePositionNormal(self.actualPosition):
+        #         distanceFromCenter = subtract_vector(self._planeCenter, self._planeSource.GetCenter()) 
+        #         focalPoint = [p1+p2 for p1, p2 in zip(self.camera.GetFocalPoint(), distanceFromCenter)]
+
+        #         angle = calculateAngle(self.lastNormal, [0, 0, 0], self.getSlicePositionNormal(self.actualPosition))
+        #         planeSource = vtk.vtkPlaneSource()
+        #         planeSource.SetOrigin([0, 0, 0])
+        #         planeSource.SetPoint1(self.lastNormal)
+        #         planeSource.SetPoint2(self.getSlicePositionNormal(self.actualPosition))
+        #         planeSource.Update()
+
+        #         v1 = self.lastNormal
+        #         print "v1",v1, angle
+        #         n = planeSource.GetNormal()
+        #         print "n",n
+        #         t = vtk.vtkTransform()
+        #         t.RotateWXYZ(-angle, n)
+        #         v1.append(1)
+        #         t.MultiplyPoint(v1, v1)
+        #         v1.pop(3)
+        #         v1 = trasnlate_vector(v1, self.camera.GetFocalPoint())
+        #         #focalPoint = v1
+        #         distanceFromCenter = subtract_vector(self._planeCenter, self._planeSource.GetCenter()) 
+        #         focalPoint = [p1+p2 for p1, p2 in zip(v1, distanceFromCenter)]
+
+        #         #focalPoint = [p1+p2 for p1, p2 in zip(center, self._planeSource.GetNormal())]
+                
+        #     else:
+        #         focalPoint = [p1+p2 for p1, p2 in zip(self.camera.GetFocalPoint(), distanceFromCenter)]
+        # else:
+        #     focalPoint = [p1+p2 for p1, p2 in zip(center, self._planeSource.GetNormal())]
+        focalPoint = [p1+p2 for p1, p2 in zip(center, self._planeSource.GetNormal())]
+        self.camera.SetPosition(cameraPosition)
+        #print "*************"
+        #print self.camera.GetFocalPoint()
+        self.camera.SetFocalPoint(focalPoint)
         self.renderer.Render()
         self.lastNormal = self.getSlicePositionNormal(self.actualPosition)
         
+        self._planeCenter = self._planeSource.GetCenter()
+
     def highlightPlane(self, highlight=True):
         logging.debug("In VtkSliceImagePlane::highlightPlane()")
         if highlight:
