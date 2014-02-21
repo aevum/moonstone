@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '../src/moonstone/ilsa/plugins/mark/resources/ui/qt/markproperties.ui'
+# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/moonstone/src/moonstone/ilsa/plugins/mark/resources/ui/qt/markproperties.ui'
 #
-# Created: Wed May 25 17:13:21 2011
-#      by: pyside-uic 0.2.8 running on PySide 1.0.1
+# Created: Fri Feb 21 10:21:51 2014
+#      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_MarkProperties(object):
     def setupUi(self, MarkProperties):
         MarkProperties.setObjectName("MarkProperties")
-        MarkProperties.resize(212, 297)
+        MarkProperties.resize(212, 282)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/static/default/icon/22x22/edit-select.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MarkProperties.setWindowIcon(icon)
@@ -72,8 +72,11 @@ class Ui_MarkProperties(object):
         self.gridLayout_4.addWidget(self.visible, 2, 1, 1, 1)
         self.verticalLayout.addWidget(self.widget)
         self.markGroup = QtGui.QGroupBox(MarkProperties)
+        self.markGroup.setMinimumSize(QtCore.QSize(0, 50))
         self.markGroup.setObjectName("markGroup")
         self.verticalLayout.addWidget(self.markGroup)
+        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
 
         self.retranslateUi(MarkProperties)
         QtCore.QMetaObject.connectSlotsByName(MarkProperties)

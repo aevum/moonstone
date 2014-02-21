@@ -56,6 +56,7 @@ class MarkAction(QtCore.QObject):
 
         parentProperties = self.parent().scrollAreaWidgetContents
         self.propertiesAction = MarkProperties(parentProperties)
+        parentProperties.layout().addWidget(self.propertiesAction)
         self.propertiesAction.hide()
     
     def uncheck(self, actionType):
@@ -88,8 +89,6 @@ class MarkAction(QtCore.QObject):
         self._ilsa.desactivateOthers("mark")
         self.parent().toolProperties.setVisible(True)
         self.propertiesAction.show()
-        self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size())
-            
         if self.propertiesAction.getContour():
             self.propertiesAction.getPropertiesFromContour()
             return

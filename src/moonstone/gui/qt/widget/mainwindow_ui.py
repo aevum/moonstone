@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/mainwindow.ui'
 #
-# Created: Wed May 15 15:27:36 2013
+# Created: Fri Feb 21 10:03:49 2014
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,29 +35,15 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolProperties.sizePolicy().hasHeightForWidth())
         self.toolProperties.setSizePolicy(sizePolicy)
-        self.toolProperties.setMinimumSize(QtCore.QSize(94, 119))
+        self.toolProperties.setMinimumSize(QtCore.QSize(104, 119))
         self.toolProperties.setWindowIcon(icon)
         self.toolProperties.setObjectName("toolProperties")
-        self.dockWidgetContents = QtGui.QWidget()
-        self.dockWidgetContents.setObjectName("dockWidgetContents")
-        self.gridLayout_2 = QtGui.QGridLayout(self.dockWidgetContents)
-        self.gridLayout_2.setContentsMargins(-1, -1, -1, 0)
-        self.gridLayout_2.setHorizontalSpacing(0)
-        self.gridLayout_2.setVerticalSpacing(6)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.scrollArea = QtGui.QScrollArea(self.dockWidgetContents)
-        self.scrollArea.setMinimumSize(QtCore.QSize(0, 0))
-        self.scrollArea.setFrameShape(QtGui.QFrame.NoFrame)
-        self.scrollArea.setFrameShadow(QtGui.QFrame.Plain)
-        self.scrollArea.setLineWidth(0)
-        self.scrollArea.setWidgetResizable(False)
-        self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 210, 274))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.gridLayout_2.addWidget(self.scrollArea, 0, 0, 1, 1)
-        self.toolProperties.setWidget(self.dockWidgetContents)
+        self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout.setContentsMargins(-1, -1, -1, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.toolProperties.setWidget(self.scrollAreaWidgetContents)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.toolProperties)
         self.toolBarTools_2 = QtGui.QToolBar(MainWindow)
         self.toolBarTools_2.setIconSize(QtCore.QSize(16, 16))

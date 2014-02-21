@@ -67,6 +67,7 @@ class ProtractorAction(QtCore.QObject):
         parentProperties = self.parent().scrollAreaWidgetContents
 
         self.propertiesAction = ProtractorProperties(parentProperties)
+        parentProperties.layout().addWidget(self.propertiesAction)
         self.propertiesAction.hide()
     
     def uncheck(self, actionType):
@@ -92,7 +93,6 @@ class ProtractorAction(QtCore.QObject):
         self._ilsa.desactivateOthers("angle")
         self.parent().toolProperties.setVisible(True)
         self.propertiesAction.show()    
-        self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size()) 
         if not self.protractor:   
             self.newProtactor()
             

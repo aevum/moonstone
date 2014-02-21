@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>212</width>
-    <height>297</height>
+    <height>282</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,21 +27,21 @@
       </size>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
+      <item row="2" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
          <string>Radius</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Line color:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="3" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QWidget" name="widget_2" native="true">
@@ -91,18 +91,24 @@
         </item>
        </layout>
       </item>
-      <item row="3" column="1">
-       <widget class="QPushButton" name="newMarkButton">
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="thicknessBox"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="visible">
         <property name="text">
-         <string>New</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../../../../measure/resources/ui/qt/resources.qrc">
-          <normaloff>:/static/default/icon/22x22/document-new.png</normaloff>:/static/default/icon/22x22/document-new.png</iconset>
+         <string>Visible</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="lock">
+        <property name="text">
+         <string>Lock</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
        <widget class="QPushButton" name="deleteMarkButton">
         <property name="text">
          <string>Delete</string>
@@ -113,20 +119,14 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QDoubleSpinBox" name="thicknessBox"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="lock">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="newMarkButton">
         <property name="text">
-         <string>Lock</string>
+         <string>New</string>
         </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QCheckBox" name="visible">
-        <property name="text">
-         <string>Visible</string>
+        <property name="icon">
+         <iconset resource="../../../../measure/resources/ui/qt/resources.qrc">
+          <normaloff>:/static/default/icon/22x22/document-new.png</normaloff>:/static/default/icon/22x22/document-new.png</iconset>
         </property>
        </widget>
       </item>
@@ -135,10 +135,29 @@
    </item>
    <item>
     <widget class="QGroupBox" name="markGroup">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
+     </property>
      <property name="title">
       <string>Marks</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

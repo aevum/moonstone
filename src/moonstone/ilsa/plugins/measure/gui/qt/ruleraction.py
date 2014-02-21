@@ -56,6 +56,7 @@ class RulerAction(QtCore.QObject):
         parentProperties = self.parent().scrollAreaWidgetContents
 
         self.propertiesAction = RulerProperties(parentProperties)
+        parentProperties.layout().addWidget(self.propertiesAction)
         self.propertiesAction.hide()
 
     def uncheck(self, actionType):
@@ -81,7 +82,6 @@ class RulerAction(QtCore.QObject):
         if self.propertiesAction.ruler:
             self.parent().toolProperties.setVisible(True)
             self.propertiesAction.show()
-            self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size())
             return
     
         self.propertiesAction.connect(self.propertiesAction.newRulerButton,
@@ -93,7 +93,6 @@ class RulerAction(QtCore.QObject):
 
         self.parent().toolProperties.setVisible(True)
         self.propertiesAction.show()
-        self.parent().scrollAreaWidgetContents.resize(self.propertiesAction.size())
         self.newRuler()
 
     def newRuler(self):
