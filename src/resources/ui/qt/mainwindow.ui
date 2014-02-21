@@ -66,7 +66,7 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>94</width>
+     <width>215</width>
      <height>119</height>
     </size>
    </property>
@@ -80,49 +80,11 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
-    <layout class="QGridLayout" name="gridLayout_2">
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <property name="bottomMargin">
       <number>0</number>
      </property>
-     <property name="horizontalSpacing">
-      <number>0</number>
-     </property>
-     <property name="verticalSpacing">
-      <number>6</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>0</number>
-       </property>
-       <property name="widgetResizable">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>210</width>
-          <height>274</height>
-         </rect>
-        </property>
-       </widget>
-      </widget>
-     </item>
     </layout>
    </widget>
   </widget>

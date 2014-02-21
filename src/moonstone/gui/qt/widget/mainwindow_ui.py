@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/moonstone/src/resources/ui/qt/mainwindow.ui'
+# Form implementation generated from reading ui file '/home/igor/Desenvolvimento/neppo/moonstone_stable/src/resources/ui/qt/mainwindow.ui'
 #
-# Created: Fri Feb 21 10:03:49 2014
+# Created: Fri Feb 21 15:32:12 2014
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolProperties.sizePolicy().hasHeightForWidth())
         self.toolProperties.setSizePolicy(sizePolicy)
-        self.toolProperties.setMinimumSize(QtCore.QSize(104, 119))
+        self.toolProperties.setMinimumSize(QtCore.QSize(215, 119))
         self.toolProperties.setWindowIcon(icon)
         self.toolProperties.setObjectName("toolProperties")
         self.scrollAreaWidgetContents = QtGui.QWidget()
